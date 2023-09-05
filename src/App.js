@@ -1,20 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import "./App.css"
+import Etusivu from "./pages/Etusivu"
+import Lainasivu from "./pages/Lainasivu"
+import Loginsivu from "./pages/Loginsivu"
+import Adminsivu from "./pages/Adminsivu"
+import Navbar from "./modules/Navbar"
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 
 function App() {
-  return (
+  return ( 
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<Etusivu />} />
+          <Route path="Lainasivu" element={<Lainasivu />} />
+          <Route path="Loginsivu" element={<Loginsivu />} />
+          <Route path="Adminsivu" element={<Adminsivu />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
     </div>
   );
 }
