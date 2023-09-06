@@ -1,24 +1,28 @@
-import React from "react";
-import { Outlet, Link} from "react-router-dom";
+import React from "react"
+import { Outlet, Link} from "react-router-dom"
+import "./Navbar.css"
 
 function Navbar() {
     return (
         <>
-        <ul>
-            <li>
-                <Link to="/">Etusivu</Link>
-            </li>
-            <li>
-                <Link to="/Lainasivu">Lainasivu</Link>
-            </li>
-            <li>
-                <Link to="/Loginsivu">Loginsivu</Link>
-            </li>
-            <li>
-                <Link to="/Adminsivu">Adminsivu</Link>
-            </li>
-        </ul>
-
+        <div className="banner">
+            <div class="navbar">
+                <ul>
+                    <li>
+                        <Link to="/">Etusivu</Link>
+                    </li>
+                    <li>
+                        <Link to="/Lainasivu">Lainasivu</Link>
+                    </li>
+                    <li>
+                        <Link to="/Loginsivu">Loginsivu</Link>
+                    </li>
+                    <li>
+                        <Link to="/Adminsivu">Adminsivu</Link>
+                    </li>
+                </ul>
+            </div>
+        </div>
 <Outlet />
 </>
     );
