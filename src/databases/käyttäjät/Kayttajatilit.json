@@ -1,17 +1,10 @@
 [
     {
         "sposti": "gr277585@gradia.fi",
-        "salasana": "salasana123",
-        "admin": "true"
+        "salasana": "salasana123"
     },
     {
         "sposti": "gr277585@gradia.fi",
-        "salasana": "salasana123",
-        "admin": "false"
-    },
-    {
-        "sposti": "gr277585@gradia.fi",
-        "salasana": "salasana123",
-        "admin": "false"
+        "salasana": "salasana123"
     }
   ]
