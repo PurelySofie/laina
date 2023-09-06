@@ -1,5 +1,6 @@
 import React from "react"
 import "./Etusivu.css"
+import { Link } from "react-router-dom"
 
 function Etusivu(){
     return(
@@ -8,7 +9,9 @@ function Etusivu(){
             <p>Kirjaudu sisään ennen lainaamista, se helpottaa lainaamisen etenemistä sujuvasti ja ongelmitta<br>
             </br> voit käyttää qr-koodin lukijaa löytääksesi lainattavasi helpommin.<br></br> Käytä grandian tunnuksia kirjautumisessa.</p>
 
-            <button type="button" ><span></span>Kirjaudu sisään</button>
+            <Link to="/login">
+                <button type="button" ><span></span>Kirjaudu sisään</button>
+            </Link>
         </div>
     );
 }

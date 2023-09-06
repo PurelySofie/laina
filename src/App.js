@@ -9,6 +9,11 @@ import Salasana from "./pages/Salasana"
 import Navbar from "./modules/Navbar"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 
+//Tämä sivu on vain routeille. Jos haluat routen extra sivulle tee sille route:
+//Ensin tee seuraavanlainen: import Sivu from "./pages/Sivu"
+//Sitten lisää <Route path="sivu" element={<Nimi jolla importtasit />} />
+//Voit myös pyytää Sofialta apua tämän kanssa.
+
 function App() {
   return ( 
     <div className="App">
@@ -21,6 +26,7 @@ function App() {
           <Route path="login" element={<Loginsivu />} />
           <Route path="register" element={<Uusitili />} />
           <Route path="forgotpassword" element={<Salasana />} />
+
         </Route>
       </Routes>
     </BrowserRouter>
