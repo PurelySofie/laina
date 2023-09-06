@@ -8,4 +8,5 @@ Varmista että kaikki kansiot ovat pienellä koska github ei päivitä esim Page
 Tee npm i / npm install koska sinulta saattaa puuttua node_modules.
 
 
-css luokkia
+Reactissa css luokkia yhdistetään elementteihin käyttämällä: className="luokan-nimi", ei: class="luokan-nimi".
+Eroa se ei varmaan tee, mutta consoleen ei tule warningia. 
