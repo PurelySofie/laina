@@ -1,447 +1,475 @@
-.content{
+/*.content{
     width: 100%;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     text-align: center;
     color:#fff;
-  }
-  body {
+  }*/
 
-    box-sizing: border-box;
-  
-    margin: 0;
-  
-    padding: 0;
-  
-    font-family: sans-serif;
-  
-  }
-  
-   
-  
+
   .kirjauduFrm, .rekisteröidyFrm, .uusiSalasana {
-  
+
     display: flex;
-  
+
     justify-content: center;
-  
+
     align-items: center;
-  
-    height: 100vh;
-  
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    position: absolute;
+
+    width: 100%;
+
   }
-  
-   
-  
+
+
+
   .form {
-  
+
     background-color: rgba(0, 0, 0, 0.5);
-  
+
     width: 400px;
-  
+
     border-radius: 8px;
-  
+
     padding: 20px 40px;
-  
+
     box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
-  
+
+    border: 2px solid rgb(66, 148, 136);
+
   }
-  
-   
-  
+
+
+
   .title-kirjaudu, .title-rekisteröidy {
-  
+
     font-size: 40px;
-  
+
     margin-bottom: 50px;
-  
+
     position: relative;
-  
-  }
-  
-  .title-salasana {
-  
-    font-size: 30px;
-  
-    margin-bottom: 30px;
-  
-    position: relative;
-  
-  }
-  
-  .title-salasana::after {
-  
-    content: "";
-  
-    display: block;
-  
-    height: 3px;
-  
-    width: 285px;
-  
-    position: absolute;
-  
-    left: 36%;
-  
-    bottom: -10px;
-  
-    transform: translateX(-50%);
-  
-    background-color: aquamarine;
-  
-  }
-  
-  .title-kirjaudu::after {
-  
-    content: " ";
-  
-    display: block;
-  
-    height: 3px;
-  
-    width: 300px;
-  
-    position: absolute;
-  
-    left: 38%;
-  
-    bottom: -10px;
-  
-    transform: translateX(-50%);
-  
-    background-color: aquamarine;
-  
-  }
-  
-   
-  
-  .title-rekisteröidy::after {
-  
-    content: " ";
-  
-    display: block;
-  
-    height: 3px;
-  
-    width: 240px;
-  
-    position: absolute;
-  
-    left: 30%;
-  
-    bottom: -10px;
-  
-    transform: translateX(-50%);
-  
-    background-color: aquamarine;
-  
-  }
-  
-   
-  
-  /* Input */
-  
-   
-  
-  .inputContainer {
-  
-    position: relative;
-  
-    height: 45px;
-  
-    width: 90%;
-  
-    margin-bottom: 17px;
-  
-  }
-  
-   
-  
-  .input {
-  
-    position: absolute;
-  
-    top: 0px;
-  
-    left: 0px;
-  
-    height: 100%;
-  
-    width: 100%;
-  
-    border: 1px solid #DADCE0;
-  
-    border-radius: 7px;
-  
-    font-size: 16px;
-  
-    padding: 0 20px;
-  
-    outline: none;
-  
-    background: none;
-  
-    z-index: 1;
-  
-  }
-  
-   
-  
-  ::placeholder {
-  
-    color: transparent;
-  
-  }
-  
-   
-  
-  .label {
-  
-    position: absolute;
-  
-    top: 15px;
-  
-    left: 15px;
-  
-    padding: 0 4px;
-  
-    background-color: white;
-  
-    color: #DADCE0;
-  
-    font-size: 16px;
-  
-    transition: 0.5s;
-  
-    z-index: 0;
-  
-  }
-  
-   
-  
-  /* Nappi */
-  
-   
-  
-  .submitBtn {
-  
-    width: 100%;
-  
-    display: block;
-  
-    margin-left: auto;
-  
-    padding: 15px 30px;
-  
-    border: none;
-  
-    background-color: aquamarine;
-  
-    color: white;
-  
-    border-radius: 6px;
-  
-    cursor: pointer;
-  
-    font-size: 18px;
-  
-    margin-top: 30px;
-  
-  }
-  
-   
-  
-  .submitBtn:hover {
-  
-    opacity: 0.8;
-  
-    transform: translateY(-2px);
-  
-  }
-  
-   
-  
-  .input:focus + .label {
-  
-    top: -7px;
-  
-    left: 3px;
-  
-    z-index: 10;
-  
-    font-size: 14px;
-  
-    font-weight: 600;
-  
-    color: aquamarine;
-  
-  }
-  
-   
-  
-  .input:focus {
-  
-    border: 2px solid aquamarine;
-  
-  }
-  
-   
-  
-  .input:not(:placeholder-shown)+ .label {
-  
-    top: -7px;
-  
-    left: 3px;
-  
-    z-index: 10;
-  
-    font-size: 14px;
-  
-    font-weight: 600;
-  
-  }
-  
-   
-  
-  .hr-lines {
-  
-    position: relative;
-  
-    max-width: 500px;
-  
-    margin: 30px auto;
-  
-    text-align: center;
-  
-  }
-  
-   
-  
-  .hr-lines::before {
-  
-    content: " ";
-  
-    display: block;
-  
-    height: 2px;
-  
-    width: 150px;
-  
-    position: absolute;
-  
-    top: 50%;
-  
-    left: 0;
-  
-    background: aquamarine;
-  
-  }
-  
-   
-  
-  .hr-lines::after {
-  
-    content: " ";
-  
-    display: block;
-  
-    height: 2px;
-  
-    width: 150px;
-  
-    position: absolute;
-  
-    top: 50%;
-  
-    right: 0;
-  
-    background: aquamarine;
-  
-  }
-  
-   
-  
-  .kirjaudu p, .rekisteröidy p {
-  
-    text-align: center;
-  
-    margin-bottom: 15px;
-  
-  }
-  
-   
-  
-  .kirjaudu a, .rekisteröidy a{
-  
-    background-color: aquamarine;
-  
+
+    text-align: left;
+
     color: #fff;
-  
-    padding: 14px 20px;
-  
-    border: none;
-  
-    cursor: pointer;
-  
-    font-size: 18px;
-  
-    border-radius: 10px;
-  
-    text-decoration: none;
-  
+
+
+  }
+
+  .title-salasana {
+
+    font-size: 30px;
+
+    margin-bottom: 30px;
+
+    position: relative;
+
+  }
+
+  .title-salasana::after {
+
+    content: "";
+
     display: block;
-  
-    text-align: center;
-  
+
+    height: 3px;
+
+    width: 285px;
+
+    position: absolute;
+
+    left: 36%;
+
+    bottom: -10px;
+
+    transform: translateX(-50%);
+
+    background-color: rgb(66, 148, 136);
+
   }
-  
-   
-  
-  .kirjaudu a:hover, .rekisteröidy a:hover {
-  
+
+  .title-kirjaudu::after {
+
+    content: " ";
+
+    display: block;
+
+    height: 3px;
+
+    width: 300px;
+
+    position: absolute;
+
+    left: 38%;
+
+    bottom: -10px;
+
+    transform: translateX(-50%);
+
+    background-color: rgb(66, 148, 136);
+
+  }
+
+
+
+  .title-rekisteröidy::after {
+
+    content: " ";
+
+    display: block;
+
+    height: 3px;
+
+    width: 240px;
+
+    position: absolute;
+
+    left: 30%;
+
+    bottom: -10px;
+
+    transform: translateX(-50%);
+
+    background-color: rgb(66, 148, 136);
+
+  }
+
+
+
+  /* Input */
+
+
+
+  .inputContainer {
+
+    position: relative;
+
+    height: 45px;
+
+    width: 90%;
+
+    margin-bottom: 17px;
+
+  }
+
+
+
+  .input {
+
+    position: absolute;
+
+    top: 0px;
+
+    left: 0px;
+
+    height: 100%;
+
+    width: 100%;
+
+    border: 1px solid #DADCE0;
+
+    border-radius: 7px;
+
+    font-size: 16px;
+
+    padding: 0 20px;
+
+    outline: none;
+
+    background: none;
+
+    z-index: 1;
+
+    color: #DADCE0;
+
+  }
+
+
+
+  ::placeholder {
+
+    color: transparent;
+
+  }
+
+
+
+  .label {
+
+    position: absolute;
+
+    top: 15px;
+
+    left: 15px;
+
+    padding: 0 4px;
+
+    color: #DADCE0;
+
+    font-size: 16px;
+
+    transition: 0.5s;
+
+    z-index: 0;
+
+  }
+
+
+
+  /* Nappi */
+
+
+
+  .submitBtn {
+
+    width: 100%;
+
+    display: block;
+
+    margin-left: auto;
+
+    padding: 15px 30px;
+
+    border: none;
+
+    background-color: rgb(66, 148, 136);
+
+    color: white;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    margin-top: 30px;
+
+  }
+
+
+
+  .submitBtn:hover {
+
     opacity: 0.8;
-  
+
     transform: translateY(-2px);
-  
+
   }
-  
-   
-  
-  input[type=checkbox] {
-  
-    accent-color: aquamarine;
-  
+
+
+
+  .input:focus + .label {
+
+    top: -7px;
+
+    left: 3px;
+
+    z-index: 10;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: rgb(66, 148, 136);
+
   }
-  
-   
-  
-  .forgotPsw {
-  
-    display: flex;
-  
-    justify-content: flex-end;
-  
-    font-size: 12px;
-  
-    margin-top: 10px;
-  
+
+
+
+  .input:focus {
+
+    border: 2px solid rgb(66, 148, 136);
+
   }
-  
-   
-  
-  .uusiSalasana .peruuta {
-  
-    margin-top: 20px;
-  
+
+
+
+  .input:not(:placeholder-shown)+ .label {
+
+    top: -7px;
+
+    left: 3px;
+
+    z-index: 10;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+  }
+
+  .rekisteröidy h4 {
+
+    color: rgb(66, 148, 136);
+
+  }
+
+
+
+  .hr-lines {
+
+    position: relative;
+
+    max-width: 500px;
+
+    margin: 30px auto;
+
     text-align: center;
-  
+
   }
-  
-  .uusiSalasana .peruuta a {
-  
+
+
+
+  .hr-lines::before {
+
+    content: " ";
+
+    display: block;
+
+    height: 2px;
+
+    width: 150px;
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 0;
+
+    background-color: rgb(66, 148, 136);
+
+  }
+
+
+
+  .hr-lines::after {
+
+    content: " ";
+
+    display: block;
+
+    height: 2px;
+
+    width: 150px;
+
+    position: absolute;
+
+    top: 50%;
+
+    right: 0;
+
+    background:rgb(66, 148, 136);;
+
+  }
+
+
+
+  .kirjaudu p, .rekisteröidy p {
+
+    text-align: center;
+
+    margin-bottom: 15px;
+
+    color: #fff;
+
+  }
+
+
+
+  .kirjaudu a, .rekisteröidy a{
+
+    background-color: rgb(66, 148, 136);;
+
+    color: #fff;
+
+    padding: 14px 20px;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    border-radius: 10px;
+
     text-decoration: none;
-  
+
+    display: block;
+
+    text-align: center;
+
+  }
+
+
+
+  .kirjaudu a:hover, .rekisteröidy a:hover {
+
+    opacity: 0.8;
+
+    transform: translateY(-2px);
+
+  }
+
+
+
+  input[type=checkbox] {
+
+    accent-color: rgb(66, 148, 136);
+
+  }
+
+  .forgotPsw {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    font-size: 13px;
+
+    margin-top: 10px;
+
+  }
+
+  .forgotPsw a {
+
+    color: #fff;
+  }
+
+  .showPassword {
+
+    display: flex;
+
+    margin-top: -15px;
+
+    margin-bottom: -20px;
+
+  }
+
+  .showpass {
+
+    color: #fff;
+
+  }
+
+
+
+  .uusiSalasana .peruuta {
+
+    margin-top: 20px;
+
+    text-align: center;
+
+  }
+
+  .uusiSalasana .peruuta a {
+
+    text-decoration: none;
+
     color: #000;
-  
+
   }

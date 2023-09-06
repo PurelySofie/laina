@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import "./Loginsivu.css"
 
-const Kirjaudu = () => {
+
+const Loginsivu = () => {
     const [passwordShown, setPasswordShown] = useState(false);
 
     const togglePassword = () => {
@@ -10,8 +11,6 @@ const Kirjaudu = () => {
     };
 
     return (
-        <>
-        <div class="content">
             <div className="kirjauduFrm">
                 <form action="" className="form">
                     <h1 className="title-kirjaudu">Kirjaudu Sisään</h1>
@@ -22,10 +21,13 @@ const Kirjaudu = () => {
                     </div>
 
                     <div className="inputContainer">
-                        <input type={passwordShown ? "text" : "password"} className="input" name="password" placeholder="a"  required />
+                        <input type={passwordShown ? "text" : "password"} className="input" name="password" placeholder="a" required />
                         <label htmlFor="" className="label">Salasana</label><br></br>
                     </div>
-                    <input type="checkbox" className="showPsw" onClick={togglePassword} /> Näytä Salasana
+                    <div className="showPassword">
+                        <input type="checkbox" className="showPsw" onClick={togglePassword} />
+                        <p className='showpass'>Näytä Salasana</p>
+                    </div>
 
                     <input type="submit" className="submitBtn" value="Kirjaudu Sisään" />
 
@@ -40,10 +42,7 @@ const Kirjaudu = () => {
                     </div>
                 </form>
             </div>
-        </div>
-        </>
-
     )
 }
 
-export default Kirjaudu;
+export default Loginsivu;

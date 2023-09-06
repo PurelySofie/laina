@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import "./Loginsivu.css"
 
 const Uusitili = () => {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -39,11 +40,11 @@ const Uusitili = () => {
                 <div className="kirjaudu">
                   <h4 className="hr-lines">TAI</h4>
                   <p>Onko sinulla jo käyttäjä?</p>
-                  <Link to="/kirjaudu">Kirjaudu Sisään</Link>
+                  <Link to="/Loginsivu">Kirjaudu Sisään</Link>
                 </div>
             </form>
         </div>
     )
 }
 
-export default Uusitili
+export default Uusitili;

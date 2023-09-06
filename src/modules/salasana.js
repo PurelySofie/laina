@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import "./Loginsivu.css"
 
 const ForgotPsw = () => {
     return (
