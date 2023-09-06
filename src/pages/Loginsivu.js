@@ -32,13 +32,13 @@ const Loginsivu = () => {
                     <input type="submit" className="submitBtn" value="Kirjaudu Sisään" />
 
                     <div className="forgotPsw">
-                        <Link to="/salasana">Unohtuiko Salasana?</Link>
+                        <Link to="/forgotpassword">Unohtuiko Salasana?</Link>
                     </div>
 
                     <div className="rekisteröidy">
                     <h4 className="hr-lines">TAI</h4>
                     <p>Oletko uusi käyttäjä?</p>
-                    <Link to="/Uusitili">Rekisteröidy</Link>
+                    <Link to="/register">Rekisteröidy</Link>
                     </div>
                 </form>
             </div>

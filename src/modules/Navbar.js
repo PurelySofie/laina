@@ -12,13 +12,13 @@ function Navbar() {
                         <Link to="/">Etusivu</Link>
                     </li>
                     <li>
-                        <Link to="/Lainasivu">Lainasivu</Link>
+                        <Link to="/lainaa">Lainasivu</Link>
                     </li>
                     <li>
-                        <Link to="/Adminsivu">Adminsivu</Link>
+                        <Link to="/admin">Adminsivu</Link>
                     </li>
                     <li>
-                        <Link to="/Loginsivu">Kirjaudu sisään</Link>
+                        <Link to="/login">Kirjaudu sisään</Link>
                     </li>
                 </ul>
             </div>

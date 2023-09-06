@@ -16,11 +16,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Navbar />}>
           <Route index element={<Etusivu />} />
-          <Route path="Lainasivu" element={<Lainasivu />} />
-          <Route path="Adminsivu" element={<Adminsivu />} />
-          <Route path="Loginsivu" element={<Loginsivu />} />
-          <Route path="Uusitili" element={<Uusitili />} />
-          <Route path="Salasana" element={<Salasana />} />
+          <Route path="lainaa" element={<Lainasivu />} />
+          <Route path="admin" element={<Adminsivu />} />
+          <Route path="login" element={<Loginsivu />} />
+          <Route path="register" element={<Uusitili />} />
+          <Route path="forgotpassword" element={<Salasana />} />
         </Route>
       </Routes>
     </BrowserRouter>
