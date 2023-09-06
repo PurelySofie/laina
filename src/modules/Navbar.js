@@ -15,10 +15,10 @@ function Navbar() {
                         <Link to="/Lainasivu">Lainasivu</Link>
                     </li>
                     <li>
-                        <Link to="/Loginsivu">Loginsivu</Link>
+                        <Link to="/Adminsivu">Adminsivu</Link>
                     </li>
                     <li>
-                        <Link to="/Adminsivu">Adminsivu</Link>
+                        <Link to="/Loginsivu">Kirjaudu sisään</Link>
                     </li>
                 </ul>
             </div>
