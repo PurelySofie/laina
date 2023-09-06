@@ -3,7 +3,7 @@ import "./Etusivu.css"
 
 function Etusivu(){
     return(
-        <div class="content">
+        <div className="content">
             <h1>Lainaa tarvittavasi helposti</h1>
             <p>Ohjeet</p>
 
