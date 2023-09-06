@@ -4,7 +4,7 @@ import ListItems from "../modules/ListItems"
 
 // JSON-Import
 // Väliaikanen
-import kirjaData from "../Databases/Lainat.json"
+import kirjaData from "../databases/Lainat.json"
 
 function Adminsivu(){
     return(
