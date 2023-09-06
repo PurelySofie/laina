@@ -3,7 +3,7 @@ import "./Lainasivu.css"
 
 function Lainasivu(){
     return(
-        <div>
+        <div class="content">
             <h1>Täällä lainataan</h1>
         </div>
     );
