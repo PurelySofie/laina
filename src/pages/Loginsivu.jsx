@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import "./Loginsivu.css"
 
 const Kirjaudu = () => {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -10,15 +11,7 @@ const Kirjaudu = () => {
 
     return (
         <>
-            <div className="testinav">
-                <nav>
-                    <ul>
-                        <Link to="/">Etusivu</Link>
-                        <Link to="/kirjaudu">Kirjaudu</Link>
-                    </ul>
-                </nav>
-            </div>
-
+        <div class="content">
             <div className="kirjauduFrm">
                 <form action="" className="form">
                     <h1 className="title-kirjaudu">Kirjaudu Sisään</h1>
@@ -47,33 +40,10 @@ const Kirjaudu = () => {
                     </div>
                 </form>
             </div>
+        </div>
         </>
 
     )
 }
 
-export default Kirjaudu
-
-
-
-
-/* PASSWORD VALIDATION
-
-import validator from "validator";
-
-const validate = (value) => {
-    if (validator.isStrongPassword(value, {
-        minLength: 8, minLowercase: 1,
-        minUppercase: 1, minNumbers: 1, minSymbols: 1
-    })) {
-        setErrorMessage('Vahva Salasana')
-    } else {
-        setErrorMessage('Ei Vahva Salasana')
-    }
-}
-
-{errorMessage === '' ? null :
-    <span style={{
-        fontWeight: "bold",
-        color: "red",
-    }}>{errorMessage}</span>}*/
+export default Kirjaudu;
