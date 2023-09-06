@@ -32,7 +32,7 @@ Ensimmäiset  annetut  työtehtävät  alla. Päivittäisissä  palavereissa  ja
   - Vastuussa admin näkymästä  ja  sen  sisältämistä  laina  lista  ja  lainojen  lisäys  systeemeistä.
 
 ---
-Ensimmäisen  viikon  aikana  näkymä  pystyyn. Toisen  ja  kolmannen  viikon  aikana  lainalista  ja  lainajone  lisäsyslomake.
+Ensimmäisen  viikon  aikana  näkymä  pystyyn. Toisen  ja  kolmannen  viikon  aikana  lainalista  ja  lainojen  lisäsyslomake.
 
 Viikko 4 jää  korjauksille  ja  viimeistelylle  näillä  näkymin.
 
@@ -44,5 +44,3 @@ Pietun  aamu  treenit  saattaa  vaikeuttaa  pääsivu  parin  työskentely  nope
 Esimerkiksi. tietokannan  integrointi  lainaussysteemiin  saattaa  viedä  aikaa tai muita  yhteensopivuus  asioita  eri  henkilöiden  vastuualueiden  välillä.
 
 Yritämme  keskustella  työstämisvaiheessa  miten  systeemit  toimivat  jotta ne olisivat  mahdollissimman  helposti  yhteensovitettavia.
-
-Layoutsuunnitelma  etusivulle.
