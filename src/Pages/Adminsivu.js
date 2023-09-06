@@ -1,6 +1,6 @@
 import React from "react"
 import "./Adminsivu.css"
-import ListItems from "../components/Admin-Sivu/ListItems"
+import ListItems from "../modules/ListItems"
 
 // JSON-Import
 // Väliaikanen
