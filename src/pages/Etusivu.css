@@ -29,12 +29,15 @@ body{
   color: #fff;
   text-transform: uppercase;
 }
+
+
 .navbar ul li::after{
   content: '';
   height: 3px;
   width: 0;
   background: #009688;
   position: absolute;
+  border-radius: 10px;
   left: 0;
   bottom: -10px;
   transition: 0.5s;
@@ -60,6 +63,8 @@ body{
   margin: 20px auto;
   font-weight: 100;
   line-height: 25px;
+  font-size: 25px;
+  color: rgba(245, 245, 245, 0.916);
 }
 button{
   width: 200px;

@@ -5,7 +5,8 @@ function Etusivu(){
     return(
         <div class="content">
             <h1>Lainaa tarvittavasi helposti</h1>
-            <p>Ohjeet</p>
+            <p>Kirjaudu sisään ennen lainaamista, se helpottaa lainaamisen etenemistä sujuvasti ja ongelmitta<br>
+            </br> voit käyttää qr-koodin lukijaa löytääksesi lainattavasi helpommin.<br></br> Käytä grandian tunnuksia kirjautumisessa.</p>
 
             <button type="button" ><span></span>Kirjaudu sisään</button>
         </div>
