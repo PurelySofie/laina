@@ -1,0 +1,8 @@
+Kaikki kansio nimet on pienellä ja melkein kaikki tiedostot alkavat Isolla.
+kansiot: kuvat, modules, pages, styles
+Tiedostot: App.js, App.css, Lainat.json
+
+Jos sinulla on ongelmia pyörittää sivua npm startin jälkeen kokeile näitä:
+
+Varmista että kaikki kansiot ovat pienellä koska github ei päivitä esim Pages -> pages kun se muutos tehtiin.
+Tee npm i / npm install koska sinulta saattaa puuttua node_modules.
