@@ -4,6 +4,8 @@ import Etusivu from "./pages/Etusivu"
 import Lainasivu from "./pages/Lainasivu"
 import Loginsivu from "./pages/Loginsivu"
 import Adminsivu from "./pages/Adminsivu"
+import Uusitili from "./pages/Uusitili"
+import Salasana from "./pages/Salasana"
 import Navbar from "./modules/Navbar"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 
@@ -17,6 +19,8 @@ function App() {
           <Route path="Lainasivu" element={<Lainasivu />} />
           <Route path="Adminsivu" element={<Adminsivu />} />
           <Route path="Loginsivu" element={<Loginsivu />} />
+          <Route path="Uusitili" element={<Uusitili />} />
+          <Route path="Salasana" element={<Salasana />} />
         </Route>
       </Routes>
     </BrowserRouter>

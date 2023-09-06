@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import "./Loginsivu.css"
+import "./Loginsivu.css";
 
 
 const Loginsivu = () => {
@@ -38,7 +38,7 @@ const Loginsivu = () => {
                     <div className="rekisteröidy">
                     <h4 className="hr-lines">TAI</h4>
                     <p>Oletko uusi käyttäjä?</p>
-                    <Link to="/uusitili">Rekisteröidy</Link>
+                    <Link to="/Uusitili">Rekisteröidy</Link>
                     </div>
                 </form>
             </div>
