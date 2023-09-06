@@ -15,8 +15,8 @@ function App() {
         <Route path="/" element={<Navbar />}>
           <Route index element={<Etusivu />} />
           <Route path="Lainasivu" element={<Lainasivu />} />
-          <Route path="Loginsivu" element={<Loginsivu />} />
           <Route path="Adminsivu" element={<Adminsivu />} />
+          <Route path="Loginsivu" element={<Loginsivu />} />
         </Route>
       </Routes>
     </BrowserRouter>
