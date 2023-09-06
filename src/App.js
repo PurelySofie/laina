@@ -1,5 +1,5 @@
 import React from "react"
-import "./App.css"
+import "./styles/App.css"
 import Etusivu from "./pages/Etusivu"
 import Lainasivu from "./pages/Lainasivu"
 import Loginsivu from "./pages/Loginsivu"

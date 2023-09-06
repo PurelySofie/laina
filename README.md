@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+Käynnistä projekti: `npm start`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Rakenna valmis projekti: `npm run build`. *(Tulee build-kansioon)*
 
-## Available Scripts
+---
+# Projektisuunnitelma
+**Projektipäällikkö Sofia Pärnänen**
 
-In the project directory, you can run:
+Ensimmäiset  annetut  työtehtävät  alla. Päivittäisissä  palavereissa  jatkamme  työtehtävien  jakoa  tarpeen  ja  valmistumisen  mukaan.
 
-### `npm start`
+* Lainaussivu – Hugo Huisman  ja  Antikainen Julius
+  - Vastuussa  lainaus-sivusta  ja  lainaus-systeemistä.
+  - Ensimmäisen  viikon  aikan  ensimmäinen  versio.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Pääsivu, navbar ja  tyyli  –  Haapamäki  Tuomas  ja  Kangas Pietu
+  - Vastuussa  etusivusta, navigaatio  baarista  joka  sivulla  sekä  yleisestä  appin  tyylistä.
+  - Ensimmäisen  viikon  aikana  pääsivun  ensimmäinen  versio  ja idea tyylistä  muille  tekijöille.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+* Loginsivu  –  Myllyneva Jere
+  - Vastuussa login sivusta  ja  tekee  yhteistyötä  tietokanta  vastaavan  kanssa.
+  - Ensimmäisen  viikon  aikana  loginsivu  pystyyn. Toisella  viikolla  integraatio  	  tietokantaan.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Tietokanta  vastuu – Pärnänen Sofia
+  - Vastuussa  lainaus  ja  käyttäjätili  tietokannoista.
 
-### `npm run build`
+* QR-Koodi  vastuu  –  Hugo Huisman  
+  - Tutustuu QR koodeihin  ja on vastuussa  niiden  integraatiosta.
+  - Toisella  viikolla QR-Koodi  integraatiota  systeemeihin.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Admin näkymä  –  Akonpelto Anton  ja  Aapo  Patjas
+  - Vastuussa admin näkymästä  ja  sen  sisältämistä  laina  lista  ja  lainojen  lisäys  systeemeistä.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
+Ensimmäisen  viikon  aikana  näkymä  pystyyn. Toisen  ja  kolmannen  viikon  aikana  lainalista  ja  lainajone  lisäsyslomake.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Viikko 4 jää  korjauksille  ja  viimeistelylle  näillä  näkymin.
 
-### `npm run eject`
+Päivätason  aikataulu: Tiistaista 5.9. lähdemme  töihin  ja  keskustelemme  seuraavista  askelista  päivittäisissä 11:50 palavereissa.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Riskit  ja  ongelmat
+Pietun  aamu  treenit  saattaa  vaikeuttaa  pääsivu  parin  työskentely  nopeutta.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Esimerkiksi. tietokannan  integrointi  lainaussysteemiin  saattaa  viedä  aikaa tai muita  yhteensopivuus  asioita  eri  henkilöiden  vastuualueiden  välillä.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Yritämme  keskustella  työstämisvaiheessa  miten  systeemit  toimivat  jotta ne olisivat  mahdollissimman  helposti  yhteensovitettavia.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Layoutsuunnitelma  etusivulle.
