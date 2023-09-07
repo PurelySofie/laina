@@ -2,7 +2,7 @@ import React from "react"
 
 function Loginsivu(){
     return(
-        <div className="content">
+        <div class="content">
             <h1>Täällä kirjaudutaan sisään</h1>
         </div>
     );
