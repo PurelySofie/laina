@@ -1,3 +1,8 @@
+/**
+ * Sisältää koodin joka .map()
+ * function avulla dataa näkyviin
+ * halutussa muodossa
+ */
 const ListItems = (props) => {
     let teksti, kirjanNimi,
         lainaaja, lainattu,
@@ -45,7 +50,7 @@ const ListItems = (props) => {
     return(
         <>
             {
-                <li className="admin-li">
+                <li className="admin-li" key={props.keyName}>
                     {teksti}
                 </li>
             }

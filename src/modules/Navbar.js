@@ -6,7 +6,7 @@ function Navbar() {
     return (
         <>
         <div className="banner">
-            <div class="navbar">
+            <div className="navbar">
                 <ul>
                     <li>
                         <Link to="/">Etusivu</Link>
