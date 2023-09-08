@@ -36,7 +36,7 @@
 
     width: 400px;
 
-    border-radius: 8px;
+    border-radius: 7px;
 
     padding: 20px 40px;
 
@@ -449,6 +449,7 @@
 
   }
 
+
   .uusiSalasana .peruuta {
 
     margin-top: 20px;
@@ -462,6 +463,8 @@
     color: #fff;
 
     text-align: left;
+
+    margin-bottom: 20px;
 
   }
 
@@ -505,4 +508,34 @@
 
     accent-color: #009688;
 
+  }
+
+
+  /* Media/Responsive */
+
+  @media (max-width: 500px) {
+    .title-kirjaudu, .title-rekisteröidy, .title-salasana {
+      text-align: center;
+    }
+    .title-kirjaudu::after, .title-rekisteröidy::after, .title-salasana::after {
+      left: 50%;
+    }
+
+    .hr-lines::before, .hr-lines::after {
+      width: 120px;
+    }
+  }
+
+  @media (max-width: 280px) {
+    .hr-lines::before, .hr-lines::after {
+      width: 70px;
+    }
+
+    .title-kirjaudu::after, .title-rekisteröidy::after, .title-salasana::after {
+      width: 170px;
+    }
+
+    .title-kirjaudu, .title-rekisteröidy, .title-salasana {
+      font-size: 35px;
+    }
   }
