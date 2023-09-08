@@ -9,22 +9,57 @@
    // );
 //}
 
-import React from "react"
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./Etusivu.css"
-import { Link } from "react-router-dom"
 
-function Lainasivu(){
-    return(
-        <div className="content">
-            <h1>Lainaa Täältä</h1>
-            <p>"Skannaa" nappia painamallla voit kätevästi ja nopeasti lainata tuotteesi<br>
-            </br> <br></br> </p>
-            
-            <Link to="/login">
-                <button type="button" ><span></span>Skannaa Tästä</button>
-            </Link>
-        </div>
-    );
+function KirjojenLainausSivu() {
+  const { kirjaId } = useParams();
+  const [kirja, setKirja] = useState(null);
+
+  useEffect(() => {
+    // Tässä voit tehdä HTTP-pyynnön hakeaksesi kirjan tiedot kirjaId:n perusteella
+    fetch(`/api/kirjat/${kirjaId}`)
+      .then((response) => response.json())
+      .then((data) => setKirja(data))
+      .catch((error) => console.error("Virhe kirjatietojen haussa: ", error));
+  }, [kirjaId]);
+
+
+  //skanneri linkki
+function App() {
+  const openQRCodeScannerWindow = () => {
+    const newWindow = window.open('', 'QR Code Scanner', 'width=400,height=400');
+    newWindow.document.title = 'QR Koodi Skanneri';
+
+    ReactDOM.render(<QRCodeScanner />, newWindow.document.body);
+  };
+
+  return (
+    <div>
+      <button onClick={openQRCodeScannerWindow}>Open QR Code Scanner</button>
+    </div>
+  );
 }
 
-export default Etusivu;
+
+  if (!kirja) {
+    return <div>Ladataan kirjatietoja...</div>;
+  }
+
+  return (
+    <div>
+      <h1>Kirjan tiedot</h1>
+      <h2>{kirja.nimi}</h2>
+      <p>Kirjailija: {kirja.kirjailija}</p>
+      <p>Julkaisuvuosi: {kirja.julkaisuvuosi}</p>
+      <p>Saatavuus: {kirja.saatavuus ? "Saatavilla" : "Ei saatavilla"}</p>
+      <button>Lainaa kirja</button>
+    </div>
+  );
+
+}
+
+export default KirjojenLainausSivu;
+
+    
