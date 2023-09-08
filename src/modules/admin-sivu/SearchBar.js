@@ -13,7 +13,7 @@ const FilterPanel = (props) => {
     // TODO Kun nappia painaa, aktivoidussa filterissä on erilainen väri
     return(
         <div>
-            <CommonButton text="Etsi nimellä"/>
+            <CommonButton text="Etsi nimellä" activeClass={"active"}/>
             <CommonButton text="Etsi tunnuksella"/>
         </div>
     )

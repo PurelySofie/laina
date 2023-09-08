@@ -1,9 +1,10 @@
+
 /**
  * Sisältää adminsivulla käytettyjä nappeja
  */
 export const CommonButton = (props) => {
     return(
-        <button onClick={props.func}>
+        <button onClick={props.func} className={props.activeClass}>
             {props.text}
         </button>
     )
