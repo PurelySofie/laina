@@ -24,6 +24,25 @@ function KirjojenLainausSivu() {
       .catch((error) => console.error("Virhe kirjatietojen haussa: ", error));
   }, [kirjaId]);
 
+
+  //skanneri linkki
+function App() {
+  const openQRCodeScannerWindow = () => {
+    const newWindow = window.open('', 'QR Code Scanner', 'width=400,height=400');
+    newWindow.document.title = 'QR Code Scanner';
+
+    //renderi qr koodi skanneri uudessa ikkunassa
+    ReactDOM.render(<QRCodeScanner />, newWindow.document.body);
+  };
+
+  return (
+    <div>
+      <button onClick={openQRCodeScannerWindow}>Open QR Code Scanner</button>
+    </div>
+  );
+}
+
+
   if (!kirja) {
     return <div>Ladataan kirjatietoja...</div>;
   }
@@ -38,6 +57,7 @@ function KirjojenLainausSivu() {
       <button>Lainaa kirja</button>
     </div>
   );
+
 }
 
 export default KirjojenLainausSivu;
