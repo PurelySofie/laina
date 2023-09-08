@@ -11,6 +11,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "./Etusivu.css"
 
 function KirjojenLainausSivu() {
   const { kirjaId } = useParams();
@@ -29,9 +30,8 @@ function KirjojenLainausSivu() {
 function App() {
   const openQRCodeScannerWindow = () => {
     const newWindow = window.open('', 'QR Code Scanner', 'width=400,height=400');
-    newWindow.document.title = 'QR Code Scanner';
+    newWindow.document.title = 'QR Koodi Skanneri';
 
-    //renderi qr koodi skanneri uudessa ikkunassa
     ReactDOM.render(<QRCodeScanner />, newWindow.document.body);
   };
 
