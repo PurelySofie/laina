@@ -1,10 +1,16 @@
 import { EditButton } from "./AllButtons";
+import React, { useState } from 'react';
 /**
  * Sisältää koodin joka .map()
  * function avulla dataa näkyviin
  * halutussa muodossa
  */
-const ListItems = (props) => {
+const TableItems = (props) => {
+    const [isRotated, setIsRotated] = useState(false); 
+    const toggleRotation = () => {
+        setIsRotated(!isRotated);
+    };
+    
     let teksti, kirjanNimi,
         lainaaja, lainattu,
         viimeinenPalautus, tunniste,
@@ -36,7 +42,8 @@ const ListItems = (props) => {
     }
     // Antaa tunnisteen
     tunniste = kirja.tunniste
-
+    
+    /*
     teksti = 
     "Kirjan nimi: " + kirjanNimi
     + ". Lainaaja: " + lainaaja
@@ -44,19 +51,22 @@ const ListItems = (props) => {
     + ". Palautetattava viimeistään: " + palautettavaViimeistaan
     + ". Viimeisin palautus: " + viimeinenPalautus
     + ". Tunniste: " + tunniste;
+*/
+
 
     return(
-        <>
-            {
-                <li className="admin-li" key={props.keyName}>
-                    {teksti}
-                    <EditButton 
-                        text="Muokkaa"
-                    />
-                </li>
-            }
-        </>
+        <tr key={props.keyName}>
+            <td className="admin-li">{kirjanNimi}</td>
+            <td className="admin-li">{lainaaja}</td>
+            <td className="admin-li">{lainattu}</td>
+            <td className="admin-li">{palautettavaViimeistaan}</td>
+            <td className="admin-li">{viimeinenPalautus}</td>
+            <td className="admin-li">{tunniste}</td>
+            <td> 
+                <EditButton text="Muokkaa"/>
+            </td>
+        </tr>
     )
 }
 
-export default ListItems;
+export default TableItems;

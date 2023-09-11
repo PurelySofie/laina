@@ -1,10 +1,16 @@
-.test {
-    background-color: red;
-}
 .admin-li{
     margin-bottom: 5px;
-    padding: 10px;
-    border: 1px solid gray;
+    padding: 30px;
+    border: 1px solid rgb(57, 229, 149);
+    border-radius: 4px; 
+    text-align: center; 
+    width: 100%; 
+}
+.taulukko{
+  margin-left: 389px;
+  border-collapse: collapse; 
+  table-layout: fixed;
+  width: 50%;
 }
 .content{
     width: 100%;
@@ -14,3 +20,26 @@
     text-align: center;
     color:#fff;
   }
+  .active{
+    background-color: blueviolet;
+    border: 1px solid black;
+}
+
+.filter-panel{
+    border: 1px solid red;  
+}
+  .arrow-button {
+    top: 50%;
+    right: 0; 
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: #07fc8a;
+    clip-path: polygon(0% 40%, 50% 0%, 100% 40%);
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.arrow-button.rotated {
+    transform: translateY(-50%) rotate(180deg);
+}
