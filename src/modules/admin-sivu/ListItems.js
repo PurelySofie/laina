@@ -1,3 +1,4 @@
+import { EditButton } from "./AllButtons";
 /**
  * Sisältää koodin joka .map()
  * function avulla dataa näkyviin
@@ -12,9 +13,8 @@ const ListItems = (props) => {
     const kirja = props.kirja;
     // Antaa kirjalle nimen
 
-    kirjanNimi = kirja.Kirjanimi
+    kirjanNimi = kirja.nimi
 
-    console.log(kirja.kirjanNimi)
     /**
      * If-lause joka katsoo
      * onko kirjalla lainaajaa 
@@ -24,20 +24,18 @@ const ListItems = (props) => {
     if(props.lainaaja !== "nA"){ // nA:n tilalle jokin jolla merkitään että kirja ei ole lainassa
         lainaaja = kirja.lainaaja;
         lainattu = kirja.lainauspv
-        palautettu = kirja.palautettupv
         palautettavaViimeistaan = kirja.viimpalautuspv
         viimeinenPalautus = kirja.palautettupv
     }else{
         lainaaja = "Ei lainassa"
         /*
         lainattu = kirja.lainauspv
-        palautettu = kirja.palautettupv
         palautettavaViimeistaan = kirja.viimpalautuspv
         viimeinenPalautus = kirja.palautettupv
         */
     }
     // Antaa tunnisteen
-    tunniste = kirja.Kirjatunnitse
+    tunniste = kirja.tunniste
 
     teksti = 
     "Kirjan nimi: " + kirjanNimi
@@ -52,6 +50,9 @@ const ListItems = (props) => {
             {
                 <li className="admin-li" key={props.keyName}>
                     {teksti}
+                    <EditButton 
+                        text="Muokkaa"
+                    />
                 </li>
             }
         </>

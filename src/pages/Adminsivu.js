@@ -1,96 +1,101 @@
-import React, { useState } from 'react'
+/*
+Admin-sivu css
+
+Data handling
+
+Admin sivulle myöhästyneet lainaukset näkymä.
+ 
+Admineille QR Code scanneri joilla voi scannata kirjan koodin ja siirtää lainauksen statuksen lainatusta takaisin koululle.
+Koska pitää olla jonkinlainen systeemi jolla koulu voi siirtää lainauksia palautettuihin ja palauttaa kirjat uudelleen lainattaviksi.
+
+Kirjoille lainaushistoria josta voi nähdä kenellä kirja on ollut siltä varalta että kirja on vahingoittuu.
+*/
+import React, { useEffect, useState } from 'react'
 import "./Adminsivu.css"
+import axios from 'axios';
 
 // Module importit
 // Jos näyttää punasta viivaa nii pitäis silti toimia
 import ListItems from '../modules/admin-sivu/ListItems';
 import SearchBar from '../modules/admin-sivu/SearchBar';
 
-/**
- * JSON IMPORT
- */
-// import data from"../databases/lainattavat/";
-
-
-/**
- * Väliaikainen data
- *  I
- *  I
- *  V
- */
-const data = [
-    {
-      "lainaaja": "Sauli Niinistö",
-      "lainauspv": "05/09/2023",
-      "viimpalautuspv": "05/10/2023",
-      "palautettupv":"Ei Palautettu",
-      "Kirjanimi":"Testikirja",
-      "Kirjatunnitse":"a81hRd4mOF29b"
-    },
-    {
-        "lainaaja": "Sauli Liinnistö",
-        "lainauspv": "05/09/2023",
-        "viimpalautuspv": "05/10/2023",
-        "palautettupv":"Ei Palautettu",
-        "Kirjanimi":"Sähkö ja ICT perusteet",
-        "Kirjatunnitse":"a8hdR4maOF29b"
-      },
-      {
-        "lainaaja": "Kauli Niinnistö",
-        "lainauspv": "05/09/2023",
-        "viimpalautuspv": "05/10/2023",
-        "palautettupv":"Ei Palautettu",
-        "Kirjanimi":"kalevala",
-        "Kirjatunnitse":"a8ahR4mOF29b"
-      }
-]
-
 function Adminsivu(){
     const [search, setSearch] = useState("");
     const [foundList, setFoundList] = useState([]);
-    // Tietojen muokkaamisnappi
-    const handleEditButton = () => {
-        console.log("LOL")
-    }
+    const [jsonData, setJsonData] = useState(null);
+    /**
+     * Lataa admin-sivulle datan
+     */
 
+    useEffect(() => {
+        axios.get('http://localhost:3001/json-handle') // Tekee pyynnön kyseiseen nettiosoitteeseen
+        .then((response) => {
+            setJsonData(response.data); // Lisää datan jsonData:aan
+        })
+        .catch((error) => {
+            console.error('Error fetching JSON data:', error);
+        });
+    }, []);
+
+
+    /**
+     * Tulee näkyviin kun tietoja ladataan
+     * Voi animoida hienosti joskus
+     */
+    if(jsonData == null || jsonData.length === 0){
+        return(
+            <div className='content'>Tietoja ladataan</div>
+        )
+    }
+    const handleEditButton = () =>{}
+    
     /**
      * Etsii kirjoja nimen perusteella
      */
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
         
-        // Looppaa nimet läpi ja katsoo löytyykö vastaavia
-        const filteredBooks = data
-        .filter(book => book.Kirjanimi.toLowerCase()
+        /**
+         * Looppaa nimet läpi ja katsoo löytyykö vastaavia
+         */
+
+        const filteredBooks = 
+        jsonData.filter(book => book.nimi.toLowerCase()
         .includes(e.target.value.toLowerCase()))
-        .map(book => book.Kirjanimi);
+        .map(book => book.nimi);
         // Looppaa kirjojen ja filterin läpi
         const filteredData = [];
-        for(let i = 0; i < data.length; i++){
+        for(let i = 0; i < jsonData.length; i++){
             for (let j = 0; j < filteredBooks.length; j++) {
-                if(data[i].Kirjanimi === filteredBooks[j]){ // Etsii oikean datan
-                    if(!filteredData.includes(data[i])){ // Katsoo ettei sitä ole vielä lisätty
-                        filteredData.push(data[i]); // Lisää sen listaan
+                if(jsonData[i].nimi === filteredBooks[j]){ // Etsii oikean datan
+                    if(!filteredData.includes(jsonData[i])){ // Katsoo ettei sitä ole vielä lisätty
+                        filteredData.push(jsonData[i]); // Lisää sen listaan
                     }
                 }
             }
         }
-
-    // Loopin jälkeen se data lisätään löydettyihin
+    // Loopin jälkeen data lisätään löydettyihin
     setFoundList(filteredData);
     }
+
+
     return(
         <div className='content'>
             <SearchBar func={handleSearchChange}/>
             <br />
 
+
+            {/* 
+            ListItem.js jutusta
+            scrollattava alue
+            */}
             {
                 // If-juttu joka laittaa laittaa search jutut näkyviin
-                search == "" ? // Jos et ole etsinyt mitään palauta: 
-                data.map(kirja =>
+                search === "" ? // Jos et ole etsinyt mitään palauta: 
+                jsonData.map(kirja =>
                     <ListItems 
                         kirja={kirja} 
-                        keyName={kirja.Kirjatunnitse}
+                        keyName={kirja.tunniste}
                         func={handleEditButton}
                     />
                 )
@@ -98,7 +103,7 @@ function Adminsivu(){
                 foundList.map(kirja => 
                     <ListItems 
                         kirja={kirja} 
-                        keyName={kirja.Kirjatunnitse}
+                        keyName={kirja.tunniste}
                         func={handleEditButton}
                     />   
                 )
