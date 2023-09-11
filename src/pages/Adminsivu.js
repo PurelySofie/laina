@@ -53,7 +53,6 @@ function Adminsivu(){
     const handleToSearch = (etsittava) => {
         setToSearch(etsittava)
     }
-    console.log(toSearch)
     /**
      * Etsii kirjoja nimen, tunnisteen
      * tai halutessa muiden asioiden
@@ -103,7 +102,6 @@ function Adminsivu(){
             }
         }
     // Loopin jälkeen data lisätään löydettyihin
-    console.log(filteredData)
     setFoundList(filteredData);
     }
 
