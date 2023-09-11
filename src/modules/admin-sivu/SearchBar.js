@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 /**
  * Admin- ja/tai Käyttäjäsivun search palkki
@@ -11,13 +11,13 @@ const FilterPanel = (props) => {
       return (
         <div className='filter-panel'>
             <button 
-                onClick={()=>props.func("nimi")}
+                onClick={()=>{props.func("nimi")}}
                 className={props.etsittava === "nimi" ? "active" : null}
             > 
                 Etsi nimellä 
             </button>
             <button 
-                onClick={()=>props.func("tunniste")}
+                onClick={() => { props.func("tunniste")}}
                 className={props.etsittava === "tunniste" ? "active" : null}
             > 
                 Etsi tunnuksella 
@@ -35,6 +35,24 @@ const SearchBar = (props) => {
     const handleClick = () =>{
         setShowFilter(!showFilter)
     }
+
+    /**
+     * Switch case SearchBar:in
+     * placeholderin päätteelle
+     */
+    useEffect(() => {
+        switch (props.etsittava) {
+            case "nimi":
+                setPlaceholderPaate("nimellä");
+                break;
+            case "tunniste":
+                setPlaceholderPaate("tunnisteella");
+                break; // Don't forget to add a break here
+            default:
+                break;
+        }
+    }, [props.etsittava]);
+
     return(
         <div>
             <input 
@@ -46,7 +64,10 @@ const SearchBar = (props) => {
             {
                 // Jos filterinappia painaa returnaa filter valikko
                 showFilter === true ?
-                <FilterPanel func={props.func2} etsittava={props.etsittava} />
+                <FilterPanel 
+                    func={props.func2} 
+                    etsittava={props.etsittava} 
+                />
                 :
                 <></> 
             }
