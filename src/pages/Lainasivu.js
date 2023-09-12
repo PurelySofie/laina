@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div>
-      <button onClick={openQRCodeScannerWindow}>Open QR Code Scanner</button>
+      <button onClick={openQRCodeScannerWindow}>Avaa QR Koodin Lukija</button>
     </div>
   );
 }
@@ -54,7 +54,6 @@ function App() {
       <p>Kirjailija: {kirja.kirjailija}</p>
       <p>Julkaisuvuosi: {kirja.julkaisuvuosi}</p>
       <p>Saatavuus: {kirja.saatavuus ? "Saatavilla" : "Ei saatavilla"}</p>
-      <button>Lainaa kirja</button>
     </div>
   );
 
