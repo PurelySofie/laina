@@ -22,11 +22,11 @@ const Loginsivu = () => {
 
                     <div className="inputContainer">
                         <input type={passwordShown ? "text" : "password"} className="input" name="password" placeholder="a" required />
-                        <label htmlFor="" className="label">Salasana</label><br></br>
+                        <label htmlFor="" className="label">Salasana</label>
                     </div>
                     <div className="showPassword">
                         <input type="checkbox" className="showPsw" onClick={togglePassword} />
-                        <p className='showpass'>Näytä Salasana</p>
+                        <p className='näytä'>Näytä Salasana</p>
                     </div>
 
                     <input type="submit" className="submitBtn" value="Kirjaudu Sisään" />
