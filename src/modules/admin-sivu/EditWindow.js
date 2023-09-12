@@ -1,4 +1,0 @@
-/**
- * Tietojen muokkaamiseen tehty ikkuna
- */
-

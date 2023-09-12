@@ -47,15 +47,23 @@ const SearchBar = (props) => {
                 break;
             case "tunniste":
                 setPlaceholderPaate("tunnisteella");
-                break; // Don't forget to add a break here
+                break;
             default:
                 break;
         }
+
+        /**
+         * TODO
+         * Tyhjennä search palkki ja
+         * saa se toimimaan järkevästi
+         */
+        // document.getElementById("search-bar-input-field").value;
     }, [props.etsittava]);
 
     return(
         <div>
             <input 
+                id='search-bar-input-field'
                 onChange={props.func}
                 placeholder={"Etsi kirjoja " + placeholderPaate}
             />

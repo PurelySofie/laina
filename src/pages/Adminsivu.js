@@ -1,23 +1,32 @@
-/*
-Admin-sivu css
+/* TODO-List
+Admin-sivu css - ei valmis
 
-Data handling
+Data handling - ei valmis
 
-Admin sivulle myöhästyneet lainaukset näkymä.
+Lisää kirja kohta adminien pääsivulle? - ei valmis
+Lista ja myöhästyneet pitää katsoa erikseen? - ei valmis
+
+Admin sivulle myöhästyneet lainaukset näkymä. - ei valmis
  
-Admineille QR Code scanneri joilla voi scannata kirjan koodin ja siirtää lainauksen statuksen lainatusta takaisin koululle.
-Koska pitää olla jonkinlainen systeemi jolla koulu voi siirtää lainauksia palautettuihin ja palauttaa kirjat uudelleen lainattaviksi.
+Admineille QR Code scanneri joilla voi scannata kirjan koodin ja siirtää
+    lainauksen statuksen lainatusta takaisin koululle. - qr-koodi ei valmis. Sen voi vaihtaa manuaalisesti mutta tieto ei tallennu mihinkään
 
-Kirjoille lainaushistoria josta voi nähdä kenellä kirja on ollut siltä varalta että kirja on vahingoittuu.
+Kirjoille lainaushistoria josta voi nähdä kenellä kirja
+    on ollut siltä varalta että kirja on vahingoittuu. - ei valmis
 */
 import React, { useEffect, useState } from 'react'
 import "./Adminsivu.css"
 import axios from 'axios';
+/**
+ * Sisältää adminnäkymän "pohja"
+ * koodin
+ */
 
 // Module importit
 // Jos näyttää punasta viivaa nii pitäis silti toimia
 import { AdminBar } from '../modules/admin-sivu/AdminBar';
-import { AdminPageList } from '../modules/admin-sivu/AdminPageList';
+import AdminPageList from "../modules/admin-sivu/taulukkoModules/AdminPageList"
+
 
 function Adminsivu(){
     const [search, setSearch] = useState("");
@@ -49,7 +58,6 @@ function Adminsivu(){
             <div className='content'>Tietoja ladataan</div>
         )
     }
-    const handleEditButton = () =>{}
     const handleToSearch = (etsittava) => {
         setToSearch(etsittava)
     }
@@ -57,10 +65,10 @@ function Adminsivu(){
      * Etsii kirjoja nimen, tunnisteen
      * tai halutessa muiden asioiden
      * perusteella
+     * 
      */
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
-        
         /**
          * Looppaa nimet läpi ja katsoo löytyykö vastaavia
         */
@@ -105,17 +113,24 @@ function Adminsivu(){
     setFoundList(filteredData);
     }
 
-
     return(
         <div className='content'>
-            <div className='content'>
-                <div className='admin-bar'>
+            <div className='inner-content'>
+                {/* <div className='admin-bar'>
                     <AdminBar />
-                </div>
+                </div> */}
+
+                {/**
+                 * Tuo näkyviin taulukon kaikista lainauksista 
+                 * TODO
+                 * Näytä vain ~15 lainausta per sivu,
+                 * jonka jälkeen pitää painaa nappia ja
+                 * kääntää uusi sivu. Takaa nopeamman 
+                 * nopeuden sivulle
+                 **/}
                 <AdminPageList 
                     handleSearchChange={handleSearchChange}
                     handleToSearch={handleToSearch}
-                    handleEditButton={handleEditButton}
                     toSearch={toSearch}
                     search={search}
                     jsonData={jsonData}

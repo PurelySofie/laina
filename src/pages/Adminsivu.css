@@ -1,10 +1,10 @@
 .admin-li{
-    margin-bottom: 5px;
-    padding: 30px;
-    border: 1px solid rgb(57, 229, 149);
-    border-radius: 4px; 
-    text-align: center; 
-    width: 100%; 
+  margin-bottom: 5px;
+  padding: 30px;
+  border: 1px solid rgb(57, 229, 149);
+  border-radius: 4px; 
+  text-align: center; 
+  width: 100%; 
 }
 .taulukko{
   margin-left: 389px;
@@ -13,20 +13,33 @@
   width: 50%;
 }
 .content{
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: center;
-    color:#fff;
-  }
-  .active{
-    background-color: blueviolet;
-    border: 1px solid black;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  margin-top: 5%;
+  transform: translateY(-50%);
+  text-align: center;
+  color:#ffffff;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.inner-content{
+  margin: 0 auto;
+  width: 100%;
+}
+/* Myöhästyneille kirjoille */
+.late{
+  background-color: rgb(97, 8, 8);
+  opacity: 0.7;
+}
+/* Filteri paneeli */
+.filter-panel{
+  border: 1px solid rgb(255, 255, 255);  
 }
 
-.filter-panel{
-    border: 1px solid red;  
+/* Aktiivinen filtteri */
+.active{
+  background-color: blueviolet;
+  border: 1px solid black;
 }
   .arrow-button {
     top: 50%;
@@ -38,12 +51,50 @@
     clip-path: polygon(0% 40%, 50% 0%, 100% 40%);
     cursor: pointer;
     transition: transform 0.5s ease;
+    
 }
 
 .arrow-button.rotated {
     transform: translateY(-50%) rotate(180deg);
 }
 
+#search-bar-input-field{
+    opacity: 0.6;
+    border: 4px solid #26f2bc;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 10px rgba(150, 85, 23, 0.1);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+}
+#search-bar-input-field:hover {
+    background-color: #2be5ba;
+}
+
+/* 
+  Adminsivun taulukko
+  /modules/admin-sivu/taulukkoModules
+ */
+.admin-root-table{
+  /* position: fixed; */
+  /* margin-top: 100%; */
+  display: grid;
+  overflow-y: scroll;
+  height: 78vh;
+  margin-top: 10%;
+}
+
+/* .admin-root-tbody{
+  border: 1px solid red;
+} */
+
+
+/* *{
+  border: 1px solid red;
+} */
 
 
 
