@@ -14,16 +14,21 @@
 }
 .content{
   width: 100%;
+
+  /* Alkuperäset asetukset */
   position: absolute;
   top: 50%;
-  margin-top: 5%;
   transform: translateY(-50%);
+
+  /* Väliaikaset asetukset */
+  /* position: relative;
+  transform: translateY(-100%); */
+
   text-align: center;
   color:#ffffff;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .inner-content{
-  margin: 0 auto;
   width: 100%;
 }
 /* Myöhästyneille kirjoille */
@@ -40,22 +45,6 @@
 .active{
   background-color: blueviolet;
   border: 1px solid black;
-}
-  .arrow-button {
-    top: 50%;
-    right: 0; 
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background-color: #07fc8a;
-    clip-path: polygon(0% 40%, 50% 0%, 100% 40%);
-    cursor: pointer;
-    transition: transform 0.5s ease;
-    
-}
-
-.arrow-button.rotated {
-    transform: translateY(-50%) rotate(180deg);
 }
 
 #search-bar-input-field{
@@ -79,12 +68,14 @@
   /modules/admin-sivu/taulukkoModules
  */
 .admin-root-table{
-  /* position: fixed; */
-  /* margin-top: 100%; */
-  display: grid;
-  overflow-y: scroll;
-  height: 78vh;
+  margin: 0 auto;
   margin-top: 10%;
+  /* width: 90%; */
+  position: relative;
+  max-height: 60vh;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  height: 100hv;
 }
 
 /* .admin-root-tbody{
@@ -92,11 +83,8 @@
 } */
 
 
-/* *{
-  border: 1px solid red;
-} */
 
-
+/* Scrollbarin asetukset*/
 
 /* Inputin placeholderin väri */
 
@@ -120,4 +108,21 @@
 
 ::placeholder { /* Most modern browsers support this now. */
  color:    black;
+}
+
+/* Nuolet*/
+.arrow-button {
+  top: 50%;
+  right: 0; 
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: #07fc8a;
+  clip-path: polygon(0% 40%, 50% 0%, 100% 40%);
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+.arrow-button.rotated {
+    transform: translateY(-50%) rotate(180deg);
 }
