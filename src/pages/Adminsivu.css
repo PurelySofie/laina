@@ -5,4 +5,17 @@
     margin-bottom: 5px;
     padding: 10px;
     border: 1px solid gray;
+<<<<<<< Updated upstream
 }
+=======
+}
+.content{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color:#fff;
+  }
+  
+>>>>>>> Stashed changes
