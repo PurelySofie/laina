@@ -1,4 +1,3 @@
-
 /**
  * Sisältää adminsivulla käytettyjä nappeja
  */
@@ -17,7 +16,7 @@ export const CommonButton = (props) => {
 // Tietojen muokkaamis nappi
 export const EditButton = (props) => {
     return(
-        <button onClick={props.func}>
+        <button onClick={props.onClick}>
             {props.text}
         </button>
     )

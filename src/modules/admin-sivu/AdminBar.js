@@ -1,8 +1,11 @@
+/**
+ * Sisältää adminien oman paneelin
+ * josta he voivat valita tietyn sivun
+ */
 export const AdminBar = (props) => {
     return(
         <div>
             <ul>
-                <li>Lisää kirja</li>
                 <li>Myöhästyneet näkymät</li>
                 <li>Lista</li>
             </ul>
