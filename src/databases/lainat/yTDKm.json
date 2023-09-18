@@ -4,5 +4,6 @@
   "viimpalautuspv": "05/10/2023",
   "palautettupv":"Ei Palautettu",
   "nimi":"Fysiikka 101",
-  "tunniste":"ixoA"
+  "tunniste":"ixoA",
+  "palautettu":"false"
 }
