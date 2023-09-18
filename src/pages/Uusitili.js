@@ -11,7 +11,7 @@ const Uusitili = () => {
 
     return (
         <div className="rekisteröidyFrm">
-            <form action="" className="form">
+            <form className="form">
                 <h1 className="title-rekisteröidy">Rekisteröidy</h1>
 
                 <div className="inputContainer">
@@ -23,6 +23,12 @@ const Uusitili = () => {
                     <input type={passwordShown ? "text" : "password"} className="input" name="password" placeholder="a" required />
                     <label htmlFor="" className="label">Salasana</label><br></br>
                 </div>
+
+                <div className="inputContainer">
+                    <input type={passwordShown ? "text" : "password"} className="input" name="password" placeholder="a" required />
+                    <label htmlFor="" className="label">Vahvista Salasana</label><br></br>
+                </div>
+
                 <div className="showPassword">
                     <input type="checkbox" className="showPsw" onClick={togglePassword} />
                     <p className='näytä'>Näytä Salasana</p>
@@ -41,16 +47,3 @@ const Uusitili = () => {
 }
 
 export default Uusitili;
-
-
-
-
-/*<div className="inputContainer">
-    <input type="text" className="input" placeholder="a" required />
-    <label htmlFor="" className="label">Etunimi</label>
-</div>
-
-<div className="inputContainer">
-    <input type="text" className="input" placeholder="a" required />
-    <label htmlFor="" className="label">Sukunimi</label>
-</div>*/

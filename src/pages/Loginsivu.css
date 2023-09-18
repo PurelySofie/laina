@@ -1,15 +1,4 @@
-/*.content{
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: center;
-    color:#fff;
-  }*/
-
-
   /* Form */
-
 
   .kirjauduFrm, .rekisteröidyFrm, .uusiSalasana {
 
@@ -48,7 +37,6 @@
 
 
   /* Title */
-
 
   .title-kirjaudu, .title-rekisteröidy {
 
@@ -151,7 +139,6 @@
 
   /* Input/Label */
 
-
   .inputContainer {
 
     position: relative;
@@ -197,7 +184,7 @@
   }
 
 
-  ::placeholder {
+  .inputContainer ::placeholder {
 
     color: transparent;
 
@@ -270,7 +257,6 @@
 
   /* Submit Button */
 
-
   .submitBtn {
 
     width: 100%;
@@ -287,7 +273,7 @@
 
     color: #fff;
 
-    border-radius: 25px;
+    border-radius: 26px;
 
     cursor: pointer;
 
@@ -308,7 +294,6 @@
 
 
   /* Kirjaudu/Rekisteröidy */
-
 
   .rekisteröidy h4, .kirjaudu h4 {
 
@@ -397,7 +382,7 @@
 
     font-size: 18px;
 
-    border-radius: 25px;
+    border-radius: 26px;
 
     text-decoration: none;
 
@@ -418,7 +403,6 @@
 
 
   /* Unohtuiko Salasana */
-
 
   .forgotPsw {
 
@@ -477,8 +461,16 @@
   }
 
 
-  /* Näytä Salasana */
+  .uusiSalasana .peruuta a:hover {
 
+    color: #009688;
+
+    text-decoration: underline;
+
+  }
+
+
+  /* Näytä Salasana */
 
   .showPassword {
 
