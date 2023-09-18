@@ -1,7 +1,7 @@
 /* TODO-List
 Admin-sivu css - ei valmis
 
-Data handling - ei valmis
+Data handling - Valmis
 
 Lisää kirja kohta adminien pääsivulle? - ei valmis
 Lista ja myöhästyneet pitää katsoa erikseen? - ei valmis
