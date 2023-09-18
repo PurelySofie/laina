@@ -16,7 +16,7 @@ const ForgotPsw = () => {
                 <input type="submit" className="submitBtn" value="Lähetä" />
 
                 <div className="peruuta">
-                <Link to="/login">Peruuta</Link>
+                    <Link to="/login">Peruuta</Link>
                 </div>
             </form>
         </div>
