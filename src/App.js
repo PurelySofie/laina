@@ -6,6 +6,7 @@ import Loginsivu from "./pages/Loginsivu"
 import Adminsivu from "./pages/Adminsivu"
 import Uusitili from "./pages/Uusitili"
 import Salasana from "./pages/Salasana"
+import Käyttäjäsivu from "./pages/Käyttäjäsivu"
 import Navbar from "./modules/Navbar"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="login" element={<Loginsivu />} />
           <Route path="register" element={<Uusitili />} />
           <Route path="forgotpassword" element={<Salasana />} />
+          <Route path="userpage" element={<Käyttäjäsivu />} />          
 
         </Route>
       </Routes>
