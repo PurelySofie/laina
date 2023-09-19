@@ -5,8 +5,9 @@
 
 const express = require('express');
 const app = express();
-const loadJsonLainat = require('./src/node/jsonHandleLainat'); // Polku jsonHandle tiedostoon
-const loadJsonLainattavat = require('./src/node/jsonHandleLainattavat')
+const loadJsonLainat = require('./jsonHandleLainat'); // Polku jsonHandle tiedostoon
+const loadJsonLainattavat = require('./jsonHandleLainattavat')
+const loadJsonUsers = require('./jsonHandleUsers')
 const port = 3001; // Portin voi vaihtaa jos tarvetta
 const cors = require('cors'); // Sallii palveleiden välisen kommunikoinnin
 
@@ -33,6 +34,19 @@ app.get('/api/json-lainattavat', async (req, res) => {
     try {
       const data = await loadJsonLainattavat();
       console.log('Data received from Lainattavat');
+      res.json(data);
+    } catch (error) {
+      console.error('Error handling JSON data:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
+
+
+  app.get('/api/json-users', async (req, res) => {
+    try {
+      const data = await loadJsonUsers();
+      console.log('Data received from users');
       res.json(data);
     } catch (error) {
       console.error('Error handling JSON data:', error);

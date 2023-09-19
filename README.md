@@ -1,6 +1,6 @@
 Käynnistä projekti: `npm start`
 
-Käynnistä node palvelin: `node ./node-server.js`
+Käynnistä node palvelin: `npm run server`
 
 Rakenna valmis projekti: `npm run build`. *(Tulee build-kansioon)*
 
