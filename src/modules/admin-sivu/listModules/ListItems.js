@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { TrEdit } from "./TrEdit";
+import { LiEdit } from "./LiEdit";
 /**
  * Sisältää koodin joka .map() 
  * function avulla tuo dataa
  * näkyviin halutussa muodossa
  */
-const TableItems = (props) => {
+const ListItems = (props) => {
     const [isEditing, setIsEditing] = useState(false);
     let kirjanNimi,
         lainaaja, lainattu,
@@ -51,19 +51,19 @@ const TableItems = (props) => {
         }
     }
     return(
-        <tr key={props.keyName} id={props.keyName} >
+        <div key={props.keyName} id={props.keyName} >
             {
                 !isEditing ? // If-lause joka katsoo onko admin muokkaus-tilassa.
                 <>
-                    <td className="admin-li">{kirjanNimi}</td>
-                    <td className="admin-li">{lainaaja}</td>
-                    <td className="admin-li">{lainattu}</td>
-                    <td className={`admin-li ${showclass}`} >{palautettavaViimeistaan}</td>
-                    <td className="admin-li">{viimeinenPalautus}</td>
-                    <td className="admin-li">{tunniste}</td>
+                    <li className="admin-li">{kirjanNimi}</li>
+                    <li className="admin-li">{lainaaja}</li>
+                    <li className="admin-li">{lainattu}</li>
+                    <li className={`admin-li ${showclass}`} >{palautettavaViimeistaan}</li>
+                    <li className="admin-li">{viimeinenPalautus}</li>
+                    <li className="admin-li">{tunniste}</li>
                 </>
                 :
-                <TrEdit
+                <LiEdit
                     keyName={props.keyName}
                     showclass={showclass}
                     kirjanNimi={kirjanNimi}
@@ -75,13 +75,11 @@ const TableItems = (props) => {
                     func={props.handleClick}
                 />
             }
-            <td className='admin-li'>
-                <div onClick={handleClick} >
-                    <button>{!isEditing ? "Muokkaa" : "Lopeta muokkaus"}</button>
-                </div>
-            </td>
-        </tr>
+            <div onClick={handleClick} >
+                <button>{!isEditing ? "Muokkaa" : "Lopeta muokkaus"}</button>
+            </div>
+        </div>
     )
 }
 
-export default TableItems;
+export default ListItems;
