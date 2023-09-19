@@ -32,7 +32,9 @@ function Lainasivu(){
         <div class="box">
         <div class="box-text">Box 9</div>
         </div>
-        
+        <div class="box">
+        <div class="box-text">Box 10</div>
+        </div>
     </div>
         </div>
     );
