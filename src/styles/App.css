@@ -1,12 +1,15 @@
 .App {
   text-align: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(https://i.imgur.com/0OAqLye.png);
+  
 }
 
 body{ text-align: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(https://i.imgur.com/0OAqLye.png);
-background-size: contain;
-background-attachment: fixed;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+
 }
 
 .App-logo {
