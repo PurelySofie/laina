@@ -1,0 +1,43 @@
+.App {
+    text-align: center;
+    margin-top: 5px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    color: white;
+  }
+  
+  .center-scanner {
+    display: block;
+    margin: 0 auto;
+    width: 300px; /* Leventä QR-skanneria */
+    height: 300px; /* Korota QR-skanneria */
+    border: 2px solid #333;
+  }
+  
+  .center-text {
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  .center-input {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+  }
+  
+  p {
+    font-size: 16px;
+    color: white;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #007bff;
+  }
