@@ -1,16 +1,39 @@
 import React from "react"
 import "./Käyttäjäsivu.css"
 import Userinfo from "../databases/käyttäjät/Users.json"
-import Laina from "../databases/lainat/1zh7a.json"
-var string = require("randomstring");
+var string = require("randomstring")
+var User = (1)
 
 function Käyttäjäsivu(){
     return(
-        <div className="Lainat">
-            <p>{string.generate(5)}</p>
-            <h1>{Userinfo[0].sposti}</h1>
-            <p>{Laina.tunniste}</p>
+        <div className="content">
+            <div className="Käyttäjäinfo">
+                <h1>{Userinfo[User].sposti}</h1>
+                <p>{Userinfo[User].salasana}</p>
+                <p>{Userinfo[User].lainat}</p>
+
+            </div>
+            <div className="Lainat">   
+                
+                
+            </div>
+            <div className="Nappi">
+                <button type="button" onClick={function(){
+                    var Uusilaina = 
+                    {
+                        "lainaaja": "",
+                        "lainauspv": "05/09/2023",
+                        "viimpalautuspv": "05/10/2023",
+                        "palautettupv":"Ei Palautettu",
+                        "nimi":"Fysiikka 101",
+                        "tunniste":"DjAd",
+                        "palautettu":"false"
+                    }
+                    JSON.stringify(Uusilaina)
+                }}><span></span>Lainaa</button>
+            </div>
         </div>
+
     );
 }
 
