@@ -6,12 +6,13 @@ import { useState } from "react"
  * lisäämisen.
  */
 export const AddBook = (props) => {
-    const [addState, setAddState] = useState("")
+    const [showPanel, setShowPanel] = useState(false)    
     const handleClick = () => {
-        console.log("oujee")
+        
     }
     return(
         <>
+            <button onClick={() => {setShowPanel(!showPanel)}}></button>
             <input placeholder="Kirjan nimi"/>
             <input placeholder="Määrä"/>
             <input /> // Tunnisteen koodi tekee automaattisesti?

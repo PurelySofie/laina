@@ -17,26 +17,26 @@
  * tiedostoon
  */
 
-export const TrEdit = (props) => {
+export const LiEdit = (props) => {
     return(
         <>
-            <td className="admin-li">{props.kirjanNimi}</td>
+            <li className="admin-li">{props.kirjanNimi}</li>
             {/**
              * Dropdown lista jossa voi vaihtaa lainaajan pois.
              * Samalla se poistaa kirjalainauksen.
              * */}
-            <td className="admin-li">
+            <li className="admin-li">
                 <select>
                     <option>{props.lainaaja}</option>
                     <option>Poista lainaus</option>
                 </select>
-            </td> 
-            <td className="admin-li">{props.lainattu}</td>
-            <td className="admin-li">
+            </li> 
+            <li className="admin-li">{props.lainattu}</li>
+            <li className="admin-li">
                 <input type="date" defaultValue={props.palautettavaViimeistaan}/>
-            </td>
-            <td className="admin-li">{props.viimeinenPalautus}</td>
-            <td className="admin-li">{props.tunniste}</td>
+            </li>
+            <li className="admin-li">{props.viimeinenPalautus}</li>
+            <li className="admin-li">{props.tunniste}</li>
         </>
     )
 }
