@@ -26,6 +26,7 @@ function Navbar() {
                 </ul>
             </div>
         </div>
+        
 <Outlet />
 </>
     );
