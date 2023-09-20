@@ -1,3 +1,7 @@
+.Scanner {
+  color: white;
+}
+
 .App {
     text-align: center;
     margin-top: 5px;
@@ -11,9 +15,15 @@
   .center-scanner {
     display: block;
     margin: 0 auto;
-    width: 300px; /* Leventä QR-skanneria */
-    height: 300px; /* Korota QR-skanneria */
+    width: 300px;
+    height: 300px;
     border: 2px solid #333;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+    top: -450px;
   }
   
   .center-text {
@@ -41,3 +51,4 @@
     text-decoration: none;
     color: #007bff;
   }
+  
