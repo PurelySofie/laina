@@ -27,7 +27,6 @@ import axios from 'axios';
 import { AdminBar } from '../modules/admin-sivu/AdminBar';
 import AdminPageList from '../modules/admin-sivu/listModules/AdminPageList';
 import { LainattavatMain } from '../modules/admin-sivu/lainattavatModules/LainattavatMain';
-import { AddBook } from '../modules/admin-sivu/AddBook';
 var string = require("randomstring");
 
 function Adminsivu(){
@@ -135,28 +134,30 @@ function Adminsivu(){
                 {/**
                  * Tuo näkyviin lainattavat kansion datan
                 */}
-                {/* <LainattavatMain
-                    jsonData={lainattavatData}
-                /> */}
+                <div className='toinenpalkki'>
+                    <LainattavatMain
+                        jsonData={lainattavatData}
+                    />
 
-                {/**
-                 * Tuo näkyviin taulukon kaikista lainauksista 
-                 * TODO
-                 * Näytä vain ~15 lainausta per sivu,
-                 * jonka jälkeen pitää painaa nappia ja
-                 * kääntää uusi sivu. Takaa nopeamman 
-                 * nopeuden sivulle
-                 **/}
-                {/* <AdminPageList 
-                    handleSearchChange={handleSearchChange}
-                    handleToSearch={handleToSearch}
-                    toSearch={toSearch}
-                    search={search}
-                    jsonData={lainatData}
-                    foundList={foundList}
-                /> */}
+                    {/**
+                     * Tuo näkyviin taulukon kaikista lainauksista 
+                     * TODO
+                     * Näytä vain ~15 lainausta per sivu,
+                     * jonka jälkeen pitää painaa nappia ja
+                     * kääntää uusi sivu. Takaa nopeamman 
+                     * nopeuden sivulle
+                     **/}
+                    <AdminPageList 
+                        handleSearchChange={handleSearchChange}
+                        handleToSearch={handleToSearch}
+                        toSearch={toSearch}
+                        search={search}
+                        jsonData={lainatData}
+                        foundList={foundList}
+                    />
 
-                <AddBook /> 
+                    {/* <AddBook />  */}
+                </div>
             </div>
         </div>
     )

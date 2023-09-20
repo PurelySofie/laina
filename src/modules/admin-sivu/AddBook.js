@@ -1,25 +1,68 @@
-import { useState } from "react"
+import { useState } from "react";
+import axios from 'axios';
 
 /**
  * Sisältää koodin joka
  * sallii uuden kirjan
  * lisäämisen.
- */
+*/
+
+// TODO Tunnisteen koodi tekee automaattisesti?
 export const AddBook = (props) => {
     const [showPanel, setShowPanel] = useState(false)    
-    const handleClick = () => {
-        
+    const [name, setName] = useState("")
+    const [amount, setAmount] = useState(0)
+    const [book, setBook] = useState({})
+    const [type, setType] = useState("Kirja")
+    const [availability, setAvailability] = useState(0);
+    /**
+     * Ottaa <select>:istä
+     * arvon joka otetaan
+     * tyypiksi
+     * 
+     */
+    const handleSelect = (e) => {
+        setType(e.target.value)
     }
+    /**
+     * Tekee ja lähettää datan
+     * NodeJS palvelimelle joka
+     * lisää sen Lainattavt.json:iin
+     */
+    const handleClick = () => {
+        const bookObj = {
+          "tyyppi": type,
+          "nimi": name,
+          "maara": amount,
+          "saatavilla": availability
+        };
+        axios.post("http://localhost:3000/api/json-addBook", bookObj)
+          .catch((error) => {
+            console.error("Error reaching server:", error);
+          });
+      }
+      
     return(
         <>
-            <button onClick={() => {setShowPanel(!showPanel)}}></button>
-            <input placeholder="Kirjan nimi"/>
-            <input placeholder="Määrä"/>
-            <input /> // Tunnisteen koodi tekee automaattisesti?
+            <button onClick={() => {setShowPanel(!showPanel)}}>Kirjanlisäyspaneeli</button>
+            {
+                showPanel ?
+                <div>
+                    <input placeholder="Kirjan nimi" onChange={(e) => {setName(e.target.value)}} />
+                    <input placeholder="Määrä" onChange={(e) => {setAmount(e.target.value)}} />
+                    <input placeholder="Saatavilla" id="avaiability-input-field" onChange={(e) => {setAvailability(e.target.value)}} />
+                    <select onChange={handleSelect}>
+                        <option value={"Kirja"}>Kirja</option>
+                        <option value={"Joku muu"}>Joku muu</option>
+                    </select>
+                    <button onClick={handleClick}>
+                        Lisää kirja
+                    </button>
+                </div>
+                :
+                <></>
+            }
 
-            <button onClick={handleClick}>
-                Lisää kirja
-            </button>
         </>
     )
 }

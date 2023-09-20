@@ -1,5 +1,6 @@
 import ListItems from './ListItems';
 import SearchBar from '../SearchBar';
+import { AddBook } from '../AddBook';
 
 /**
  * Sisältää koodin joka renderöi
@@ -15,7 +16,11 @@ const AdminPageList = (props) => {
                     func={props.handleSearchChange} 
                     func2={props.handleToSearch} 
                     etsittava={props.toSearch}
+   
                 />
+                <div className="add-book">
+                    <AddBook />
+                </div>
             <br />
             </div>
 
