@@ -17,19 +17,17 @@ function Scanner() {
 
     let isScanning = true;
 
-    scanner.render(success, error);
+    scanner.render(onScan);
 
-    function success(result) {
+    function onScan(qrCodeMessage) {
       if (isScanning) {
         scanner.clear();
-        setScanResult(result);
+        setScanResult(qrCodeMessage);
         isScanning = false;
+        window.location.href = qrCodeMessage;
       }
     }
 
-    function error(err) {
-      console.warn(err);
-    }
 
     return () => {
       isScanning = false;
