@@ -1,15 +1,18 @@
 /**
  * Nodejs express palvelin joka kutsuu 
  * ja välittää tietoja react komponenteille
- */
+*/
 
 const express = require('express');
 const app = express();
 const loadJsonLainat = require('./src/node/jsonHandleLainat'); // Polku jsonHandle tiedostoon
 const loadJsonLainattavat = require('./src/node/jsonHandleLainattavat')
+const addJsonBook = require('./src/node/AddBook')
 const port = 3001; // Portin voi vaihtaa jos tarvetta
 const cors = require('cors'); // Sallii palveleiden välisen kommunikoinnin
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.json()); // Sallii jotain json-juttujen tekoa
 app.use(cors({ origin: true, credentials: true }));
 /**
  * /json-lainat tarkoittaa localportin loppua:
@@ -18,11 +21,11 @@ app.use(cors({ origin: true, credentials: true }));
 app.get('/api/json-lainat', async (req, res) => {
     try {
       const data = await loadJsonLainat();
-      console.log('Data received from Lainat', data);   
+      console.log('Data received from Lainat');   
       res.json(data);
     } catch (error) {
       console.error('Error handling JSON data:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: 'Internal Server Error'});
     }
   });
 
@@ -39,7 +42,20 @@ app.get('/api/json-lainattavat', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
-// Start the Express server
+
+  /**
+   * Lisää uuden kirjan
+   */
+  app.post('/api/json-addBook', async (req, res) => {
+    try {
+      await addJsonBook(req.body)
+      res.status(200).json({ message: 'Book added successfully' });
+    } catch (error) {
+      console.error('Error adding book:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
