@@ -7,7 +7,6 @@ import axios from 'axios';
  * lisäämisen.
 */
 
-// TODO Tunnisteen koodi tekee automaattisesti?
 export const AddBook = (props) => {
     const [showPanel, setShowPanel] = useState(false)    
     const [name, setName] = useState("")
@@ -30,16 +29,22 @@ export const AddBook = (props) => {
      * lisää sen Lainattavt.json:iin
      */
     const handleClick = () => {
+        if(isNaN(amount) || isNaN(availability)){
+            return;
+        }
         const bookObj = {
           "tyyppi": type,
           "nimi": name,
-          "maara": amount,
-          "saatavilla": availability
+          "maara": Number(amount),
+          "saatavilla": Number(availability),
+          "id": props.jsonData.length - 1 // Laittaa kirjan id:ksi sijainnin listassa
         };
+        setBook(bookObj)
         axios.post("http://localhost:3000/api/json-addBook", bookObj)
           .catch((error) => {
             console.error("Error reaching server:", error);
           });
+          props.jsonFunc(); // Päivittää datan
       }
       
     return(

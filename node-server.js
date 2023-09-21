@@ -1,27 +1,47 @@
 /**
  * Nodejs express palvelin joka kutsuu 
  * ja välittää tietoja react komponenteille
+ * 
+ * Palvelin pitää käynnistää uudelleen jos muutoksia tekee
+ * 
+ * Esimerkkikoodilla meinataan sitä että miten kutsut funktiota,
+ * ja mitä lähetät sille.
 */
 
 const express = require('express');
 const app = express();
-const loadJsonLainat = require('./src/node/jsonHandleLainat'); // Polku jsonHandle tiedostoon
+
+// Funktio importit
+const loadJsonLainat = require('./src/node/jsonHandleLainat');
 const loadJsonLainattavat = require('./src/node/jsonHandleLainattavat')
 const addJsonBook = require('./src/node/AddBook')
+const deleteJsonBook = require("./src/node/DeleteBook")
+const deleteLainaus = require("./src/node/DeleteLainaus")
+const updateDateLainaus = require("./src/node/jsonUpdateDate")
+
 const port = 3001; // Portin voi vaihtaa jos tarvetta
 const cors = require('cors'); // Sallii palveleiden välisen kommunikoinnin
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json()); // Sallii jotain json-juttujen tekoa
 app.use(cors({ origin: true, credentials: true }));
+
 /**
- * /json-lainat tarkoittaa localportin loppua:
- * localport:3001/json-lainat
+ * ---------------------------------------------------
+ * /databases/lainat/ kansion funktiot
+ * ---------------------------------------------------
+ * 
+ * /api/json-lainat tarkoittaa localhostin loppua:
+ * localhost:3000/api/json-lainat
+ * 
+ * Palauttaa lainat/ kansion, esimerkki koodi löytyy
+ * /src/pages/Adminsivu.js
+ * funktiosta loadData();
  **/ 
 app.get('/api/json-lainat', async (req, res) => {
     try {
       const data = await loadJsonLainat();
-      console.log('Data received from Lainat');   
+      console.log('Data received from Lainat, from:', req.ip);   
       res.json(data);
     } catch (error) {
       console.error('Error handling JSON data:', error);
@@ -29,30 +49,109 @@ app.get('/api/json-lainat', async (req, res) => {
     }
   });
 
-/**
- * Lukee lainattavat datan
- */
-app.get('/api/json-lainattavat', async (req, res) => {
+  /**
+  * Poistaa lainat kansiosta annetun kirjan.
+  * Funktiolle pitää lähettää kirjan tunnus.
+  * 
+  * TODO.
+  * Tee kirjasta kopio johonkin lainaushistoria kansioon
+  * 
+  * Esimerkkikoodia voi löytää:
+  * /modules/admin-sivu/listModules/ListItems.js
+  * Datan ottaminen funktiosta handleDelClick();
+  * Lähettäminen funktiosta handleClick();
+  */
+  app.post("/api/json-lainat-deleteBook", async (req, res) => {
     try {
-      const data = await loadJsonLainattavat();
-      console.log('Data received from Lainattavat');
-      res.json(data);
+      const result = await deleteLainaus(req.body);
+      console.log(`file: ${result} deleted and moved succesfully, by`, req.ip)
     } catch (error) {
       console.error('Error handling JSON data:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: 'Internal Server Error'});
     }
   });
 
   /**
-   * Lisää uuden kirjan
+   * Päivittää lainauksen päivämäärän.
+   * Funktiolle ottaa vastaan seuraavanlaisen
+   * olion:
+   * {
+   *    tunnus: "abcd",
+   *    date:   "2023-09-21"
+   * }
+   * 
+   * Esimerkkikoodia voi löytää:
+   * /modules/admin-sivu/listModules/ListItems.js
+   * Datan ottaminen funktiosta handleDelClick();
+   * Lähettäminen funktiosta handleClick();
    */
-  app.post('/api/json-addBook', async (req, res) => {
+  app.post("/api/json-lainat-updateDate", async (req,res) => {
     try {
-      await addJsonBook(req.body)
-      res.status(200).json({ message: 'Book added successfully' });
+      console.log(req.body)
+      // const result = await updateDateLainaus(req.body);
+      console.log(`file: ${result}. Date changed succesfully, by`, req.ip)
     } catch (error) {
-      console.error('Error adding book:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      console.error('Error handling JSON data:', error);
+      res.status(500).json({ error: 'Internal Server Error'});
+    }
+  })
+ 
+ /**
+  * ---------------------------------------------------
+  * /databases/lainattavat/ kansion funktiot
+  * ---------------------------------------------------
+  * 
+  * Lisää uuden kirjan
+  * 
+  * Esimerkkikoodia voi löytää:
+  * /src/modules/admin-sivu/AddBook.js
+  * funktiosta handleClick();
+ */
+app.post('/api/json-addBook', async (req, res) => {
+  try {
+    await addJsonBook(req.body) // Lähettää kirjadatan
+    console.log("Book added succesfully,  from:", req.ip)
+    res.status(200).json({ message: 'Book added successfully' });
+  } catch (error) {
+    console.error('Error adding book:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+  /**
+   * Lukee lainattavat datan
+   * Palauttaa lainat/ kansion, esimerkki koodi löytyy
+   * /src/pages/Adminsivu.js
+   * funktiosta loadData();
+   */
+  app.get('/api/json-lainattavat', async (req, res) => {
+      try {
+        const data = await loadJsonLainattavat();
+        console.log('Data received from Lainattavat, from:', req.ip);
+        res.json(data);
+      } catch (error) {
+        console.error('Error handling JSON data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    });
+    
+
+  /**
+   * Poistaa kirjan, ja päivittää id:eet
+   * 
+   * Esimerkkikoodin voi löytää:
+   * /src/modules/admin-sivu/lainattavatModules/ListItems.js
+   * funktiosta: handleClick();
+   */
+  app.post('/api/json-deleteBook', async (req, res) => {
+    try {
+      await deleteJsonBook(req.body) // Lähettää kirjan id:een funktiolle
+      console.log("Book deleted succesfully,  from:", req.ip);
+      res.status(200).json({message: 'Book deleted succesfully'});
+    } catch (error) {
+      console.error("Error deleting book:", error)
+      res.status(500).json({error: "Internal Server Error"})
     }
   });
 

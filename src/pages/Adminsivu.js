@@ -3,13 +3,13 @@ Admin-sivu css - ei valmis
 
 Data handling - Valmis
 
-Lisää kirja kohta adminien pääsivulle? - ei valmis
+Lisää kirja kohta adminien pääsivulle? - Valmis
 Lista ja myöhästyneet pitää katsoa erikseen? - ei valmis
 
 Admin sivulle myöhästyneet lainaukset näkymä. - ei valmis
  
 Admineille QR Code scanneri joilla voi scannata kirjan koodin ja siirtää
-    lainauksen statuksen lainatusta takaisin koululle. - qr-koodi ei valmis. Sen voi vaihtaa manuaalisesti mutta tieto ei tallennu mihinkään
+    lainauksen statuksen lainatusta takaisin koululle. - qr-koodi ei valmis. Sen voi vaihtaa manuaalisesti
 
 Kirjoille lainaushistoria josta voi nähdä kenellä kirja
     on ollut siltä varalta että kirja on vahingoittuu. - ei valmis
@@ -36,11 +36,11 @@ function Adminsivu(){
     const [lainatData, setLainatData] = useState(null);
     const [lainattavatData, setLainattavatData] = useState([])
 
-    /**
-     * Lataa admin-sivulle datan
-     * lainat
-     */
-    useEffect(() => {
+    const loadData = () => {
+        /**
+         * Lataa admin-sivulle datan
+         * lainat
+         */
         axios.get('http://localhost:3000/api/json-lainat') // Tekee pyynnön kyseiseen nettiosoitteeseen
         .then((response) => {
             setLainatData(response.data); // Lisää datan lainatData:aan
@@ -48,23 +48,25 @@ function Adminsivu(){
         .catch((error) => {
             console.error('Error fetching JSON data:', error);
         });
-    }, []);
-    /**
-     * Lataa lainattavat
-     */
-    useEffect(() => {
+        /**
+         * Lataa lainattavat
+        */
         axios.get('http://localhost:3000/api/json-lainattavat') // Tekee pyynnön kyseiseen nettiosoitteeseen
         .then((response) => {
             setLainattavatData(response.data); // Lisää datan LainattavatData:aan
         })
         .catch((error) => {
             console.error('Error fetching JSON data:', error);
-        });
-    }, []);
+        });    
+    }
+    useEffect(() => {
+        loadData()
+    }, [])
+    
     /**
      * Tulee näkyviin kun tietoja ladataan
      * Voi animoida hienosti joskus
-     */
+        */
     if(lainatData == null || lainatData.length === 0 /* || lainattavatData.length === 0 || lainattavatData == null*/ ){
         return(
             <div className='content'>Tietoja ladataan</div>
@@ -137,6 +139,7 @@ function Adminsivu(){
                 <div className='toinenpalkki'>
                     <LainattavatMain
                         jsonData={lainattavatData}
+                        jsonFunc={loadData}
                     />
 
                     {/**
@@ -154,9 +157,10 @@ function Adminsivu(){
                         search={search}
                         jsonData={lainatData}
                         foundList={foundList}
+                        jsonDataLainattavat={lainattavatData}
+                        jsonFunc={loadData}
                     />
 
-                    {/* <AddBook />  */}
                 </div>
             </div>
         </div>
