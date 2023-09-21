@@ -26,11 +26,15 @@ function Navbar() {
                 </ul>
             </div>
         </div>
+        {/**
+         * Vaihoin noi class="" => className="" koska tuli consoleen erroria
+         * Toi onclicki pitäis myös olla tällee onClick={funktioNimi} 👍👍👍
+         */}
         <div id="hamburger-icon" onclick="toggleMobileMenu(this)">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-        <ul class="mobile-menu">
+        <div className="bar1"></div>
+        <div className="bar2"></div>
+        <div className="bar3"></div>
+        <ul className="mobile-menu">
           <li><a href="/home">Home</a></li>
           <li><a href="/products">Products</a></li>
           <li><a href="/about">About</a></li>
