@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { BiFilterAlt } from "react-icons/bi";
 
 /**
  * Admin- ja/tai Käyttäjäsivun search palkki
@@ -56,19 +57,21 @@ const SearchBar = (props) => {
          * TODO
          * Tyhjennä search palkki ja
          * saa se toimimaan järkevästi
+         * 
+         
          */
         // document.getElementById("search-bar-input-field").value;
     }, [props.etsittava]);
 
     return(
-        <div>
+        <div className='search-and-filter'>
             <input 
                 id='search-bar-input-field'
                 onChange={props.func}
                 placeholder={"Etsi kirjoja " + placeholderPaate}
             />
 
-            <button onClick={handleClick}>Filters</button> {/*Nappi filtereille*/}
+            <BiFilterAlt onClick={handleClick} className='filter-button'/> {/*Nappi filtereille*/}
             {
                 // Jos filterinappia painaa returnaa filter valikko
                 showFilter === true ?

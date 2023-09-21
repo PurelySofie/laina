@@ -25,35 +25,47 @@ import axios from 'axios';
 // Module importit
 // Jos näyttää punasta viivaa nii pitäis silti toimia
 import { AdminBar } from '../modules/admin-sivu/AdminBar';
-import AdminPageList from "../modules/admin-sivu/taulukkoModules/AdminPageList"
-
+import AdminPageList from '../modules/admin-sivu/listModules/AdminPageList';
+import { LainattavatMain } from '../modules/admin-sivu/lainattavatModules/LainattavatMain';
+var string = require("randomstring");
 
 function Adminsivu(){
     const [search, setSearch] = useState("");
     const [foundList, setFoundList] = useState([]);
-    const [jsonData, setJsonData] = useState(null);
     const [toSearch, setToSearch] = useState("nimi");
+    const [lainatData, setLainatData] = useState(null);
+    const [lainattavatData, setLainattavatData] = useState([])
 
     /**
      * Lataa admin-sivulle datan
+     * lainat
      */
-
     useEffect(() => {
-        axios.get('http://localhost:3001/json-handle') // Tekee pyynnön kyseiseen nettiosoitteeseen
+        axios.get('http://localhost:3000/api/json-lainat') // Tekee pyynnön kyseiseen nettiosoitteeseen
         .then((response) => {
-            setJsonData(response.data); // Lisää datan jsonData:aan
+            setLainatData(response.data); // Lisää datan lainatData:aan
         })
         .catch((error) => {
             console.error('Error fetching JSON data:', error);
         });
     }, []);
-
-
+    /**
+     * Lataa lainattavat
+     */
+    useEffect(() => {
+        axios.get('http://localhost:3000/api/json-lainattavat') // Tekee pyynnön kyseiseen nettiosoitteeseen
+        .then((response) => {
+            setLainattavatData(response.data); // Lisää datan LainattavatData:aan
+        })
+        .catch((error) => {
+            console.error('Error fetching JSON data:', error);
+        });
+    }, []);
     /**
      * Tulee näkyviin kun tietoja ladataan
      * Voi animoida hienosti joskus
      */
-    if(jsonData == null || jsonData.length === 0){
+    if(lainatData == null || lainatData.length === 0 /* || lainattavatData.length === 0 || lainattavatData == null*/ ){
         return(
             <div className='content'>Tietoja ladataan</div>
         )
@@ -80,30 +92,30 @@ function Adminsivu(){
              * etsittyä arvoa
              */
             const filteredBooks = 
-            jsonData.filter(book => book.nimi.toLowerCase()
+            lainatData.filter(book => book.nimi.toLowerCase()
             .includes(e.target.value.toLowerCase()))
             .map(book => book.nimi);
             // Looppaa kirjojen ja filterin läpi
-            for(let i = 0; i < jsonData.length; i++){
+            for(let i = 0; i < lainatData.length; i++){
                 for (let j = 0; j < filteredBooks.length; j++) {
-                    if(jsonData[i].nimi === filteredBooks[j]){ // Etsii oikean datan
-                        if(!filteredData.includes(jsonData[i])){ // Katsoo ettei sitä ole vielä lisätty
-                            filteredData.push(jsonData[i]); // Lisää sen listaan
+                    if(lainatData[i].nimi === filteredBooks[j]){ // Etsii oikean datan
+                        if(!filteredData.includes(lainatData[i])){ // Katsoo ettei sitä ole vielä lisätty
+                            filteredData.push(lainatData[i]); // Lisää sen listaan
                         }
                     }
                 }
             }
         } else if (toSearch === "tunniste"){ // Etsii tunnisteen perusteella
             const filteredBooks = 
-            jsonData.filter(book => book.tunniste.toLowerCase()
+            lainatData.filter(book => book.tunniste.toLowerCase()
             .includes(e.target.value.toLowerCase()))
             .map(book => book.tunniste);
             // Looppaa kirjojen ja filterin läpi
-            for(let i = 0; i < jsonData.length; i++){
+            for(let i = 0; i < lainatData.length; i++){
                 for (let j = 0; j < filteredBooks.length; j++) {
-                    if(jsonData[i].tunniste === filteredBooks[j]){ // Etsii oikean datan
-                        if(!filteredData.includes(jsonData[i])){ // Katsoo ettei sitä ole vielä lisätty
-                            filteredData.push(jsonData[i]); // Lisää sen listaan
+                    if(lainatData[i].tunniste === filteredBooks[j]){ // Etsii oikean datan
+                        if(!filteredData.includes(lainatData[i])){ // Katsoo ettei sitä ole vielä lisätty
+                            filteredData.push(lainatData[i]); // Lisää sen listaan
                         }
                     }
                 }
@@ -119,23 +131,33 @@ function Adminsivu(){
                 {/* <div className='admin-bar'>
                     <AdminBar />
                 </div> */}
-
                 {/**
-                 * Tuo näkyviin taulukon kaikista lainauksista 
-                 * TODO
-                 * Näytä vain ~15 lainausta per sivu,
-                 * jonka jälkeen pitää painaa nappia ja
-                 * kääntää uusi sivu. Takaa nopeamman 
-                 * nopeuden sivulle
-                 **/}
-                <AdminPageList 
-                    handleSearchChange={handleSearchChange}
-                    handleToSearch={handleToSearch}
-                    toSearch={toSearch}
-                    search={search}
-                    jsonData={jsonData}
-                    foundList={foundList}
-                />
+                 * Tuo näkyviin lainattavat kansion datan
+                */}
+                <div className='toinenpalkki'>
+                    <LainattavatMain
+                        jsonData={lainattavatData}
+                    />
+
+                    {/**
+                     * Tuo näkyviin taulukon kaikista lainauksista 
+                     * TODO
+                     * Näytä vain ~15 lainausta per sivu,
+                     * jonka jälkeen pitää painaa nappia ja
+                     * kääntää uusi sivu. Takaa nopeamman 
+                     * nopeuden sivulle
+                     **/}
+                    <AdminPageList 
+                        handleSearchChange={handleSearchChange}
+                        handleToSearch={handleToSearch}
+                        toSearch={toSearch}
+                        search={search}
+                        jsonData={lainatData}
+                        foundList={foundList}
+                    />
+
+                    {/* <AddBook />  */}
+                </div>
             </div>
         </div>
     )

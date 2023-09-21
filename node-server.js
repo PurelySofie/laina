@@ -1,23 +1,41 @@
 /**
  * Nodejs express palvelin joka kutsuu 
  * ja välittää tietoja react komponenteille
- */
+*/
 
 const express = require('express');
 const app = express();
+const loadJsonLainat = require('./src/node/jsonHandleLainat'); // Polku jsonHandle tiedostoon
+const loadJsonLainattavat = require('./src/node/jsonHandleLainattavat')
+const addJsonBook = require('./src/node/AddBook')
 const port = 3001; // Portin voi vaihtaa jos tarvetta
-const jsonDataHandler = require('./src/node/jsonHandle'); // Polku jsonHandle tiedostoon
 const cors = require('cors'); // Sallii palveleiden välisen kommunikoinnin
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.json()); // Sallii jotain json-juttujen tekoa
 app.use(cors({ origin: true, credentials: true }));
 /**
- * /json-handle tarkoittaa localportin loppua:
- * localport:3001/json-handle
+ * /json-lainat tarkoittaa localportin loppua:
+ * localport:3001/json-lainat
  **/ 
-app.get('/json-handle', async (req, res) => {
+app.get('/api/json-lainat', async (req, res) => {
     try {
-      const data = await jsonDataHandler();
-      console.log('Data received = ', data, "\n\n\n");
+      const data = await loadJsonLainat();
+      console.log('Data received from Lainat');   
+      res.json(data);
+    } catch (error) {
+      console.error('Error handling JSON data:', error);
+      res.status(500).json({ error: 'Internal Server Error'});
+    }
+  });
+
+/**
+ * Lukee lainattavat datan
+ */
+app.get('/api/json-lainattavat', async (req, res) => {
+    try {
+      const data = await loadJsonLainattavat();
+      console.log('Data received from Lainattavat');
       res.json(data);
     } catch (error) {
       console.error('Error handling JSON data:', error);
@@ -25,6 +43,19 @@ app.get('/json-handle', async (req, res) => {
     }
   });
 
+  /**
+   * Lisää uuden kirjan
+   */
+  app.post('/api/json-addBook', async (req, res) => {
+    try {
+      await addJsonBook(req.body)
+      res.status(200).json({ message: 'Book added successfully' });
+    } catch (error) {
+      console.error('Error adding book:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });

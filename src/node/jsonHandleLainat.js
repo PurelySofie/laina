@@ -7,10 +7,12 @@
  * datan listana, jona sitä käytetään reactin puolella
  * funktiota kutsutaan http://localhost:3001/handle-json
  * osoitteesta
+ * 
+ * 
 */
 const fs = require('fs');
 
-async function jsonDataHandler() {
+async function loadJsonLainat() {
   const folder = './src/databases/lainat'; // Polku projektin juuresta
   const results = []; // Tulee sisältämään datan jonka tiedosto lukee
   try {
@@ -49,4 +51,4 @@ async function jsonDataHandler() {
   }
 }
 
-module.exports = jsonDataHandler;
+module.exports = loadJsonLainat;
