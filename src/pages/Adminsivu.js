@@ -27,7 +27,10 @@ import axios from 'axios';
 import { AdminBar } from '../modules/admin-sivu/AdminBar';
 import AdminPageList from '../modules/admin-sivu/listModules/AdminPageList';
 import { LainattavatMain } from '../modules/admin-sivu/lainattavatModules/LainattavatMain';
-import { switchCase } from '@babel/types';
+import { MyohastuneetSivu } from '../modules/admin-sivu/MyohastyneetSivu';
+import { AdminQrScanner } from '../modules/admin-sivu/Admin-Qr-Scanner';
+import { Lainaushistoria } from '../modules/admin-sivu/Lainaushistoria';
+
 var string = require("randomstring");
 
 function Adminsivu(){
@@ -36,6 +39,9 @@ function Adminsivu(){
     const [toSearch, setToSearch] = useState("nimi");
     const [lainatData, setLainatData] = useState(null);
     const [lainattavatData, setLainattavatData] = useState([])
+
+    // Jos paremman tavan keksii käyttäkää ihmeessä!
+    const [activePage, setActivePage] = useState("LainattavatMain")
 
     const loadData = () => {
         /**
@@ -68,7 +74,7 @@ function Adminsivu(){
      * Tulee näkyviin kun tietoja ladataan
      * Voi animoida hienosti joskus
         */
-    if(lainatData == null || lainatData.length === 0 /* || lainattavatData.length === 0 || lainattavatData == null*/ ){
+    if(lainatData == null || lainatData.length === 0 || lainattavatData.length === 0 || lainattavatData == null ){
         return(
             <div className='content'>Tietoja ladataan</div>
         )
@@ -80,7 +86,6 @@ function Adminsivu(){
      * Etsii kirjoja nimen, tunnisteen
      * tai halutessa muiden asioiden
      * perusteella
-     * 
      */
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
@@ -130,22 +135,51 @@ function Adminsivu(){
 
 
     /**
+     * Sivut admin sivulle
+     * I
+     * I
+     * V
+     */
+    const pages = {
+        LainattavatMain: <LainattavatMain jsonData={lainattavatData} jsonFunc={loadData} />,
+        AdminQrScanner: <AdminQrScanner />,
+        MyohastuneetSivu: <MyohastuneetSivu />,
+        Lainaushistoria: <Lainaushistoria />,
+        KaikkiLainat: <AdminPageList 
+        handleSearchChange={handleSearchChange}
+        handleToSearch={handleToSearch}
+        toSearch={toSearch}
+        search={search}
+        jsonData={lainatData}
+        foundList={foundList}
+        jsonDataLainattavat={lainattavatData}
+        jsonFunc={loadData}
+    />
+      };
+      // Valitsee oikean sivun:
+      const pageToRender = pages[activePage] || null;
+      
+      
+
+    /**
      * Adminbar funktio
      */
     const handleClickAdminBar = (e) => {
-        console.log(e.target.id)
         switch (e.target.id) {
             case "Myohastuneet-Kirjat":
-                
+                setActivePage("MyohastuneetSivu")
                 break;
             case "Qr-skanneri":
-                
+                setActivePage("AdminQrScanner")
                 break;
             case "Lainaushistoria":
-                
+                setActivePage("Lainaushistoria")
                 break;
             case "Kirjat":
-
+                setActivePage("LainattavatMain")
+                break;
+            case "KaikkiLainat":
+                setActivePage("KaikkiLainat")
                 break;
         }
         /*
@@ -164,30 +198,7 @@ function Adminsivu(){
                  * Tuo näkyviin lainattavat kansion datan
                 */}
                 <div className='toinenpalkki'>
-                    <LainattavatMain
-                        jsonData={lainattavatData}
-                        jsonFunc={loadData}
-                    />
-
-                    {/**
-                     * Tuo näkyviin taulukon kaikista lainauksista 
-                     * TODO
-                     * Näytä vain ~15 lainausta per sivu,
-                     * jonka jälkeen pitää painaa nappia ja
-                     * kääntää uusi sivu. Takaa nopeamman 
-                     * nopeuden sivulle
-                     **/}
-                    
-                    <AdminPageList 
-                        handleSearchChange={handleSearchChange}
-                        handleToSearch={handleToSearch}
-                        toSearch={toSearch}
-                        search={search}
-                        jsonData={lainatData}
-                        foundList={foundList}
-                        jsonDataLainattavat={lainattavatData}
-                        jsonFunc={loadData}
-                    />
+                    <>{pageToRender}</>
                 </div>
             </div>
         </div>

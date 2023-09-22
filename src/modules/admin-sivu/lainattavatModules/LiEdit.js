@@ -17,8 +17,8 @@ const LiEdit = (props) => {
             <li><input id="Saatavilla" type='number' defaultValue={props.book.saatavilla} onChange={props.handleChange}/></li>
             <br/>
             <li>
-                <button onClick={props.handleClick}>Poista kirja</button>
                 <button onClick={props.changeClick}>Lopeta muokkaus</button>
+                <button onClick={props.handleClick}>Poista kirja</button>
             </li>
         </ul>   
     )

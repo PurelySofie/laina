@@ -103,8 +103,8 @@ const AllList = (props) => {
                     <li>{props.book.saatavilla}</li>
                     <br/>
                     <li>
-                        <button onClick={handleClick}>Poista kirja</button>
                         <button onClick={changeClick}>Muokkaa kirjan tietoja</button>
+                        <button onClick={handleClick}>Poista kirja</button>
                     </li>
                 </ul>
             :
@@ -125,7 +125,6 @@ const AllList = (props) => {
 }
 
 export const ListItems = (props) => {
-    console.log(props.books)
     return(
         <div key={"lainattavatKey"}>
             {
