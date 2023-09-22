@@ -154,6 +154,7 @@ app.post('/api/json-addBook', async (req, res) => {
 
   /**
    * Poistaa kirjan, ja päivittää id:eet
+   * ja kirjan oman tiedoston
    * 
    * Esimerkkikoodin voi löytää:
    * /src/modules/admin-sivu/lainattavatModules/ListItems.js

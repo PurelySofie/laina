@@ -97,10 +97,10 @@ const AllList = (props) => {
         {
             !isEditing ?
                 <ul key={props.keyName}>
-                    <li>{props.book.tyyppi}</li>
-                    <li>{props.book.nimi}</li>
-                    <li>{props.book.maara}</li>
-                    <li>{props.book.saatavilla}</li>
+                    <li>Tyyppi: {props.book.tyyppi}</li>
+                    <li>Nimi: {props.book.nimi}</li>
+                    <li>Määrä: {props.book.maara}</li>
+                    <li>Saatavilla: {props.book.saatavilla}</li>
                     <br/>
                     <li>
                         <button onClick={changeClick}>Muokkaa kirjan tietoja</button>

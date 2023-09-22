@@ -98,12 +98,12 @@ const ListItems = (props) => {
                 !isEditing ? // If-lause joka katsoo onko admin muokkaus-tilassa.
                 <>
                     <img src='/images/Esim.jpeg'></img>
-                    <li className="admin-li" title='Kirjan nimi'>{kirjanNimi}</li>
-                    <li className="admin-li" title='Lainaaja'>{lainaaja}</li>
-                    <li className="admin-li" title='Lainattu'>{lainattu}</li>
-                    <li className={`admin-li ${showclass}`} title='Palautettava viimeistään'>{palautettavaViimeistaan}</li>
-                    <li className="admin-li" title='Viimeisin palautus'>{viimeinenPalautus}</li>
-                    <li className="admin-li" title='Tunniste'>{tunniste}</li>
+                    <li className="admin-li" title='Kirjan nimi'>Kirjan nimi: {kirjanNimi}</li>
+                    <li className="admin-li" title='Lainaaja'>Lainaaja: {lainaaja}</li>
+                    <li className="admin-li" title='Lainattu'>Lainattu: {lainattu}</li>
+                    <li className={`admin-li ${showclass}`} title='Palautettava viimeistään'>Palautettava viimeistään: {palautettavaViimeistaan}</li>
+                    <li className="admin-li" title='Viimeisin palautus'>Viimeisein palautus: {viimeinenPalautus}</li>
+                    <li className="admin-li" title='Tunniste'>Tunniste: {tunniste}</li>
                 </>
                 :
                 <LiEdit
