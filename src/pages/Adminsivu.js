@@ -27,6 +27,7 @@ import axios from 'axios';
 import { AdminBar } from '../modules/admin-sivu/AdminBar';
 import AdminPageList from '../modules/admin-sivu/listModules/AdminPageList';
 import { LainattavatMain } from '../modules/admin-sivu/lainattavatModules/LainattavatMain';
+import { switchCase } from '@babel/types';
 var string = require("randomstring");
 
 function Adminsivu(){
@@ -127,12 +128,38 @@ function Adminsivu(){
     setFoundList(filteredData);
     }
 
+
+    /**
+     * Adminbar funktio
+     */
+    const handleClickAdminBar = (e) => {
+        console.log(e.target.id)
+        switch (e.target.id) {
+            case "Myohastuneet-Kirjat":
+                
+                break;
+            case "Qr-skanneri":
+                
+                break;
+            case "Lainaushistoria":
+                
+                break;
+            case "Kirjat":
+
+                break;
+        }
+        /*
+        Myohastuneet-Kirjat
+        Qr-skanneri
+        Lainaushistoria
+        */
+    }
     return(
         <div className='content'>
             <div className='inner-content'>
-                {/* <div className='admin-bar'>
-                    <AdminBar />
-                </div> */}
+                <div className='admin-bar'>
+                    <AdminBar handleClickAdmins={handleClickAdminBar}/>
+                </div>
                 {/**
                  * Tuo näkyviin lainattavat kansion datan
                 */}
@@ -150,7 +177,8 @@ function Adminsivu(){
                      * kääntää uusi sivu. Takaa nopeamman 
                      * nopeuden sivulle
                      **/}
-                    {/* <AdminPageList 
+                    
+                    <AdminPageList 
                         handleSearchChange={handleSearchChange}
                         handleToSearch={handleToSearch}
                         toSearch={toSearch}
@@ -159,7 +187,7 @@ function Adminsivu(){
                         foundList={foundList}
                         jsonDataLainattavat={lainattavatData}
                         jsonFunc={loadData}
-                    /> */}
+                    />
                 </div>
             </div>
         </div>
