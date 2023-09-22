@@ -97,7 +97,7 @@ const ListItems = (props) => {
             {
                 !isEditing ? // If-lause joka katsoo onko admin muokkaus-tilassa.
                 <>
-                    <img src='/images/Esim.jpeg'></img>
+                    <img src={`/images/${kirjanNimi}.jpg`} alt='Kirjan kansikuva'></img>
                     <li className="admin-li" title='Kirjan nimi'>Kirjan nimi: {kirjanNimi}</li>
                     <li className="admin-li" title='Lainaaja'>Lainaaja: {lainaaja}</li>
                     <li className="admin-li" title='Lainattu'>Lainattu: {lainattu}</li>

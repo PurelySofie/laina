@@ -1,5 +1,6 @@
 const fs = require('fs');
 const randomstring = require("randomstring");
+const sharp = require('sharp');
 /**
  * Sisältää koodin, jolla pystyy
  * lisätä uusia kirjoja lainattavat.json
@@ -8,10 +9,11 @@ const randomstring = require("randomstring");
  */
 
 async function addBook(data) {
+  console.log(data)
+  console.log(imagePar)
   const folderPath = "./src/databases/lainattavat"
   const filePath = "./src/databases/lainattavat/Lainattavat.json"; // Polku projektin juuresta
   const newData = data; // Uuden kirjan data
-
   try {
     // Lue data polusta
     const jsonData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));

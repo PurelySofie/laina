@@ -6,11 +6,22 @@
  * 
  * Esimerkkikoodilla meinataan sitä että miten kutsut funktiota,
  * ja mitä lähetät sille.
+ * 
+ * TODO:
+ * - Nodefunktio saveChangesLainattavat:
+ *    - Nimeä kansio uudelleen ja poista tunnuksia jos
+ *      niiden kirjojen määrää lasketaan.
+ * - Kaikki:
+ *    - Ignore uppercase, niin yläällä olevalta vältytään.
+ *    - Estä duplicate nimet.
+ *    - ID:eiden tekoon joku järkevämpi tapa, ettei tuu samoja monesti putkeen
 */
 
 const express = require('express');
 const app = express();
-const path = require('path');
+const path = require("path")
+const multer = require('multer'); // Käytetään tiedostojen käsittelyyn, kuten kuvien
+
 
 // Funktio importit
 const loadJsonLainat = require('./src/node/jsonHandleLainat');
@@ -21,6 +32,7 @@ const moveLainaus = require("./src/node/moveLainaus")
 const updateDateLainaus = require("./src/node/jsonUpdateDate")
 const saveChangesLainattavat = require("./src/node/saveChangesLainattavat")
 const jsonHandleLainausHistoria = require("./src/node/jsonHandleLainausHistoria")
+const addJsonBookCover = require("./src/node/AddBookCover")
 
 const port = 3001; // Portin voi vaihtaa jos tarvetta
 const cors = require('cors'); // Sallii palveleiden välisen kommunikoinnin
@@ -124,8 +136,54 @@ app.get('/api/json-lainat', async (req, res) => {
  */
 app.post('/api/json-addBook', async (req, res) => {
   try {
-    await addJsonBook(req.body) // Lähettää kirjadatan
+    console.log(req.file)
+    await addJsonBook(req.body, req.file) // Lähettää kirjadatan
     console.log("Book added succesfully,  from:", req.ip)
+    res.status(200).json({ message: 'Book added successfully' });
+  } catch (error) {
+    console.error('Error adding book:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
+
+/**
+ * Lisää kansikuvan.
+ * 
+ * Esimerkkikoodia voi löytää:
+ * /src/modules/admin-sivu/AddBook.js
+ * funktiosta handleClick();
+*/
+
+
+// Tallentaa annettuun kansioon annetulla nimellä
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './public/images/'); // Relatiivinen polku kansioon
+  },
+  filename: (req, file, cb) => {
+    // Kuvan nimi
+    const fileName = file.originalname // Ottaa kuvan nimen
+    cb(null, fileName);
+  },
+});
+
+const upload = multer({ storage });
+app.post('/api/json-addBook-coverImage', upload.single('image'), async (req, res) => {
+  try {
+    // Katsoo tuliko tiedosto:
+    if (!req.file) {
+      return res.status(400).json({ error: 'No image provided' });
+    }
+    // Tiedoston nimi
+    const filename = req.file.filename;
+
+    // Lähettää reqin ja tiedostonimen
+    await addJsonBookCover(filename, req.body)
+    
+    console.log('Bookcover added successfully, from:', req.ip);
     res.status(200).json({ message: 'Book added successfully' });
   } catch (error) {
     console.error('Error adding book:', error);

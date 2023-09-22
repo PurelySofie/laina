@@ -163,6 +163,7 @@ function Adminsivu(){
             toSearch={toSearch}
             search={search}
             foundList={foundList}
+            jsonFunc={loadData}
         />,
         KaikkiLainat: <AdminPageList 
             handleSearchChange={handleSearchChange}
@@ -170,6 +171,7 @@ function Adminsivu(){
             toSearch={toSearch}
             search={search}
             jsonData={lainatData}
+            jsonFunc={loadData}
             foundList={foundList}
         />
       };
