@@ -17,8 +17,9 @@ const loadJsonLainat = require('./src/node/jsonHandleLainat');
 const loadJsonLainattavat = require('./src/node/jsonHandleLainattavat')
 const addJsonBook = require('./src/node/AddBook')
 const deleteJsonBook = require("./src/node/DeleteBook")
-const deleteLainaus = require("./src/node/DeleteLainaus")
+const moveLainaus = require("./src/node/moveLainaus")
 const updateDateLainaus = require("./src/node/jsonUpdateDate")
+const saveChangesLainattavat = require("./src/node/saveChangesLainattavat")
 
 const port = 3001; // Portin voi vaihtaa jos tarvetta
 const cors = require('cors'); // Sallii palveleiden välisen kommunikoinnin
@@ -76,7 +77,7 @@ app.get('/api/json-lainat', async (req, res) => {
   */
   app.post("/api/json-lainat-deleteBook", async (req, res) => {
     try {
-      const result = await deleteLainaus(req.body);
+      const result = await moveLainaus(req.body);
       console.log(`file: ${result} deleted and moved succesfully, by`, req.ip)
     } catch (error) {
       console.error('Error handling JSON data:', error);
@@ -109,6 +110,9 @@ app.get('/api/json-lainat', async (req, res) => {
     }
   })
  
+
+
+
  /**
   * ---------------------------------------------------
   * /databases/lainattavat/ kansion funktiot
@@ -168,6 +172,23 @@ app.post('/api/json-addBook', async (req, res) => {
     }
   });
 
+  /**
+   * Päivittää kirjan uudet tiedot
+   * 
+   * Esimerkkikoon voi löytää
+   * /src/modules/admin-sivu/lainattavatModules/ListItems.js
+   * funktiosta: changeClick();
+   */
+  app.post('/api/json-saveChanges-lainattavat', async (req, res) => {
+    try {
+      await saveChangesLainattavat(req.body) // Lähettää kirjan id:een funktiolle
+      console.log("Book information saved succesfully,  from:", req.ip);
+      res.status(200).json({message: `Saves changed for ${req.body.nimi}`});
+    } catch (error) {
+      console.error("Error saving changes for lainattavat:", error)
+      res.status(500).json({error: "Internal Server Error"})
+    }
+  });
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
