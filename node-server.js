@@ -28,7 +28,16 @@ app.use(bodyParser.json()); // Sallii jotain json-juttujen tekoa
 app.use(cors({ origin: true, credentials: true }));
 
 
-// Kuvia voi lisätä suoraan tekemällä pyynnön /images/kuvannimi.tiedostopääte
+/**
+ * Kuvia voi lisätä suoraan tekemällä pyynnön /images/kuvannimi.tiedostopääte
+ * Kun kuvat lisää kansioon: /public/images/, 
+ * voit tehdä seuraavanlaisen pyynnön img tagissa:
+ * <img src="/images/kuvanNimi.pääte"></src>
+ * Kuva tulee näkyviin html:ään
+ * Esimerkki löytyy /src/modules/admin-sivu/listModues/ListItems.js
+ * noin 5 pykälää returnia alapuolella.
+ * 
+ *   */ 
 app.use(express.static(path.join(__dirname, 'public')));
 /**
  * ---------------------------------------------------

@@ -71,7 +71,7 @@ const SearchBar = (props) => {
                 placeholder={"Etsi kirjoja " + placeholderPaate}
             />
 
-            <BiFilterAlt onClick={handleClick} className='filter-button'/> {/*Nappi filtereille*/}
+            <BiFilterAlt onClick={handleClick} className='filter-button' /> Nappi filtereille
             {
                 // Jos filterinappia painaa returnaa filter valikko
                 showFilter === true ?

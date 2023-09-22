@@ -20,6 +20,7 @@
 export const LiEdit = (props) => {
     return(
         <>
+            <img src='/images/Esim.jpeg'></img>
             <li className="admin-li">{props.kirjanNimi}</li>
             {/**
              * Dropdown lista jossa voi vaihtaa lainaajan pois.
