@@ -2,13 +2,15 @@
   {
     "tyyppi": "Kirja",
     "nimi": "Sähkö ja ICT perusteet 2",
-    "maara": "25",
-    "saatavilla": "24"
+    "maara": 25,
+    "saatavilla": 24,
+    "id": 0
   },
   {
     "tyyppi": "Kirja",
     "nimi": "Fysiikka 101",
-    "maara": "14",
-    "saatavilla": "12"
+    "maara": 14,
+    "saatavilla": 12,
+    "id": 1
   }
 ]

@@ -1,5 +1,13 @@
 const fs = require('fs');
 
+/**
+ * Sisältää koodin, joka lukee 
+ * /databases/lainattavat/ kansion
+ * ja palauttaa sen listana.
+ * Funktiota kutsutaan osoitteesta
+ * http://localhost:3000/api/json-lainattavat
+ * 
+ */
 async function loadJsonLainattavat() {
     const folder = './src/databases/lainattavat'; // Polku projektin juuresta
     const results = []; // Tulee sisältämään datan jonka tiedosto lukee

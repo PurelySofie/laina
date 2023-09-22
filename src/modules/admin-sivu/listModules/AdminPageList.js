@@ -16,10 +16,10 @@ const AdminPageList = (props) => {
                     func={props.handleSearchChange} 
                     func2={props.handleToSearch} 
                     etsittava={props.toSearch}
-   
+
                 />
                 <div className="add-book">
-                    <AddBook />
+                    <AddBook jsonData={props.jsonDataLainattavat} jsonFunc={props.jsonFunc}/>
                 </div>
             <br />
             </div>
@@ -37,6 +37,7 @@ const AdminPageList = (props) => {
                             kirja={kirja} 
                             keyName={kirja.tunniste}
                             handleEditButton={props.handleEditButton}
+                            jsonFunc={props.jsonFunc}
                         />
                     )
                     : // Jos olet etsinyt jotain palauta:
@@ -50,6 +51,7 @@ const AdminPageList = (props) => {
                                 kirja={kirja} 
                                 keyName={kirja.tunniste}
                                 handleEditButton={props.handleEditButton}
+                                jsonFunc={props.jsonFunc}
                             />   
                         )
                 }

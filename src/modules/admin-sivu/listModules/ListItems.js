@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { LiEdit } from "./LiEdit";
+import axios from "axios";
 /**
  * Sisältää koodin joka .map() 
  * function avulla tuo dataa
@@ -7,6 +8,11 @@ import { LiEdit } from "./LiEdit";
  */
 const ListItems = (props) => {
     const [isEditing, setIsEditing] = useState(false);
+
+    const [toDelete, setToDelete] = useState(false)
+    const [changeDate, setChangeDate] = useState(false)
+    const [newDate, setNewDate] = useState(null)
+
     let kirjanNimi,
         lainaaja, lainattu,
         viimeinenPalautus, tunniste,
@@ -42,11 +48,46 @@ const ListItems = (props) => {
      * Tietojenmuokkausnapin
      * handlaus
      */
+    const handleDelClick = (e) => {
+        if(e.target.value === "Poista lainaus"){
+            setToDelete(true);
+        } else if(e.target.type === "date"){
+            setChangeDate(true)
+            setNewDate(e.target.value)
+        }
+    }
     const handleClick = () => {
         setIsEditing(!isEditing)
         if(isEditing){
             if(window.confirm("Tallennetaanko muutokset?")){
-                // TODO koodi tiedon tallentamiseen
+                // Tekee lähetettävän objectin kirjan tunnuksesta
+                const tunnusObj = {
+                    tunnus: kirja.tunniste,
+                    date: null
+                }                
+                // Katsoo mitä pitää tehdä
+                if(toDelete){
+                    // Lähettää kyseiseen osoitteeseen datan
+                    axios.post("http://localhost:3000/api/json-lainat-deleteBook", tunnusObj)
+                    .catch((error) => {
+                        console.error("Error sending data:", error)
+                    })
+                    setToDelete(false);
+                } else if(changeDate){
+                    // Lisää tunnusObj:iin uuden päivämäärän
+                    tunnusObj.date = newDate;
+                    
+                    // Lähettää kyseiseen osoitteeseen datan
+                    axios.post("http://localhost:3000/api/json-lainat-updateDate", tunnusObj)
+                    .catch((error) => {
+                        console.error("Error sending data:", error)
+                    })
+                    setChangeDate(false);
+                }
+                props.jsonFunc() // Päivittää datan sivulle
+            }else{
+                setChangeDate(false)
+                setToDelete(false)
             }
         }
     }
@@ -73,6 +114,7 @@ const ListItems = (props) => {
                     viimeinenPalautus={viimeinenPalautus}
                     tunniste={tunniste}
                     func={props.handleClick}
+                    delFunc={handleDelClick}
                 />
             }
             <div onClick={handleClick} >

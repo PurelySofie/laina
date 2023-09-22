@@ -1,17 +1,12 @@
+const fs = require('fs');
 /**
- * Sisältää NodeJS funktioita jotka lukee datan 
- * ja palauttaa sen
- * 
- * jsonDataHandler(); Lukee kansion, tässä tapauksessa
- * /databases/lainat/ kansion ja palauttaa siellä olevan
+ * Lukee kansion, tässä tapauksessa
+ * /databases/lainat/ ja palauttaa siellä olevan
  * datan listana, jona sitä käytetään reactin puolella
- * funktiota kutsutaan http://localhost:3001/handle-json
+ * funktiota kutsutaan http://localhost:3000/api/json-lainat
  * osoitteesta
  * 
- * 
 */
-const fs = require('fs');
-
 async function loadJsonLainat() {
   const folder = './src/databases/lainat'; // Polku projektin juuresta
   const results = []; // Tulee sisältämään datan jonka tiedosto lukee

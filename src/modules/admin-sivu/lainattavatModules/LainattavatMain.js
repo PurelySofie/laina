@@ -9,7 +9,7 @@ export const LainattavatMain = (props) => {
                  */
                 props.jsonData.map(books =>
                     books[0] === "Lainattavat.json" ?
-                        <ListItems books={books[1]}/>
+                        <ListItems books={books[1]} jsonFunc={props.jsonFunc}/>
                     :
                         <></>
                 )

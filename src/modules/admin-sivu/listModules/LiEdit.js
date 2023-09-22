@@ -26,14 +26,14 @@ export const LiEdit = (props) => {
              * Samalla se poistaa kirjalainauksen.
              * */}
             <li className="admin-li">
-                <select>
+                <select onChange={props.delFunc}> 
                     <option>{props.lainaaja}</option>
-                    <option>Poista lainaus</option>
+                    <option >Poista lainaus</option> {/*Jos vaihat tekstiä, vaiha se myös ListItems.js handleDelClick funktiossa */}
                 </select>
             </li> 
             <li className="admin-li">{props.lainattu}</li>
             <li className="admin-li">
-                <input type="date" defaultValue={props.palautettavaViimeistaan}/>
+                <input onChange={props.delFunc} type="date" defaultValue={props.palautettavaViimeistaan}/>
             </li>
             <li className="admin-li">{props.viimeinenPalautus}</li>
             <li className="admin-li">{props.tunniste}</li>
