@@ -20,6 +20,7 @@ const deleteJsonBook = require("./src/node/DeleteBook")
 const moveLainaus = require("./src/node/moveLainaus")
 const updateDateLainaus = require("./src/node/jsonUpdateDate")
 const saveChangesLainattavat = require("./src/node/saveChangesLainattavat")
+const jsonHandleLainausHistoria = require("./src/node/jsonHandleLainausHistoria")
 
 const port = 3001; // Portin voi vaihtaa jos tarvetta
 const cors = require('cors'); // Sallii palveleiden välisen kommunikoinnin
@@ -189,6 +190,22 @@ app.post('/api/json-addBook', async (req, res) => {
       res.status(500).json({error: "Internal Server Error"})
     }
   });
+
+
+  /**
+   * Palauttaa lainaushistorian
+   */
+  
+  app.get("/api/json-lainaushistoria", async (req, res) => {
+    try {
+      const data = await jsonHandleLainausHistoria();
+      console.log('Data received from lainausHistoria, from:', req.ip);
+      res.json(data);
+    } catch (error) {
+      console.error("Error saving changes for lainattavat:", error)
+      res.status(500).json({error: "Internal Server Error"})
+    }
+  })
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

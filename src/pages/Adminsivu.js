@@ -145,15 +145,21 @@ function Adminsivu(){
         LainattavatMain: <LainattavatMain jsonData={lainattavatData} jsonFunc={loadData} />,
         AdminQrScanner: <AdminQrScanner />,
         MyohastuneetSivu: <MyohastuneetSivu />,
-        Lainaushistoria: <Lainaushistoria />,
+        Lainaushistoria: <Lainaushistoria 
+            handleSearchChange={handleSearchChange}
+            handleToSearch={handleToSearch}
+            toSearch={toSearch}
+            search={search}
+            foundList={foundList}
+        />,
         KaikkiLainat: <AdminPageList 
-        handleSearchChange={handleSearchChange}
-        handleToSearch={handleToSearch}
-        toSearch={toSearch}
-        search={search}
-        jsonData={lainatData}
-        foundList={foundList}
-    />
+            handleSearchChange={handleSearchChange}
+            handleToSearch={handleToSearch}
+            toSearch={toSearch}
+            search={search}
+            jsonData={lainatData}
+            foundList={foundList}
+        />
       };
       // Valitsee oikean sivun:
       const pageToRender = pages[activePage] || null;
