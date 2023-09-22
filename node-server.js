@@ -10,6 +10,7 @@
 
 const express = require('express');
 const app = express();
+const path = require('path');
 
 // Funktio importit
 const loadJsonLainat = require('./src/node/jsonHandleLainat');
@@ -26,6 +27,9 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json()); // Sallii jotain json-juttujen tekoa
 app.use(cors({ origin: true, credentials: true }));
 
+
+// Kuvia voi lisätä suoraan tekemällä pyynnön /images/kuvannimi.tiedostopääte
+app.use(express.static(path.join(__dirname, 'public')));
 /**
  * ---------------------------------------------------
  * /databases/lainat/ kansion funktiot
