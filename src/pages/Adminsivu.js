@@ -150,7 +150,7 @@ function Adminsivu(){
                      * kääntää uusi sivu. Takaa nopeamman 
                      * nopeuden sivulle
                      **/}
-                    <AdminPageList 
+                    {/* <AdminPageList 
                         handleSearchChange={handleSearchChange}
                         handleToSearch={handleToSearch}
                         toSearch={toSearch}
@@ -159,8 +159,7 @@ function Adminsivu(){
                         foundList={foundList}
                         jsonDataLainattavat={lainattavatData}
                         jsonFunc={loadData}
-                    />
-
+                    /> */}
                 </div>
             </div>
         </div>

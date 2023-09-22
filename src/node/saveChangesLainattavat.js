@@ -8,7 +8,8 @@ const fs = require("fs");
  * tyyppi: null,
  *  nimi: null,
  *  maara: 100,
- *  saatavilla: 90
+ *  saatavilla: 90,
+ * id, (kirjan id)
  * }
  * Jos jotain dataa ei muokattu, se tulee null:ina
  * 

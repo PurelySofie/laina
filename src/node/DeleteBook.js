@@ -1,5 +1,4 @@
 const fs = require('fs');
-const updateId = require("./UpdateIdLainattavat")
 /**
  * Sisältää koodin, joka
  * poistaa kirjan lainattavat.json
@@ -19,13 +18,16 @@ async function deleteBook(idObj) {
         let jsonDataCopy = [...jsonData];
         
         try {
-            // Poistaa kirjan
-            jsonDataCopy.splice(id, 1)
-    
-            jsonDataCopy = updateId(jsonDataCopy);
-    
-            // Kirjoittaa uuden datan
-            fs.writeFileSync(pathToFile, JSON.stringify(jsonDataCopy, null, 2));
+          // Poistaa kirjan
+          jsonDataCopy.splice(id, 1)
+          
+          // Päivittää id:eet        
+          jsonData.map( async (book, i) => {
+            book.id = i;
+          })
+          
+          // Kirjoittaa uuden datan
+          fs.writeFileSync(pathToFile, JSON.stringify(jsonDataCopy, null, 2));
         } catch (error) {
             console.error("Error deleting book:", error)
         }

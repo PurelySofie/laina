@@ -125,6 +125,7 @@ const AllList = (props) => {
 }
 
 export const ListItems = (props) => {
+    console.log(props.books)
     return(
         <div key={"lainattavatKey"}>
             {

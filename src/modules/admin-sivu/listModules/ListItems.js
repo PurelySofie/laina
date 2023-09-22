@@ -32,6 +32,7 @@ const ListItems = (props) => {
      * mm/dd/yyyy muotoon:
      * dd/mm/yyyy
      */
+    /* Tehäänkin palvelimella
     const dateComponents = palautettavaViimeistaan.split("/"); // Paloittelee päiväyksen kauttaviivan kohdilta
     const day = dateComponents[0]; // Ottaa päivän
     const month = dateComponents[1]; // Ottaa kuukauden
@@ -39,11 +40,11 @@ const ListItems = (props) => {
     const formattedDateString = `${day}/${month}/${year}`; // Kasaa ne uuteen muotoon
     const targetDate = new Date(formattedDateString); // Tekee siitä uuden päiväyksen
     const currentDate = new Date();
-    let showclass = null;
     if (currentDate < targetDate) {
         showclass = "late";
     }
-
+    */
+   let showclass = null;
     /**
      * Tietojenmuokkausnapin
      * handlaus
