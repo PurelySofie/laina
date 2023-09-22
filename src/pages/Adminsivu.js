@@ -30,6 +30,7 @@ import { LainattavatMain } from '../modules/admin-sivu/lainattavatModules/Lainat
 import { MyohastuneetSivu } from '../modules/admin-sivu/MyohastyneetSivu';
 import { AdminQrScanner } from '../modules/admin-sivu/Admin-Qr-Scanner';
 import { Lainaushistoria } from '../modules/admin-sivu/Lainaushistoria';
+import { AddBook } from '../modules/admin-sivu/AddBook';
 
 var string = require("randomstring");
 
@@ -152,8 +153,6 @@ function Adminsivu(){
         search={search}
         jsonData={lainatData}
         foundList={foundList}
-        jsonDataLainattavat={lainattavatData}
-        jsonFunc={loadData}
     />
       };
       // Valitsee oikean sivun:
@@ -194,6 +193,11 @@ function Adminsivu(){
                 <div className='admin-bar'>
                     <AdminBar handleClickAdmins={handleClickAdminBar}/>
                 </div>
+
+                <div className="add-book">
+                    <AddBook jsonData={lainattavatData} jsonFunc={loadData}/>
+                </div>
+
                 {/**
                  * Tuo näkyviin lainattavat kansion datan
                 */}

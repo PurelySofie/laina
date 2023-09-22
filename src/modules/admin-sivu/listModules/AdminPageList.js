@@ -18,9 +18,6 @@ const AdminPageList = (props) => {
                     etsittava={props.toSearch}
 
                 />
-                <div className="add-book">
-                    <AddBook jsonData={props.jsonDataLainattavat} jsonFunc={props.jsonFunc}/>
-                </div>
             <br />
             </div>
 

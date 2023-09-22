@@ -1,3 +1,6 @@
+/**
+ * Sisältää lainaushistorian
+ */
 export const Lainaushistoria = () => {
     return(
         <div>

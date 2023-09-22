@@ -1,3 +1,6 @@
+/**
+ * Adminien oma qr-skanneri
+ */
 export const AdminQrScanner = () => {
     return(
         <div>
