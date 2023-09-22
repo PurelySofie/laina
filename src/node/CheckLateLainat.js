@@ -1,5 +1,4 @@
 const fs = require("fs");
-const path = require("path");
 /**
  * Katsoo onko lainaus myöhässä.
  * Linux palvelimeen saa paketin joka

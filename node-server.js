@@ -68,9 +68,6 @@ app.get('/api/json-lainat', async (req, res) => {
   * Poistaa lainat kansiosta annetun kirjan.
   * Funktiolle pitää lähettää kirjan tunnus.
   * 
-  * TODO.
-  * Tee kirjasta kopio johonkin lainaushistoria kansioon
-  * 
   * Esimerkkikoodia voi löytää:
   * /modules/admin-sivu/listModules/ListItems.js
   * Datan ottaminen funktiosta handleDelClick();

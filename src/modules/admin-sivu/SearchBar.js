@@ -23,6 +23,12 @@ const FilterPanel = (props) => {
             > 
                 Etsi tunnuksella 
             </button>
+            <button 
+                onClick={() => { props.func("lainaaja")}}
+                className={props.etsittava === "lainaaja" ? "active" : null}
+            > 
+                Etsi lainaajan nimellä 
+            </button>
         </div>
       );      
 }

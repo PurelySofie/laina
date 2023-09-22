@@ -1,18 +1,15 @@
 /* TODO-List
 Admin-sivu css - ei valmis
-
 Data handling - Valmis
 
 Lisää kirja kohta adminien pääsivulle? - Valmis
-Lista ja myöhästyneet pitää katsoa erikseen? - ei valmis
-
-Admin sivulle myöhästyneet lainaukset näkymä. - ei valmis
+myöhästyneet pitää katsoa erikseen? - ei valmis
  
 Admineille QR Code scanneri joilla voi scannata kirjan koodin ja siirtää
     lainauksen statuksen lainatusta takaisin koululle. - qr-koodi ei valmis. Sen voi vaihtaa manuaalisesti
 
 Kirjoille lainaushistoria josta voi nähdä kenellä kirja
-    on ollut siltä varalta että kirja on vahingoittuu. - ei valmis
+    on ollut siltä varalta että kirja on vahingoittuu. - Valmis
 */
 import React, { useEffect, useState } from 'react'
 import "./Adminsivu.css"
@@ -94,7 +91,7 @@ function Adminsivu(){
          * Looppaa nimet läpi ja katsoo löytyykö vastaavia
         */
         const filteredData = [];
-        if(toSearch === "nimi"){ // Etsii nimen perusteella
+        if(toSearch === "nimi"){ // Etsii kirjan nimen perusteella
             /**
              * Luo listan kaikista
              * nimistä jotka matchaavat
@@ -123,6 +120,21 @@ function Adminsivu(){
             for(let i = 0; i < lainatData.length; i++){
                 for (let j = 0; j < filteredBooks.length; j++) {
                     if(lainatData[i].tunniste === filteredBooks[j]){ // Etsii oikean datan
+                        if(!filteredData.includes(lainatData[i])){ // Katsoo ettei sitä ole vielä lisätty
+                            filteredData.push(lainatData[i]); // Lisää sen listaan
+                        }
+                    }
+                }
+            }
+        } else if (toSearch === "lainaaja"){ // Etsii lainaajan perusteella
+            const filteredBooks = 
+            lainatData.filter(book => book.lainaaja.toLowerCase()
+            .includes(e.target.value.toLowerCase()))
+            .map(book => book.lainaaja);
+            // Looppaa kirjojen ja filterin läpi
+            for(let i = 0; i < lainatData.length; i++){
+                for (let j = 0; j < filteredBooks.length; j++) {
+                    if(lainatData[i].lainaaja === filteredBooks[j]){ // Etsii oikean datan
                         if(!filteredData.includes(lainatData[i])){ // Katsoo ettei sitä ole vielä lisätty
                             filteredData.push(lainatData[i]); // Lisää sen listaan
                         }
