@@ -27,22 +27,23 @@ table-layout: fixed;
 width: 50%;
 
 }
-.content{
-  
-width: 100%;
-/* Alkuperäset asetukset */
-position: absolute;
-top: 50%;
-transform: translateY(-50%);
 
-/*Väliaikaset asetukset */
-/* position: relative; */
-/* top: 0px; */
-/* transform: translateY(-100%); */
-
-text-align: center;
-color:#ffffff;
-font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+/* .content-admin{
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  color:#fff;
+} */
+.content-admin{
+  width: 100%;
+  position: relative;
+  top: 50%; 
+  transform: translateY(-81%);
+  text-align: center;
+  color:#ffffff;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .inner-content{
   width: 100%;

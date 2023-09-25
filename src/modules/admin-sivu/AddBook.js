@@ -18,6 +18,7 @@ export const AddBook = (props) => {
     const [type, setType] = useState("Kirja")
     const [availability, setAvailability] = useState(0);
     const [kansiKuva, setKansiKuva] = useState(null);
+    const [imageUrl, setImageUrl] = useState(null);
     /**
      * Ottaa <select>:istä
      * arvon joka otetaan
@@ -35,10 +36,16 @@ export const AddBook = (props) => {
       
         if (file && file.size > maxSizeInBytes) {
             // TODO testaa tätä if-lausetta, koska on niin laittomasti pöllittyä koodia
-          alert('Tiedosto on suurempi kuin 1MT.');
-          e.target.value = null; // Clear the input field
+            alert('Tiedosto on suurempi kuin 1MT.');
+            e.target.value = null; // Clear the input field
         } else {
-          setKansiKuva(file);
+            setKansiKuva(file);
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setImageUrl(event.target.result);
+            };
+            reader.readAsDataURL(file);
+            setKansiKuva(file);
         }
       };
     /**
@@ -98,7 +105,7 @@ export const AddBook = (props) => {
                         <option value={"Kirja"}>Kirja</option>
                         <option value={"Joku muu"}>Joku muu</option>
                     </select>
-                    <img src={kansiKuva} alt="Kansikuva" />
+                    <img src={imageUrl} alt="Kansikuva" />
                     <label htmlFor="fileInput">Kirjan kansikuva:</label>
                     <input accept="image/*" type="file" id="fileInput" onChange={handleImage}/>
 

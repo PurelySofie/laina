@@ -212,7 +212,7 @@ function Adminsivu(){
         */
     }
     return(
-        <div className='content'>
+        <div className='content-admin'>
             <div className='inner-content'>
                 <div className='admin-bar'>
                     <AdminBar handleClickAdmins={handleClickAdminBar}/>

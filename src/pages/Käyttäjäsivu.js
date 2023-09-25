@@ -1,6 +1,6 @@
 import React from "react"
 import "./Käyttäjäsivu.css"
-import Userinfo from "../Databases/käyttäjät/Users.json"
+import Userinfo from "../databases/käyttäjät/Users.json"
 var string = require("randomstring")
 var User = (1)
 
