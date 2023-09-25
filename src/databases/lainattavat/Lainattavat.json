@@ -12,5 +12,12 @@
     "maara": 14,
     "saatavilla": 12,
     "id": 1
+  },
+  {
+    "tyyppi": "Kirja",
+    "nimi": "Abc",
+    "maara": 10,
+    "saatavilla": 10,
+    "id": 2
   }
 ]

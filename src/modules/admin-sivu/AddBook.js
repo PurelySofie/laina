@@ -45,12 +45,17 @@ export const AddBook = (props) => {
      */
     const handleClick = (e) => {
         e.preventDefault();
+        if(!window.confirm("Lisätäänkö uusi kirja")){
+            return;
+        }
         if(isNaN(amount) || isNaN(availability)){
             console.error("Put only numbers")
+            alert("Laita vain numeroita Määrä ja Saatavilla kenttiin")
             return;
         }
         if (!kansiKuva) {
             console.error('No image selected');
+            alert("Lisää kansikuva. Suurin sallittu koko: 1MT")
             return;
         }
         const bookObj = {
@@ -69,8 +74,6 @@ export const AddBook = (props) => {
         const formData = new FormData();
         formData.append('image', kansiKuva);
         formData.append('name', name)
-
-        console.log(formData)
         axios.post('http://localhost:3000/api/json-addBook-coverImage', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',

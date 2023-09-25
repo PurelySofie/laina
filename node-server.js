@@ -11,6 +11,7 @@
  * - Nodefunktio saveChangesLainattavat:
  *    - Nimeä kansio uudelleen ja poista tunnuksia jos
  *      niiden kirjojen määrää lasketaan.
+ *    - Siirrä kirjan kansikuva
  * - Kaikki:
  *    - Ignore uppercase, niin yläällä olevalta vältytään.
  *    - Estä duplicate nimet.
