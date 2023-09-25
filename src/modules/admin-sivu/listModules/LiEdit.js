@@ -20,23 +20,24 @@
 export const LiEdit = (props) => {
     return(
         <>
-            <li className="admin-li">{props.kirjanNimi}</li>
+            <img src={`/images/${props.kirjanNimi}.jpg`} alt="Kirjan kansikuva"></img>
+            <li className="admin-li">Kirjan nimi{props.kirjanNimi}</li>
             {/**
              * Dropdown lista jossa voi vaihtaa lainaajan pois.
              * Samalla se poistaa kirjalainauksen.
              * */}
-            <li className="admin-li">
+            <li className="admin-li"> Lainaaja: 
                 <select onChange={props.delFunc}> 
                     <option>{props.lainaaja}</option>
                     <option >Poista lainaus</option> {/*Jos vaihat tekstiä, vaiha se myös ListItems.js handleDelClick funktiossa */}
                 </select>
             </li> 
-            <li className="admin-li">{props.lainattu}</li>
-            <li className="admin-li">
+            <li className="admin-li">Lainattu: {props.lainattu}</li>
+            <li className="admin-li">Palautettava viimeistään:
                 <input onChange={props.delFunc} type="date" defaultValue={props.palautettavaViimeistaan}/>
             </li>
-            <li className="admin-li">{props.viimeinenPalautus}</li>
-            <li className="admin-li">{props.tunniste}</li>
+            <li className="admin-li">Viimeisin palautus: {props.viimeinenPalautus}</li>
+            <li className="admin-li">Tunniste: {props.tunniste}</li>
         </>
     )
 }

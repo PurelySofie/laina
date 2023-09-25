@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from 'axios';
+import { file } from "@babel/types";
 
 /**
  * Sisältää koodin joka
@@ -11,9 +12,9 @@ export const AddBook = (props) => {
     const [showPanel, setShowPanel] = useState(false)    
     const [name, setName] = useState("")
     const [amount, setAmount] = useState(0)
-    const [book, setBook] = useState({})
     const [type, setType] = useState("Kirja")
     const [availability, setAvailability] = useState(0);
+    const [kansiKuva, setKansiKuva] = useState(null);
     /**
      * Ottaa <select>:istä
      * arvon joka otetaan
@@ -23,13 +24,33 @@ export const AddBook = (props) => {
     const handleSelect = (e) => {
         setType(e.target.value)
     }
+
+    // Ottaa <input file=""/> kuvan
+    const handleImage = (e) => {
+        const file = e.target.files[0];
+        const maxSizeInBytes = 1024 * 1024; // 1 MB (adjust as needed)
+      
+        if (file && file.size > maxSizeInBytes) {
+            // TODO testaa tätä if-lausetta, koska on niin laittomasti pöllittyä koodia
+          alert('Tiedosto on suurempi kuin 1MT.');
+          e.target.value = null; // Clear the input field
+        } else {
+          setKansiKuva(file);
+        }
+      };
     /**
      * Tekee ja lähettää datan
      * NodeJS palvelimelle joka
      * lisää sen Lainattavt.json:iin
      */
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.preventDefault();
         if(isNaN(amount) || isNaN(availability)){
+            console.error("Put only numbers")
+            return;
+        }
+        if (!kansiKuva) {
+            console.error('No image selected');
             return;
         }
         const bookObj = {
@@ -39,13 +60,28 @@ export const AddBook = (props) => {
           "saatavilla": Number(availability),
           "id": props.jsonData.length - 1 // Laittaa kirjan id:ksi sijainnin listassa
         };
-        setBook(bookObj)
+        
         axios.post("http://localhost:3000/api/json-addBook", bookObj)
-          .catch((error) => {
+        .catch((error) => {
             console.error("Error reaching server:", error);
-          });
+        });
+
+        const formData = new FormData();
+        formData.append('image', kansiKuva);
+        formData.append('name', name)
+
+        console.log(formData)
+        axios.post('http://localhost:3000/api/json-addBook-coverImage', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+        .catch((error) => {
+            console.error("Error reaching server:", error);
+        });;
           props.jsonFunc(); // Päivittää datan
       }
+
       
     return(
         <>
@@ -60,6 +96,10 @@ export const AddBook = (props) => {
                         <option value={"Kirja"}>Kirja</option>
                         <option value={"Joku muu"}>Joku muu</option>
                     </select>
+                    
+                    <label htmlFor="fileInput">Kirjan kansikuva:</label>
+                    <input accept="image/*" type="file" id="fileInput" onChange={handleImage}/>
+
                     <button onClick={handleClick}>
                         Lisää kirja
                     </button>

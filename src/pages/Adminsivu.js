@@ -1,18 +1,15 @@
 /* TODO-List
 Admin-sivu css - ei valmis
-
 Data handling - Valmis
 
 Lisää kirja kohta adminien pääsivulle? - Valmis
-Lista ja myöhästyneet pitää katsoa erikseen? - ei valmis
-
-Admin sivulle myöhästyneet lainaukset näkymä. - ei valmis
+myöhästyneet pitää katsoa erikseen? - ei valmis
  
 Admineille QR Code scanneri joilla voi scannata kirjan koodin ja siirtää
     lainauksen statuksen lainatusta takaisin koululle. - qr-koodi ei valmis. Sen voi vaihtaa manuaalisesti
 
 Kirjoille lainaushistoria josta voi nähdä kenellä kirja
-    on ollut siltä varalta että kirja on vahingoittuu. - ei valmis
+    on ollut siltä varalta että kirja on vahingoittuu. - Valmis
 */
 import React, { useEffect, useState } from 'react'
 import "./Adminsivu.css"
@@ -27,6 +24,11 @@ import axios from 'axios';
 import { AdminBar } from '../modules/admin-sivu/AdminBar';
 import AdminPageList from '../modules/admin-sivu/listModules/AdminPageList';
 import { LainattavatMain } from '../modules/admin-sivu/lainattavatModules/LainattavatMain';
+import { MyohastuneetSivu } from '../modules/admin-sivu/MyohastyneetSivu';
+import { AdminQrScanner } from '../modules/admin-sivu/Admin-Qr-Scanner';
+import { Lainaushistoria } from '../modules/admin-sivu/Lainaushistoria';
+import { AddBook } from '../modules/admin-sivu/AddBook';
+
 var string = require("randomstring");
 
 function Adminsivu(){
@@ -35,6 +37,9 @@ function Adminsivu(){
     const [toSearch, setToSearch] = useState("nimi");
     const [lainatData, setLainatData] = useState(null);
     const [lainattavatData, setLainattavatData] = useState([])
+
+    // Jos paremman tavan keksii käyttäkää ihmeessä!
+    const [activePage, setActivePage] = useState("LainattavatMain")
 
     const loadData = () => {
         /**
@@ -67,7 +72,7 @@ function Adminsivu(){
      * Tulee näkyviin kun tietoja ladataan
      * Voi animoida hienosti joskus
         */
-    if(lainatData == null || lainatData.length === 0 /* || lainattavatData.length === 0 || lainattavatData == null*/ ){
+    if(lainatData == null || lainatData.length === 0 || lainattavatData.length === 0 || lainattavatData == null ){
         return(
             <div className='content'>Tietoja ladataan</div>
         )
@@ -79,7 +84,6 @@ function Adminsivu(){
      * Etsii kirjoja nimen, tunnisteen
      * tai halutessa muiden asioiden
      * perusteella
-     * 
      */
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
@@ -87,7 +91,7 @@ function Adminsivu(){
          * Looppaa nimet läpi ja katsoo löytyykö vastaavia
         */
         const filteredData = [];
-        if(toSearch === "nimi"){ // Etsii nimen perusteella
+        if(toSearch === "nimi"){ // Etsii kirjan nimen perusteella
             /**
              * Luo listan kaikista
              * nimistä jotka matchaavat
@@ -122,45 +126,103 @@ function Adminsivu(){
                     }
                 }
             }
+        } else if (toSearch === "lainaaja"){ // Etsii lainaajan perusteella
+            const filteredBooks = 
+            lainatData.filter(book => book.lainaaja.toLowerCase()
+            .includes(e.target.value.toLowerCase()))
+            .map(book => book.lainaaja);
+            // Looppaa kirjojen ja filterin läpi
+            for(let i = 0; i < lainatData.length; i++){
+                for (let j = 0; j < filteredBooks.length; j++) {
+                    if(lainatData[i].lainaaja === filteredBooks[j]){ // Etsii oikean datan
+                        if(!filteredData.includes(lainatData[i])){ // Katsoo ettei sitä ole vielä lisätty
+                            filteredData.push(lainatData[i]); // Lisää sen listaan
+                        }
+                    }
+                }
+            }
         }
     // Loopin jälkeen data lisätään löydettyihin
     setFoundList(filteredData);
     }
 
+
+    /**
+     * Sivut admin sivulle
+     * I
+     * I
+     * V
+     */
+    const pages = {
+        LainattavatMain: <LainattavatMain jsonData={lainattavatData} jsonFunc={loadData} />,
+        AdminQrScanner: <AdminQrScanner />,
+        MyohastuneetSivu: <MyohastuneetSivu />,
+        Lainaushistoria: <Lainaushistoria 
+            handleSearchChange={handleSearchChange}
+            handleToSearch={handleToSearch}
+            toSearch={toSearch}
+            search={search}
+            foundList={foundList}
+            jsonFunc={loadData}
+        />,
+        KaikkiLainat: <AdminPageList 
+            handleSearchChange={handleSearchChange}
+            handleToSearch={handleToSearch}
+            toSearch={toSearch}
+            search={search}
+            jsonData={lainatData}
+            jsonFunc={loadData}
+            foundList={foundList}
+        />
+      };
+      // Valitsee oikean sivun:
+      const pageToRender = pages[activePage] || null;
+      
+      
+
+    /**
+     * Adminbar funktio
+     */
+    const handleClickAdminBar = (e) => {
+        switch (e.target.id) {
+            case "Myohastuneet-Kirjat":
+                setActivePage("MyohastuneetSivu")
+                break;
+            case "Qr-skanneri":
+                setActivePage("AdminQrScanner")
+                break;
+            case "Lainaushistoria":
+                setActivePage("Lainaushistoria")
+                break;
+            case "Kirjat":
+                setActivePage("LainattavatMain")
+                break;
+            case "KaikkiLainat":
+                setActivePage("KaikkiLainat")
+                break;
+        }
+        /*
+        Myohastuneet-Kirjat
+        Qr-skanneri
+        Lainaushistoria
+        */
+    }
     return(
         <div className='content'>
             <div className='inner-content'>
-                {/* <div className='admin-bar'>
-                    <AdminBar />
-                </div> */}
+                <div className='admin-bar'>
+                    <AdminBar handleClickAdmins={handleClickAdminBar}/>
+                </div>
+
+                <div className="add-book">
+                    <AddBook jsonData={lainattavatData} jsonFunc={loadData}/>
+                </div>
+
                 {/**
                  * Tuo näkyviin lainattavat kansion datan
                 */}
                 <div className='toinenpalkki'>
-                    <LainattavatMain
-                        jsonData={lainattavatData}
-                        jsonFunc={loadData}
-                    />
-
-                    {/**
-                     * Tuo näkyviin taulukon kaikista lainauksista 
-                     * TODO
-                     * Näytä vain ~15 lainausta per sivu,
-                     * jonka jälkeen pitää painaa nappia ja
-                     * kääntää uusi sivu. Takaa nopeamman 
-                     * nopeuden sivulle
-                     **/}
-                    <AdminPageList 
-                        handleSearchChange={handleSearchChange}
-                        handleToSearch={handleToSearch}
-                        toSearch={toSearch}
-                        search={search}
-                        jsonData={lainatData}
-                        foundList={foundList}
-                        jsonDataLainattavat={lainattavatData}
-                        jsonFunc={loadData}
-                    />
-
+                    <>{pageToRender}</>
                 </div>
             </div>
         </div>

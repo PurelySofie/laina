@@ -1,28 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-/**
- * Editointikohta
- */
-const LiEdit = (props) => {
-    return(
-        <ul key={props.keyName}>
-            <li>
-                <select onChange={props.handleChange}>
-                    <option>{props.book.tyyppi}</option>
-                    <option>Joku muu</option>
-                </select>
-            </li>
-            <li><input type='text' value={props.book.nimi} onChange={props.handleChange}/></li>
-            <li><input type='number' value={props.book.maara} onChange={props.handleChange}/></li>
-            <li><input type='number' value={props.book.saatavilla} onChange={props.handleChange}/></li>
-            <br/>
-            <li>
-                <button onClick={props.handleClick}>Poista kirja</button>
-                <button onClick={props.changeClick}>Lopeta muokkaus</button>
-            </li>
-        </ul>   
-    )
-}
+import LiEdit from './LiEdit';
+import { continueStatement } from '@babel/types';
+import { emptyObject } from '@jest/expect-utils';
 /**
  * Tekee <li> lainattavat kansion 
  * datasta. Sisältää kirjan poistamis
@@ -36,8 +16,41 @@ const AllList = (props) => {
     const [saatavilla, setSaatavilla] = useState(null)
 
     const handleChange = (e) => {
-        console.log(e.target.type, "=", e.target.value)
+        /**
+         * Numeron sun muut tunnistetaan
+         * eri id:eiden avulla, jotka laitetaan
+         * ./LiEdit.js tiedostossa input-kentille
+         */
+
+        // TODO Tee noista  elseistä toimivat!
+        switch(e.target.id){
+            case "Saatavilla":
+                if(e.target.value !== ""){
+                    setSaatavilla(Number(e.target.value));
+                } else {
+                    alert("Syötä vain numeroita!")
+                    e.target.value = e.target.value.slice(0, -1)
+                }
+                break;
+                case "Maara":
+                    if(e.target.value !== ""){
+                        setMaara(Number(e.target.value));
+                    } else {
+                        alert("Syötä vain numeroita!")
+                    }
+                break;
+            case "Nimi":
+                setNimi(e.target.value)
+                break;
+            case "Tyyppi":
+                setTyyppi(e.target.value);
+                break;
+        }
     }
+
+    /**
+     * Kirjan poistamiseen oleva funktio
+     */
     const handleClick = () => {
         if(window.confirm("Haluatko poistaa kirjan?")){
             const data = {id: props.book.id}
@@ -48,28 +61,50 @@ const AllList = (props) => {
             props.jsonFunc(); // Päivittää datan
         }
     }
+
+    /**
+     * Kirjan muokkausten lähettämiseen
+     * tehty funktio
+     */
     const changeClick = () => {
         if(isEditing){
             if(window.confirm("Tallennetaanko muutokset?")){
-                console.log("TALLENTAA")
+                // Rakentaa datasta lähettävän olion
+                const data = {
+                    tyyppi: tyyppi,
+                    nimi: nimi,
+                    maara: maara,
+                    saatavilla: saatavilla,
+                    id: props.book.id
+                  }
+                  axios.post("http://localhost:3000/api/json-saveChanges-lainattavat", data)
+                  .catch((error) => {
+                    console.error("Error sending data:", error)
+                })
+                props.jsonFunc(); // Päivittää datan
+
+                // Lähettämisen jälkeen data resetoidaan
+                setSaatavilla(null);
+                setMaara(null)
+                setNimi(null)
+                setTyyppi(null);
             }
         }
         setIsEditing(!isEditing)
-
     }
     return(
         <>
         {
             !isEditing ?
                 <ul key={props.keyName}>
-                    <li>{props.book.tyyppi}</li>
-                    <li>{props.book.nimi}</li>
-                    <li>{props.book.maara}</li>
-                    <li>{props.book.saatavilla}</li>
+                    <li>Tyyppi: {props.book.tyyppi}</li>
+                    <li>Nimi: {props.book.nimi}</li>
+                    <li>Määrä: {props.book.maara}</li>
+                    <li>Saatavilla: {props.book.saatavilla}</li>
                     <br/>
                     <li>
-                        <button onClick={handleClick}>Poista kirja</button>
                         <button onClick={changeClick}>Muokkaa kirjan tietoja</button>
+                        <button onClick={handleClick}>Poista kirja</button>
                     </li>
                 </ul>
             :

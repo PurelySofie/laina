@@ -6,18 +6,33 @@
  * 
  * Esimerkkikoodilla meinataan sitä että miten kutsut funktiota,
  * ja mitä lähetät sille.
+ * 
+ * TODO:
+ * - Nodefunktio saveChangesLainattavat:
+ *    - Nimeä kansio uudelleen ja poista tunnuksia jos
+ *      niiden kirjojen määrää lasketaan.
+ * - Kaikki:
+ *    - Ignore uppercase, niin yläällä olevalta vältytään.
+ *    - Estä duplicate nimet.
+ *    - ID:eiden tekoon joku järkevämpi tapa, ettei tuu samoja monesti putkeen
 */
 
 const express = require('express');
 const app = express();
+const path = require("path")
+const multer = require('multer'); // Käytetään tiedostojen käsittelyyn, kuten kuvien
+
 
 // Funktio importit
 const loadJsonLainat = require('./src/node/jsonHandleLainat');
 const loadJsonLainattavat = require('./src/node/jsonHandleLainattavat')
 const addJsonBook = require('./src/node/AddBook')
 const deleteJsonBook = require("./src/node/DeleteBook")
-const deleteLainaus = require("./src/node/DeleteLainaus")
+const moveLainaus = require("./src/node/moveLainaus")
 const updateDateLainaus = require("./src/node/jsonUpdateDate")
+const saveChangesLainattavat = require("./src/node/saveChangesLainattavat")
+const jsonHandleLainausHistoria = require("./src/node/jsonHandleLainausHistoria")
+const addJsonBookCover = require("./src/node/AddBookCover")
 
 const port = 3001; // Portin voi vaihtaa jos tarvetta
 const cors = require('cors'); // Sallii palveleiden välisen kommunikoinnin
@@ -26,6 +41,18 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json()); // Sallii jotain json-juttujen tekoa
 app.use(cors({ origin: true, credentials: true }));
 
+
+/**
+ * Kuvia voi lisätä suoraan tekemällä pyynnön /images/kuvannimi.tiedostopääte
+ * Kun kuvat lisää kansioon: /public/images/, 
+ * voit tehdä seuraavanlaisen pyynnön img tagissa:
+ * <img src="/images/kuvanNimi.pääte"></src>
+ * Kuva tulee näkyviin html:ään
+ * Esimerkki löytyy /src/modules/admin-sivu/listModues/ListItems.js
+ * noin 5 pykälää returnia alapuolella.
+ * 
+ *   */ 
+app.use(express.static(path.join(__dirname, 'public')));
 /**
  * ---------------------------------------------------
  * /databases/lainat/ kansion funktiot
@@ -53,9 +80,6 @@ app.get('/api/json-lainat', async (req, res) => {
   * Poistaa lainat kansiosta annetun kirjan.
   * Funktiolle pitää lähettää kirjan tunnus.
   * 
-  * TODO.
-  * Tee kirjasta kopio johonkin lainaushistoria kansioon
-  * 
   * Esimerkkikoodia voi löytää:
   * /modules/admin-sivu/listModules/ListItems.js
   * Datan ottaminen funktiosta handleDelClick();
@@ -63,7 +87,7 @@ app.get('/api/json-lainat', async (req, res) => {
   */
   app.post("/api/json-lainat-deleteBook", async (req, res) => {
     try {
-      const result = await deleteLainaus(req.body);
+      const result = await moveLainaus(req.body);
       console.log(`file: ${result} deleted and moved succesfully, by`, req.ip)
     } catch (error) {
       console.error('Error handling JSON data:', error);
@@ -96,6 +120,9 @@ app.get('/api/json-lainat', async (req, res) => {
     }
   })
  
+
+
+
  /**
   * ---------------------------------------------------
   * /databases/lainattavat/ kansion funktiot
@@ -109,8 +136,54 @@ app.get('/api/json-lainat', async (req, res) => {
  */
 app.post('/api/json-addBook', async (req, res) => {
   try {
-    await addJsonBook(req.body) // Lähettää kirjadatan
+    console.log(req.file)
+    await addJsonBook(req.body, req.file) // Lähettää kirjadatan
     console.log("Book added succesfully,  from:", req.ip)
+    res.status(200).json({ message: 'Book added successfully' });
+  } catch (error) {
+    console.error('Error adding book:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
+
+/**
+ * Lisää kansikuvan.
+ * 
+ * Esimerkkikoodia voi löytää:
+ * /src/modules/admin-sivu/AddBook.js
+ * funktiosta handleClick();
+*/
+
+
+// Tallentaa annettuun kansioon annetulla nimellä
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './public/images/'); // Relatiivinen polku kansioon
+  },
+  filename: (req, file, cb) => {
+    // Kuvan nimi
+    const fileName = file.originalname // Ottaa kuvan nimen
+    cb(null, fileName);
+  },
+});
+
+const upload = multer({ storage });
+app.post('/api/json-addBook-coverImage', upload.single('image'), async (req, res) => {
+  try {
+    // Katsoo tuliko tiedosto:
+    if (!req.file) {
+      return res.status(400).json({ error: 'No image provided' });
+    }
+    // Tiedoston nimi
+    const filename = req.file.filename;
+
+    // Lähettää reqin ja tiedostonimen
+    await addJsonBookCover(filename, req.body)
+    
+    console.log('Bookcover added successfully, from:', req.ip);
     res.status(200).json({ message: 'Book added successfully' });
   } catch (error) {
     console.error('Error adding book:', error);
@@ -139,6 +212,7 @@ app.post('/api/json-addBook', async (req, res) => {
 
   /**
    * Poistaa kirjan, ja päivittää id:eet
+   * ja kirjan oman tiedoston
    * 
    * Esimerkkikoodin voi löytää:
    * /src/modules/admin-sivu/lainattavatModules/ListItems.js
@@ -155,6 +229,39 @@ app.post('/api/json-addBook', async (req, res) => {
     }
   });
 
+  /**
+   * Päivittää kirjan uudet tiedot
+   * 
+   * Esimerkkikoon voi löytää
+   * /src/modules/admin-sivu/lainattavatModules/ListItems.js
+   * funktiosta: changeClick();
+   */
+  app.post('/api/json-saveChanges-lainattavat', async (req, res) => {
+    try {
+      await saveChangesLainattavat(req.body) // Lähettää kirjan id:een funktiolle
+      console.log("Book information saved succesfully,  from:", req.ip);
+      res.status(200).json({message: `Saves changed for ${req.body.nimi}`});
+    } catch (error) {
+      console.error("Error saving changes for lainattavat:", error)
+      res.status(500).json({error: "Internal Server Error"})
+    }
+  });
+
+
+  /**
+   * Palauttaa lainaushistorian
+   */
+  
+  app.get("/api/json-lainaushistoria", async (req, res) => {
+    try {
+      const data = await jsonHandleLainausHistoria();
+      console.log('Data received from lainausHistoria, from:', req.ip);
+      res.json(data);
+    } catch (error) {
+      console.error("Error saving changes for lainattavat:", error)
+      res.status(500).json({error: "Internal Server Error"})
+    }
+  })
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

@@ -7,9 +7,11 @@ const fs = require("fs")
  * 
  * Funktiota kutsutaan osoitteesta:
  * http://localhost:3000/json-lainat-deleteBook
+ * En jaksa vaihtaa uuteen url-nimeen niin pysykööt 
+ * tollasena
  */
 
-async function deleteLainaus(tunnusObj){
+async function moveLainaus(tunnusObj){
     const pathToFolder = "./src/databases/lainat" // Polku kansioon
     const history = "./src/databases/lainausHistoria"
     const tunnus = tunnusObj.tunnus; // Kirjan tunnus
@@ -50,4 +52,4 @@ async function deleteLainaus(tunnusObj){
     }
 }
 
-module.exports = deleteLainaus;
+module.exports = moveLainaus;

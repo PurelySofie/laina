@@ -32,6 +32,7 @@ const ListItems = (props) => {
      * mm/dd/yyyy muotoon:
      * dd/mm/yyyy
      */
+    /* Tehäänkin palvelimella
     const dateComponents = palautettavaViimeistaan.split("/"); // Paloittelee päiväyksen kauttaviivan kohdilta
     const day = dateComponents[0]; // Ottaa päivän
     const month = dateComponents[1]; // Ottaa kuukauden
@@ -39,11 +40,11 @@ const ListItems = (props) => {
     const formattedDateString = `${day}/${month}/${year}`; // Kasaa ne uuteen muotoon
     const targetDate = new Date(formattedDateString); // Tekee siitä uuden päiväyksen
     const currentDate = new Date();
-    let showclass = null;
     if (currentDate < targetDate) {
         showclass = "late";
     }
-
+    */
+   let showclass = null;
     /**
      * Tietojenmuokkausnapin
      * handlaus
@@ -96,12 +97,13 @@ const ListItems = (props) => {
             {
                 !isEditing ? // If-lause joka katsoo onko admin muokkaus-tilassa.
                 <>
-                    <li className="admin-li">{kirjanNimi}</li>
-                    <li className="admin-li">{lainaaja}</li>
-                    <li className="admin-li">{lainattu}</li>
-                    <li className={`admin-li ${showclass}`} >{palautettavaViimeistaan}</li>
-                    <li className="admin-li">{viimeinenPalautus}</li>
-                    <li className="admin-li">{tunniste}</li>
+                    <img src={`/images/${kirjanNimi}.jpeg`} alt='Kirjan kansikuva'></img>
+                    <li className="admin-li" title='Kirjan nimi'>Kirjan nimi: {kirjanNimi}</li>
+                    <li className="admin-li" title='Lainaaja'>Lainaaja: {lainaaja}</li>
+                    <li className="admin-li" title='Lainattu'>Lainattu: {lainattu}</li>
+                    <li className={`admin-li ${showclass}`} title='Palautettava viimeistään'>Palautettava viimeistään: {palautettavaViimeistaan}</li>
+                    <li className="admin-li" title='Viimeisin palautus'>Viimeisein palautus: {viimeinenPalautus}</li>
+                    <li className="admin-li" title='Tunniste'>Tunniste: {tunniste}</li>
                 </>
                 :
                 <LiEdit

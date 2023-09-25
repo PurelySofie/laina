@@ -10,24 +10,35 @@ const fs = require('fs');
 async function deleteBook(idObj) {
     // Polku tiedostoon
     const pathToFile = "./src/databases/lainattavat/Lainattavat.json"
+    const pathToFolder = "./src/databases/lainattavat"
     const id = idObj.id;
     try {
         
         // Lukee datan polusta
         const jsonData = await JSON.parse(fs.readFileSync(pathToFile, "utf-8"));
         let jsonDataCopy = [...jsonData];
-        
         try {
-            // Poistaa kirjan
-            jsonDataCopy.splice(id, 1)
-    
-            // Päivittää id:eet
-            jsonDataCopy.map((book, i) => {
-                book.id = i;
-            })
-    
-            // Kirjoittaa uuden datan
-            fs.writeFileSync(pathToFile, JSON.stringify(jsonDataCopy, null, 2));
+          // Poistaa kirjan
+          let nimi = jsonDataCopy[id].nimi;
+          jsonDataCopy.splice(id, 1)
+          
+          // Päivittää id:eet        
+          jsonData.map( async (book, i) => {
+            book.id = i;
+          })
+          
+          // Kirjoittaa uuden datan
+          fs.writeFileSync(pathToFile, JSON.stringify(jsonDataCopy, null, 2));
+
+          // Siirtää kirjan oman kansion:
+          const newPath = `${pathToFolder}/${nimi}.json`
+          const juuuu = `./src/databases/lainattavatHistoria/${nimi}.json`
+          try {
+            fs.renameSync(newPath, juuuu);
+            console.log('File moved successfully.');
+          } catch (error) {
+            console.error('Error moving file:', error);
+          }
         } catch (error) {
             console.error("Error deleting book:", error)
         }
