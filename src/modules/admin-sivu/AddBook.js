@@ -6,10 +6,13 @@ import { file } from "@babel/types";
  * Sisältää koodin joka
  * sallii uuden kirjan
  * lisäämisen.
+ * 
+ * 
+ * TODO Lisää kansikuva näkyviin img tagiin
 */
 
 export const AddBook = (props) => {
-    const [showPanel, setShowPanel] = useState(false)    
+    // const [showPanel, setShowPanel] = useState(false)    
     const [name, setName] = useState("")
     const [amount, setAmount] = useState(0)
     const [type, setType] = useState("Kirja")
@@ -85,12 +88,8 @@ export const AddBook = (props) => {
           props.jsonFunc(); // Päivittää datan
       }
 
-      
     return(
         <>
-            <button onClick={() => {setShowPanel(!showPanel)}}>Kirjanlisäyspaneeli</button>
-            {
-                showPanel ?
                 <div>
                     <input placeholder="Kirjan nimi" onChange={(e) => {setName(e.target.value)}} />
                     <input placeholder="Määrä" onChange={(e) => {setAmount(e.target.value)}} />
@@ -99,7 +98,7 @@ export const AddBook = (props) => {
                         <option value={"Kirja"}>Kirja</option>
                         <option value={"Joku muu"}>Joku muu</option>
                     </select>
-                    
+                    <img src={kansiKuva} alt="Kansikuva" />
                     <label htmlFor="fileInput">Kirjan kansikuva:</label>
                     <input accept="image/*" type="file" id="fileInput" onChange={handleImage}/>
 
@@ -107,10 +106,15 @@ export const AddBook = (props) => {
                         Lisää kirja
                     </button>
                 </div>
-                :
-                <></>
-            }
 
-        </>
+</>
     )
 }
+/*
+<button onClick={() => {setShowPanel(!showPanel)}}>Kirjanlisäyspaneeli</button>
+    // showPanel ?
+    :
+    <></>
+}
+
+*/

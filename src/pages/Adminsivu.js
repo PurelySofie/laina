@@ -173,7 +173,8 @@ function Adminsivu(){
             jsonData={lainatData}
             jsonFunc={loadData}
             foundList={foundList}
-        />
+        />,
+        AddBook: <AddBook jsonData={lainattavatData} jsonFunc={loadData}/>
       };
       // Valitsee oikean sivun:
       const pageToRender = pages[activePage] || null;
@@ -200,6 +201,9 @@ function Adminsivu(){
             case "KaikkiLainat":
                 setActivePage("KaikkiLainat")
                 break;
+            case "AddBook":
+                setActivePage("AddBook")
+                break;
         }
         /*
         Myohastuneet-Kirjat
@@ -215,7 +219,7 @@ function Adminsivu(){
                 </div>
 
                 <div className="add-book">
-                    <AddBook jsonData={lainattavatData} jsonFunc={loadData}/>
+                    
                 </div>
 
                 {/**
