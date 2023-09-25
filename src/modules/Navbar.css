@@ -104,5 +104,6 @@ body{
   
     #hamburger-icon {
       display: block;
+      top: 5px;
     }
   }
