@@ -9,8 +9,6 @@ const sharp = require('sharp');
  */
 
 async function addBook(data) {
-  console.log(data)
-  console.log(imagePar)
   const folderPath = "./src/databases/lainattavat"
   const filePath = "./src/databases/lainattavat/Lainattavat.json"; // Polku projektin juuresta
   const newData = data; // Uuden kirjan data
