@@ -61,10 +61,10 @@ export const AddBook = (props) => {
           "id": props.jsonData.length - 1 // Laittaa kirjan id:ksi sijainnin listassa
         };
         
-        // axios.post("http://localhost:3000/api/json-addBook", bookObj)
-        // .catch((error) => {
-        //     console.error("Error reaching server:", error);
-        // });
+        axios.post("http://localhost:3000/api/json-addBook", bookObj)
+        .catch((error) => {
+            console.error("Error reaching server:", error);
+        });
 
         const formData = new FormData();
         formData.append('image', kansiKuva);
