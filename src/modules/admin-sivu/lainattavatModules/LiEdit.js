@@ -12,32 +12,26 @@ const LiEdit = (props) => {
     }, [props.book.maara])
 
     const handleChange2 = (e) => {
+        // Ottaa eLementit, en tiiä jos on kunnollista react tapaa tehä
         const maaraInput = document.getElementById("Maara");
         const saatavillaInput = document.getElementById("Saatavilla");
         
+        // Jos löytää ne
         if (maaraInput && saatavillaInput) {
-          const maaraValue = parseInt(maaraInput.value);
-          const saatavillaValue = parseInt(saatavillaInput.value);
+            // Ottaa arvot
+            const maaraValue = parseInt(maaraInput.value);
+            const saatavillaValue = parseInt(saatavillaInput.value);
             
-          if (!isNaN(maaraValue)) {
-            const diff = maaraValue - saatavillaValue;
-            let added = 0;
-            added = maaraValue - prev
-            console.log(added)
-            if(maaraValue > prev){
-                // Suurempi
-                // saatavillaInput.value = parseInt(saatavillaInput.value) + added;
-            }else{
-                // Pienempi
-                added = maaraValue - prev
+            if (!isNaN(maaraValue)) {
+                // Laskee lisätyn arvon eroavaisuuden
+                let added = maaraValue - prev
+
+                // Laittaa arvon näkyviin
+                saatavillaInput.value = parseInt(saatavillaInput.value) + added;
+            
+                // Entinen arvo muistiin
+                setPrev(e.target.value)
             }
-            saatavillaInput.value = parseInt(saatavillaInput.value) + added;
-            console.log(`${diff} = ${maaraValue} - ${saatavillaValue}`)
-
-
-            
-            setPrev(e.target.value)
-          }
         }
     };
       

@@ -42,16 +42,55 @@ async function saveChangesLainattavat(rawData){
                 fs.renameSync(`${pathToFolderImg}/${jsonDataCopy[rawData.id].nimi}.jpeg`,`${pathToFolderImg}/${rawData.nimi}.jpeg`)
             }
             if(rawData.maara != null){
-                // Vähentää tai nostaalainattavien määrää                
+                // Polku uuteen kansioon
+                const pathToFolder2 = `./src/databases/lainattavat/${jsonDataCopy[rawData.id].nimi}.json`
+
+                // Vähentää tai nostaa lainattavien määrää                
                 if(jsonDataCopy[rawData.id].maara > rawData.maara){
                     // Pienempi
                     // Poistaa määrää
+                    const toBeDeleted = jsonDataCopy[rawData.id].maara - rawData.maara
+                    let deleted = 0;
+                    try {
+                        const contents = JSON.parse(fs.readFileSync(pathToFolder2, "utf-8"))
+
+                        // Kopioi
+                        let contentsCopy = [...contents]
+
+                        // Looppaa contentin läpi
+                        for(let i = 0; i < contents.length; i++){
+                            
+                            // Jos kirja ei ole lainattu
+                            if(contentsCopy[i].lainattu !== true){
+                                console.log("KONENT:", contentsCopy[i])
+                                // Poista se
+                                contentsCopy.splice(i, 1)
+
+                                // Lisää poistettuihin yhden
+                                deleted++
+
+                                // Miinustaa i:stä yhen, poistamisen takia
+                                i--
+                            }
+                            // Jos poistettu oikea määrä, poistu loopista
+                            if(deleted === toBeDeleted){
+                                break;
+                            }
+
+                        }
+                        // Tallentaa tiedoston
+                        try {
+                            
+                        } catch (error) {
+                            console.log("Error appending and saving file:", error)
+                        }
+                    } catch (error) {
+                        console.error("Error reading file:", error)
+                    }
                 } else{
                     // Suurempi
+                    // Lisää määrän
                 }
-
-                console.log(`${jsonDataCopy[rawData.id].maara} > ${rawData.maara}`, suurempi)
-
                 
                 jsonDataCopy[rawData.id].maara = rawData.maara
             }
