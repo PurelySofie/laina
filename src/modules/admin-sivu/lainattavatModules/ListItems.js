@@ -93,14 +93,15 @@ const AllList = (props) => {
         setIsEditing(!isEditing)
     }
     return(
-        <>
+        <div className="lainattavatsivu-Main-2">
         {
             !isEditing ?
-                <ul key={props.keyName}>
-                    <li>Tyyppi: {props.book.tyyppi}</li>
-                    <li>Nimi: {props.book.nimi}</li>
-                    <li>Määrä: {props.book.maara}</li>
-                    <li>Saatavilla: {props.book.saatavilla}</li>
+                <ul className='lainattavt-ul' key={props.keyName}>
+                    <img src={`/images/${props.book.nimi}.jpeg`} alt='Kirjan kansikuva'></img>
+                    <li>{props.book.tyyppi}</li>
+                    <li>{props.book.nimi}</li>
+                    <li>{props.book.maara}</li>
+                    <li>{props.book.saatavilla}</li>
                     <br/>
                     <li>
                         <button onClick={changeClick}>Muokkaa kirjan tietoja</button>
@@ -120,7 +121,7 @@ const AllList = (props) => {
                 handleChange={handleChange}
             />
         }
-        </>
+        </div>
     )
 }
 
