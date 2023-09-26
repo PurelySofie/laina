@@ -98,6 +98,8 @@ export const AddBook = (props) => {
     return(
         <>
                 <div className="lisaa-kirja">
+                    <img src={imageUrl} alt="Kansikuva" />
+                    <br/>
                     <input placeholder="Kirjan nimi" onChange={(e) => {setName(e.target.value)}} />
                     <input placeholder="Määrä" onChange={(e) => {setAmount(e.target.value)}} />
                     <input placeholder="Saatavilla" id="avaiability-input-field" onChange={(e) => {setAvailability(e.target.value)}} />
@@ -105,8 +107,8 @@ export const AddBook = (props) => {
                         <option value={"Kirja"}>Kirja</option>
                         <option value={"Joku muu"}>Joku muu</option>
                     </select>
-                    <img src={imageUrl} alt="Kansikuva" />
-                    <label htmlFor="fileInput">Kirjan kansikuva:</label>
+                    <br/>
+                    <label htmlFor="fileInput">Kirjan kansikuva: </label>
                     <input accept="image/*" type="file" id="fileInput" onChange={handleImage}/>
 
                     <button onClick={handleClick}>

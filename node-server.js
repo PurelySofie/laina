@@ -8,10 +8,6 @@
  * ja mitä lähetät sille.
  * 
  * TODO:
- * - Nodefunktio saveChangesLainattavat:
- *    - Nimeä kansio uudelleen ja poista tunnuksia jos
- *      niiden kirjojen määrää lasketaan.
- *    - Siirrä kirjan kansikuva
  * - Kaikki:
  *    - Estä duplicate nimet.
  *    - ID:eiden tekoon joku järkevämpi tapa, ettei tuu samoja monesti putkeen

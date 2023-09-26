@@ -6,7 +6,7 @@ Lisää kirja kohta adminien pääsivulle? - Valmis
 myöhästyneet pitää katsoa erikseen? - ei valmis
  
 Admineille QR Code scanneri joilla voi scannata kirjan koodin ja siirtää
-    lainauksen statuksen lainatusta takaisin koululle. - qr-koodi ei valmis. Sen voi vaihtaa manuaalisesti
+    lainauksen statuksen lainatusta takaisin koululle. - qr-koodi valmis. Sen voi vaihtaa manuaalisesti
 
 Kirjoille lainaushistoria josta voi nähdä kenellä kirja
     on ollut siltä varalta että kirja on vahingoittuu. - Valmis

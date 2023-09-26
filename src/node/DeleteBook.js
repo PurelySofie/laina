@@ -33,9 +33,18 @@ async function deleteBook(idObj) {
           // Siirtää kirjan oman kansion:
           const newPath = `${pathToFolder}/${nimi}.json`
           const juuuu = `./src/databases/lainattavatHistoria/${nimi}.json`
+
+          // Sama mutta kuville
+          const newPathM = `./public/images/${nimi}.jpeg`
+          const newPathM2 = `./public/imagesHistory/${nimi}.jpeg`
+          
+
           try {
             fs.renameSync(newPath, juuuu);
             console.log('File moved successfully.');
+            
+            fs.renameSync(newPathM, newPathM2);
+            console.log('Image moved successfully.');
           } catch (error) {
             console.error('Error moving file:', error);
           }
