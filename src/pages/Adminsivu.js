@@ -40,6 +40,27 @@ function Adminsivu(){
 
     // Jos paremman tavan keksii käyttäkää ihmeessä!
     const [activePage, setActivePage] = useState("LainattavatMain")
+    const [marginTop, setMarginTop] = useState(0);
+
+    useEffect(() => {
+        const updateMarginTop = () => {
+          const viewportHeight = window.innerHeight;
+    
+          // Adjust the marginPercentage based on the current viewport height
+          const marginPercentage = viewportHeight > 600 ? 1 : 5; // Adjust as needed
+    
+          const marginTopValue = (viewportHeight * marginPercentage) / 100;
+          setMarginTop(marginTopValue);
+        };
+    
+        window.addEventListener('resize', updateMarginTop);
+        updateMarginTop();
+    
+        return () => {
+          window.removeEventListener('resize', updateMarginTop);
+        };
+      }, []);
+      console.log(marginTop)
 
     const loadData = () => {
         /**
@@ -205,26 +226,14 @@ function Adminsivu(){
                 setActivePage("AddBook")
                 break;
         }
-        /*
-        Myohastuneet-Kirjat
-        Qr-skanneri
-        Lainaushistoria
-        */
     }
+
     return(
         <div className='content-admin'>
-            <div className='inner-content'>
+            <div className="inner-content" style={{ marginTop: `${marginTop}vh` }}>
                 <div className='admin-bar'>
                     <AdminBar handleClickAdmins={handleClickAdminBar}/>
                 </div>
-
-                <div className="add-book">
-                    
-                </div>
-
-                {/**
-                 * Tuo näkyviin lainattavat kansion datan
-                */}
                 <div className='toinenpalkki'>
                     <>{pageToRender}</>
                 </div>
