@@ -35,6 +35,7 @@ const AllList = (props) => {
                 case "Maara":
                     if(e.target.value !== ""){
                         setMaara(Number(e.target.value));
+                        setSaatavilla(document.getElementById("Saatavilla").value)
                     } else {
                         alert("Syötä vain numeroita!")
                     }
@@ -93,15 +94,15 @@ const AllList = (props) => {
         setIsEditing(!isEditing)
     }
     return(
-        <>
+        <div className="lainattavatsivu-Main-2">
         {
             !isEditing ?
-                <ul key={props.keyName}>
-                    <li>Tyyppi: {props.book.tyyppi}</li>
-                    <li>Nimi: {props.book.nimi}</li>
-                    <li>Määrä: {props.book.maara}</li>
-                    <li>Saatavilla: {props.book.saatavilla}</li>
-                    <br/>
+                <ul className='lainattavt-ul' key={props.keyName}>
+                    <img src={`/images/${props.book.nimi}.jpeg`} alt='Kirjan kansikuva'></img>
+                    <li>{props.book.tyyppi}</li>
+                    <li>{props.book.nimi}</li>
+                    <li>{props.book.maara}</li>
+                    <li>{props.book.saatavilla}</li>
                     <li>
                         <button onClick={changeClick}>Muokkaa kirjan tietoja</button>
                         <button onClick={handleClick}>Poista kirja</button>
@@ -120,13 +121,13 @@ const AllList = (props) => {
                 handleChange={handleChange}
             />
         }
-        </>
+        </div>
     )
 }
 
 export const ListItems = (props) => {
     return(
-        <div key={"lainattavatKey"}>
+        <div className='lainattavat-flex' key={"lainattavatKey"}>
             {
                 props.books.map(book =>
                     <AllList book={book} keyName={book.nimi} jsonFunc={props.jsonFunc}/>

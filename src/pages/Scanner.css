@@ -7,7 +7,7 @@
     top: -500px;
   }
   
-  h1 {
+.scanner-main  h1 {
     font-size: 24px;
     color: white;
   }
@@ -39,18 +39,18 @@
     Jos mahollista niin voisko tän laittaa 
     erilliseen classiin. tää sotkee vähän admin sivua
   */
-  input {
+.scanner-main input {
     width: 100%;
     padding: 5px;
     font-size: 16px;
   }
   
-  p {
+.scanner-main p {
     font-size: 16px;
     color: white;
   }
   
-  a {
+.scanner-main a {
     text-decoration: none;
     color: #007bff;
   }

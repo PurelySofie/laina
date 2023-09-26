@@ -11,21 +11,15 @@ import { AddBook } from '../AddBook';
 const AdminPageList = (props) => {
     return(
         <div className='admin-root-table'>
-            <div> {/**Etsintäpalkki */}
-                <SearchBar 
-                    func={props.handleSearchChange} 
-                    func2={props.handleToSearch} 
-                    etsittava={props.toSearch}
-
-                />
-            <br />
-            </div>
+                <div> {/**Etsintäpalkki */}
+                    <SearchBar 
+                        func={props.handleSearchChange} 
+                        func2={props.handleToSearch} 
+                        etsittava={props.toSearch}
+                    />
+                </div>
 
             <ul className='admin-root-tbody'>
-                {/* 
-                ListItems.js jutusta
-                scrollattava alue
-                */}
                 {
                     // If-juttu joka laittaa laittaa search jutut näkyviin
                     props.search === "" ? // Jos et ole etsinyt mitään palauta: 

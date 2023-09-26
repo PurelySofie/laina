@@ -2,7 +2,7 @@ import { ListItems } from "./ListItems"
 
 export const LainattavatMain = (props) => {
     return(
-        <div>
+        <div className="lainattavat-flex">
             {
                 /**
                  * Tuo näkyviin vain Lainattavat.json tiedoston
