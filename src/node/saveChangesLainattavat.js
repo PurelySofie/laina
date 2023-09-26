@@ -128,7 +128,7 @@ async function saveChangesLainattavat(rawData){
             }
 
 
-            // ! fs.writeFileSync(pathToFile, JSON.stringify(jsonDataCopy, null, 2));
+            fs.writeFileSync(pathToFile, JSON.stringify(jsonDataCopy, null, 2));
         } catch (error) {
             console.error("Error appending or saving file:", error)
         }
