@@ -24,8 +24,8 @@
 
 .box {
     width: 200px;
-    height: 200px;
-    background-color: blue;
+    height: auto;
+    background-color: 0, 0, 0, 0.5;
     border: 2px solid #009688;
     margin-left: 10px;
     margin-right: 10px;
@@ -63,4 +63,9 @@ span{
 }
 button:hover span{
   width: 100%;
+}
+@media only screen and (max-width: 600px){
+  .box{
+    width: 100%;
+  }
 }
