@@ -13,7 +13,6 @@
  *      niiden kirjojen määrää lasketaan.
  *    - Siirrä kirjan kansikuva
  * - Kaikki:
- *    - Ignore uppercase, niin yläällä olevalta vältytään.
  *    - Estä duplicate nimet.
  *    - ID:eiden tekoon joku järkevämpi tapa, ettei tuu samoja monesti putkeen
 */

@@ -35,6 +35,7 @@ const AllList = (props) => {
                 case "Maara":
                     if(e.target.value !== ""){
                         setMaara(Number(e.target.value));
+                        setSaatavilla(document.getElementById("Saatavilla").value)
                     } else {
                         alert("Syötä vain numeroita!")
                     }
@@ -127,7 +128,7 @@ const AllList = (props) => {
 
 export const ListItems = (props) => {
     return(
-        <div key={"lainattavatKey"}>
+        <div className='lainattavat-flex' key={"lainattavatKey"}>
             {
                 props.books.map(book =>
                     <AllList book={book} keyName={book.nimi} jsonFunc={props.jsonFunc}/>

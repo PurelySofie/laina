@@ -26,6 +26,10 @@ function AdminQrScanner() {
       if (isScanning) {
         scanner.clear();
         setScanResult(qrCodeMessage);
+        console.log(qrCodeMessage)
+        /**
+         * axios.post
+         */
         isScanning = false;
         window.location.href = qrCodeMessage;
       }
