@@ -103,7 +103,6 @@ const AllList = (props) => {
                     <li>{props.book.nimi}</li>
                     <li>{props.book.maara}</li>
                     <li>{props.book.saatavilla}</li>
-                    <br/>
                     <li>
                         <button onClick={changeClick}>Muokkaa kirjan tietoja</button>
                         <button onClick={handleClick}>Poista kirja</button>

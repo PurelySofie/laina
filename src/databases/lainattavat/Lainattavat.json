@@ -19,5 +19,12 @@
     "maara": 15,
     "saatavilla": 15,
     "id": 2
+  },
+  {
+    "tyyppi": "Kirja",
+    "nimi": "AAAA",
+    "maara": 1,
+    "saatavilla": 1,
+    "id": 3
   }
 ]

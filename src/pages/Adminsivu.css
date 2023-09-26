@@ -212,6 +212,7 @@ top: 40%;
   border: 7px double #00ffff80;
   width: 95%;
   height: 700px;
+  overflow-y: scroll;
   border-radius: 20px;
   margin: 0 auto;
   margin-top: 90px;
@@ -220,27 +221,43 @@ background-color: #000000;
 }
 .lainattavat-flex{
   display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .lainattavatsivu-Main-2{
-  width: 33%; /* Aseta haluttu leveys */
+  width: 300px; /* Aseta haluttu leveys */
   height: 530px; /* Aseta haluttu korkeus */
   margin: 20px; /* Lisää haluttu välimatka */
   border-width: 2px 2px 2px 2px; 
   border-style: double; 
   border-color: rgb(0, 255, 242) rgb(78, 206, 187) rgb(54, 116, 102) rgb(15, 64, 62); /* Ylä, oikea, ala, vasen */
-  padding: 10px;
-  float: left;
-  margin-top: 10px;
+  padding: 10px 10px 0px 10px;
+  flex: auto;
+  /* float: left; */
+  /* margin-top: 10px; */
   box-shadow: inset 0 0 0 rgba(0, 255, 255, 0.5), 0 0 5px rgb(0, 255, 242)
 }
 .lainattavatsivu-Main-2 img{
-  width: 60%;
+  width: fit-content;
+  max-width: 200px;
   border: 2px solid #00ffff80;
   border-radius: 7px;
   height: 250px;
   box-shadow: inset 0 0 0 rgba(0, 255, 255, 0.5), 0 0 5px rgb(0, 255, 242)
 }
+
+.lainattavatsivu-Main-2 button{
+  /* border: 1px solid red; */
+  /* width: 100px; */
+  /* height: 50px; */
+  border-radius: 0;
+  margin: 10px;
+  top: 0;
+  left: 0;
+  position: relative;
+}
+
 /* Scrollbarin asetukset*/
 .admin-root-tbody::-webkit-scrollbar{
  width: 12px;
