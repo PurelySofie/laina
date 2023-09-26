@@ -50,9 +50,18 @@ function Lainasivu(){
                             <></>
                     )
                 }
+                
             </div>
+            <form action="Scanner">
+            <button type="submit"  ><span></span>QR-Koodi lukija</button>
+
+            </form>
         </div>
-    );
+        );
+        
+    
+    
 }
+
  
 export default Lainasivu;
