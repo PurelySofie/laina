@@ -25,7 +25,7 @@ import { AdminBar } from '../modules/admin-sivu/AdminBar';
 import AdminPageList from '../modules/admin-sivu/listModules/AdminPageList';
 import { LainattavatMain } from '../modules/admin-sivu/lainattavatModules/LainattavatMain';
 import { MyohastuneetSivu } from '../modules/admin-sivu/MyohastyneetSivu';
-import { AdminQrScanner } from '../modules/admin-sivu/Admin-Qr-Scanner';
+import AdminQrScanner from "../modules/admin-sivu/Admin-Qr-Scanner"
 import { Lainaushistoria } from '../modules/admin-sivu/Lainaushistoria';
 import { AddBook } from '../modules/admin-sivu/AddBook';
 

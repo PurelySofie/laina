@@ -38,16 +38,17 @@ function Scanner() {
 
   return (
     <div className="App">
-      {scanResult ? (
-        <div>
-          <p>Success: <a href={scanResult}>{scanResult}</a></p>
-        </div>
-      ) : (
-        <div>
-          <div id="reader" className="center-scanner"></div>
-          
-        </div>
-      )}
+      <div className='scanner-main'>
+        {scanResult ? (
+          <div>
+            <p>Success: <a href={scanResult}>{scanResult}</a></p>
+          </div>
+        ) : (
+          <div>
+            <div id="reader" className="center-scanner"></div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
