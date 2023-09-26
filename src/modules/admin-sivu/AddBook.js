@@ -97,7 +97,7 @@ export const AddBook = (props) => {
 
     return(
         <>
-                <div>
+                <div className="lisaa-kirja">
                     <input placeholder="Kirjan nimi" onChange={(e) => {setName(e.target.value)}} />
                     <input placeholder="Määrä" onChange={(e) => {setAmount(e.target.value)}} />
                     <input placeholder="Saatavilla" id="avaiability-input-field" onChange={(e) => {setAvailability(e.target.value)}} />
