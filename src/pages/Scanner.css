@@ -6,12 +6,12 @@
     text-align: center;
     top: -500px;
   }
-  
+
 .scanner-main  h1 {
     font-size: 24px;
     color: white;
   }
-  
+
   .center-scanner {
     display: block;
     margin: 0 auto;
@@ -25,18 +25,18 @@
     align-content: space-between;
     top: -450px;
   }
-  
+
   .center-text {
     font-size: 16px;
     margin-top: 20px;
   }
-  
+
   .center-input {
     text-align: center;
     margin-top: 10px;
   }
   /*
-    Jos mahollista niin voisko tän laittaa 
+    Jos mahollista niin voisko tän laittaa
     erilliseen classiin. tää sotkee vähän admin sivua
   */
 .scanner-main input {
@@ -44,14 +44,13 @@
     padding: 5px;
     font-size: 16px;
   }
-  
+
 .scanner-main p {
     font-size: 16px;
     color: white;
   }
-  
+
 .scanner-main a {
     text-decoration: none;
     color: #007bff;
   }
-  

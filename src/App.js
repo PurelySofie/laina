@@ -17,7 +17,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 //Voit myös pyytää Sofialta apua tämän kanssa.
 
 function App() {
-  return ( 
+  return (
     <div className="App">
     <BrowserRouter>
       <Routes>
@@ -28,8 +28,9 @@ function App() {
           <Route path="login" element={<Loginsivu />} />
           <Route path="register" element={<Uusitili />} />
           <Route path="forgotpassword" element={<Salasana />} />
-          <Route path="userpage" element={<Käyttäjäsivu />} />     
-          <Route path="scanner"  element={<Scanner />}  />  
+          <Route path="userpage" element={<Käyttäjäsivu />} />
+          <Route path="userpage/:sposti" element={<Käyttäjäsivu />} />
+          <Route path="scanner"  element={<Scanner />}  />
 
         </Route>
       </Routes>

@@ -20,9 +20,6 @@ function Navbar() {
                     <li>
                         <Link to="/login">Kirjaudu sisään</Link>
                     </li>
-                    <li>
-                        <Link to="/userpage">Omat lainat</Link>
-                    </li>
                 </ul>
             </div>
         </div>
