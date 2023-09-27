@@ -7,7 +7,7 @@ function Lainasivu(){
     const [jsonData, setJsonData] = useState(null);
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
+    const updateData = () => {
         axios.get("http://localhost:3000/api/json-lainattavat")
         .then((response) => {
             setJsonData(response.data)
@@ -16,6 +16,9 @@ function Lainasivu(){
         .catch((error) => {
             console.error('Error fetching JSON data:', error);
         });
+    }
+    useEffect(() => {
+        updateData();
     }, [])
 
     // Katsoo lataako sivusto tietoja
@@ -48,6 +51,7 @@ function Lainasivu(){
                                     <TeeLainaSivu 
                                         kirjaNimi={book.nimi}
                                         lainaaja="gr255585@gradia.fi"
+                                        updateData={updateData}
                                     />
                                 </div>
                             ))
