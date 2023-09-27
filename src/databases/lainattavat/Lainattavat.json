@@ -12,5 +12,19 @@
     "maara": 14,
     "saatavilla": 12,
     "id": 1
+  },
+  {
+    "tyyppi": "Kirja",
+    "nimi": "Testikirja",
+    "maara": 10,
+    "saatavilla": 10,
+    "id": 2
+  },
+  {
+    "tyyppi": "Kirja",
+    "nimi": "Nakki lautasella",
+    "maara": 15,
+    "saatavilla": 15,
+    "id": 3
   }
 ]

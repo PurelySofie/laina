@@ -1,6 +1,7 @@
 .admin-bar{
     color: rgb(255, 255, 255);
-    margin-top: 16px;
+    margin-top: -100px;
+    position: absolute;
 }
 .Admin-Bar-Div{
 width: 100%;
@@ -12,8 +13,6 @@ justify-content: space-between;
 align-items: center;
 
 }
-
-
 .Admin-Bar-Div ul li{
     list-style: none;
     display: inline-block;

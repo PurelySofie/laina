@@ -127,12 +127,14 @@ const AllList = (props) => {
 
 export const ListItems = (props) => {
     return(
-        <div className='lainattavat-flex' key={"lainattavatKey"}>
-            {
-                props.books.map(book =>
-                    <AllList book={book} keyName={book.nimi} jsonFunc={props.jsonFunc}/>
-                )
-            }
+        <div className='lainattavat-overflow'>
+            <div className='lainattavat-flex' key={"lainattavatKey"}>
+                {
+                    props.books.map(book =>
+                        <AllList book={book} keyName={book.nimi} jsonFunc={props.jsonFunc}/>
+                    )
+                }
+            </div>
         </div>
     )
 }
