@@ -46,8 +46,8 @@ function Adminsivu(){
         const updateMarginTop = () => {
           const viewportHeight = window.innerHeight;
     
-          // Adjust the marginPercentage based on the current viewport height
-          const marginPercentage = viewportHeight > 600 ? 1 : 5; // Adjust as needed
+          // Muuttaa admin sivun korkeutta
+          const marginPercentage = viewportHeight > 600 ? 1 : 5;
     
           const marginTopValue = (viewportHeight * marginPercentage) / 100;
           setMarginTop(marginTopValue);
