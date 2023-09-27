@@ -1,57 +1,43 @@
-import React from "react"
-import { useNavigate, useParams } from "react-router-dom"
-import axios from "axios"
+import React, { useEffect, useState } from "react"
 import "./Käyttäjäsivu.css"
-import Userinfo from '../databases/käyttäjät/Users.json';
-var string = require("randomstring")
+import axios from 'axios'
 var User = (1)
 
 function Käyttäjäsivu(){
 
-    const navigate = useNavigate();
-    const { sposti } = useParams();
+    const [UserData, setUserData] = useState([])
+    const [lainatData, setLainatData] = useState(null);
 
-    // Kirjaudu Ulos
-    const kirjauduUlos = () => {
-        axios.get('http://localhost:3030/kayttajat',{}, { headers:{Authorization: 'Bearer ' + localStorage.getItem('token')}})
-        .then((r) => {
-            localStorage.setItem('token', "")
-           navigate("/login");
+    useEffect(() => {
+        axios.get('http://localhost:3000/api/json-users') // Tekee pyynnön kyseiseen nettiosoitteeseen
+        .then((response) => {
+            setUserData(response.data); // Lisää datan lainatData:aan
         })
-        .catch((e) => {
-            console.log(e)
+        .catch((error) => {
+            console.error('Error fetching JSON data:', error);
         });
-    }
+    }, []);
+
+
+    useEffect(() => {
+        axios.get('http://localhost:3000/api/json-lainat') // Tekee pyynnön kyseiseen nettiosoitteeseen
+        .then((response) => {
+            setLainatData(response.data); // Lisää datan lainatData:aan
+        })
+        .catch((error) => {
+            console.error('Error fetching JSON data:', error);
+        });
+    }, []);
 
     return(
         <div className="content">
             <div className="Käyttäjäinfo">
-                <h1>{sposti}</h1>
+                <p>Tähän tulee käyttäjän omat lainat näkyviin kun on kirjautunut.</p>
+            </div>
+            <div className="Lainat">   
+
 
             </div>
-            <div className="Lainat">
-
-
-            </div>
-            <div className="Nappi">
-                <button type="button" onClick={function(){
-                    var Uusilaina =
-                    {
-                        "lainaaja": "",
-                        "lainauspv": "05/09/2023",
-                        "viimpalautuspv": "05/10/2023",
-                        "palautettupv":"Ei Palautettu",
-                        "nimi":"Fysiikka 101",
-                        "tunniste":"DjAd",
-                        "palautettu":"false"
-                    }
-                    JSON.stringify(Uusilaina)
-                }}><span></span>Lainaa</button>
-            </div>
-            <div className="kirjaudu-ulos">
-                <a onClick={()=>kirjauduUlos()} className="kirjaudu-ulos " aria-current="page" href="#">Kirjaudu Ulos</a>
-            </div>
-
         </div>
 
     );
