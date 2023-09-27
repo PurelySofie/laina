@@ -2,7 +2,7 @@ import React from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import "./Käyttäjäsivu.css"
-import Userinfo from "../databases/käyttäjät/Users.json"
+import Userinfo from '../databases/käyttäjät/Users.json';
 var string = require("randomstring")
 var User = (1)
 
@@ -49,8 +49,9 @@ function Käyttäjäsivu(){
                 }}><span></span>Lainaa</button>
             </div>
             <div className="kirjaudu-ulos">
-                    <a onClick={()=>kirjauduUlos()} className="kirjaudu-ulos " aria-current="page" href="#">Kirjaudu Ulos</a>
+                <a onClick={()=>kirjauduUlos()} className="kirjaudu-ulos " aria-current="page" href="#">Kirjaudu Ulos</a>
             </div>
+
         </div>
 
     );

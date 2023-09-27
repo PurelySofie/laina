@@ -23,7 +23,7 @@
 
   background-color: rgba(0, 0, 0, 0.5);
 
-  width: 400px;
+  width: 450px;
 
   border-radius: 7px;
 
@@ -80,7 +80,7 @@
 
   position: absolute;
 
-  left: 46%;
+  left: 39%;
 
   bottom: -10px;
 
@@ -103,7 +103,7 @@
 
   position: absolute;
 
-  left: 48%;
+  left: 41%;
 
   bottom: -10px;
 
@@ -126,7 +126,7 @@
 
   position: absolute;
 
-  left: 38%;
+  left: 33%;
 
   bottom: -10px;
 
@@ -303,15 +303,13 @@ input:-webkit-autofill:active{
 
 }
 
-span {
+.submitBtn:hover {
 
   background: #009688;
 
   height: 100%;
 
-  width: 0%;
-
-  border-radius: 23px;
+  width: 100%;
 
   position: relative;
 
@@ -319,24 +317,9 @@ span {
 
   bottom: 0;
 
-  z-index: -1;
-
-  transition: 0.5s;
+  z-index: 1;
 
 }
-
-.submitBtn:hover span {
-
-  width: 100%;
-
-}
-
-.submitBtn:hover {
-
-  border-color: rgba(0, 0, 0, 0)
-
-}
-
 
 /* Kirjaudu/Rekisteröidy */
 
@@ -368,7 +351,7 @@ span {
 
   height: 2px;
 
-  width: 130px;
+  width: 140px;
 
   position: absolute;
 
@@ -389,7 +372,7 @@ span {
 
   height: 2px;
 
-  width: 130px;
+  width: 140px;
 
   position: absolute;
 
@@ -479,6 +462,7 @@ span {
   color: #fff;
 
   text-decoration: none;
+
 }
 
 
@@ -566,7 +550,9 @@ input[type=checkbox] {
 
   font-weight: 500;
 
-  margin-top: -0.5rem;
+  margin-top: -0.8rem;
+
+  margin-bottom: 0.7rem;
 
   margin-left: 0.3rem;
 
@@ -608,37 +594,4 @@ input[type=checkbox] {
   .title-kirjaudu, .title-rekisteröidy, .title-salasana {
     font-size: 35px;
   }
-}
-
-
-
-/* UUDET TIEDOSTOT */
-
-.text-center .text-error {
-  color: red;
-  font-size: 12px;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.flex .text-error {
-  color: red;
-  font-size: 12px;
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 10px;
-  margin-top: -10px;
-}
-
-
-.tervetuloa h2 {
-  left: 0;
-  line-height: 200px;
-  margin-top: -100px;
-  position: absolute;
-  text-align: center;
-  top: 50%;
-  width: 100%;
-  color: #fff;
-  font-size: 35px;
 }

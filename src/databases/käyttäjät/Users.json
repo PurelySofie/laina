@@ -17,21 +17,8 @@
         "UJI3r",
         "yTDKm"
       ]
-    },
-    {
-      "sposti": "gr299585@gradia.fi",
-      "salasana": "salasana1234",
-      "confirmPassword": "salasana1234",
-      "id": 2
-    },
-    {
-      "sposti": "gr288585@gradia.fi",
-      "salasana": "salasana888",
-      "confirmPassword": "salasana888",
-      "id": 3
     }
   ],
-
   "admins": [
     {
       "sposti": "gr277585@gradia.fi",

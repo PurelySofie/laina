@@ -14,7 +14,7 @@ const Loginsivu = () => {
 
     useEffect(()=>{
         if(localStorage.getItem('token') != "" && localStorage.getItem('token') != null){
-            navigate("/userpage/Profiili");
+            navigate("/userpage/Käyttäjäsivu")
         }
     },[])
 
@@ -30,6 +30,8 @@ const Loginsivu = () => {
             sposti: "",
             salasana: "",
         }
+
+        // Tarkistetaan, löytyykö normaalikäyttäjän tunnukset tietokannasta
         setFormError(inputError);
         axios.get('http://localhost:3030/kayttajat', payload)
         .then((r) => {
@@ -46,6 +48,8 @@ const Loginsivu = () => {
             setIsSubmitting(false)
             localStorage.setItem('token', r.data.token)
         })
+
+        // Tarkistetaan, löytyykö adminkäyttäjän tunnukset tietokannasta
         axios.get('http://localhost:3030/admins', payload)
             .then((r) => {
                 const admin = Userinfo.admins.find((admins) => admins.sposti === sposti && admins.salasana === salasana);

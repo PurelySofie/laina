@@ -111,6 +111,7 @@ const Uusitili = () => {
                         <input type="email" className="input" name="sposti" value={FormData.sposti} onChange={handleInputChange} placeholder="a" required/>
                         <label className="label">Sähköposti</label>
                     </div>
+                    <p className="error-message">{formError.sposti}</p>
 
 
                     <div className="inputContainer">
