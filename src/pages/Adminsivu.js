@@ -6,7 +6,7 @@ Lisää kirja kohta adminien pääsivulle? - Valmis
 myöhästyneet pitää katsoa erikseen? - ei valmis
  
 Admineille QR Code scanneri joilla voi scannata kirjan koodin ja siirtää
-    lainauksen statuksen lainatusta takaisin koululle. - qr-koodi ei valmis. Sen voi vaihtaa manuaalisesti
+    lainauksen statuksen lainatusta takaisin koululle. - qr-koodi valmis. Sen voi vaihtaa manuaalisesti
 
 Kirjoille lainaushistoria josta voi nähdä kenellä kirja
     on ollut siltä varalta että kirja on vahingoittuu. - Valmis
@@ -25,7 +25,7 @@ import { AdminBar } from '../modules/admin-sivu/AdminBar';
 import AdminPageList from '../modules/admin-sivu/listModules/AdminPageList';
 import { LainattavatMain } from '../modules/admin-sivu/lainattavatModules/LainattavatMain';
 import { MyohastuneetSivu } from '../modules/admin-sivu/MyohastyneetSivu';
-import { AdminQrScanner } from '../modules/admin-sivu/Admin-Qr-Scanner';
+import AdminQrScanner from "../modules/admin-sivu/Admin-Qr-Scanner"
 import { Lainaushistoria } from '../modules/admin-sivu/Lainaushistoria';
 import { AddBook } from '../modules/admin-sivu/AddBook';
 
@@ -173,7 +173,8 @@ function Adminsivu(){
             jsonData={lainatData}
             jsonFunc={loadData}
             foundList={foundList}
-        />
+        />,
+        AddBook: <AddBook jsonData={lainattavatData} jsonFunc={loadData}/>
       };
       // Valitsee oikean sivun:
       const pageToRender = pages[activePage] || null;
@@ -200,6 +201,9 @@ function Adminsivu(){
             case "KaikkiLainat":
                 setActivePage("KaikkiLainat")
                 break;
+            case "AddBook":
+                setActivePage("AddBook")
+                break;
         }
         /*
         Myohastuneet-Kirjat
@@ -208,14 +212,14 @@ function Adminsivu(){
         */
     }
     return(
-        <div className='content'>
+        <div className='content-admin'>
             <div className='inner-content'>
                 <div className='admin-bar'>
                     <AdminBar handleClickAdmins={handleClickAdminBar}/>
                 </div>
 
                 <div className="add-book">
-                    <AddBook jsonData={lainattavatData} jsonFunc={loadData}/>
+                    
                 </div>
 
                 {/**

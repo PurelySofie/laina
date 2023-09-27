@@ -6,15 +6,19 @@ import { file } from "@babel/types";
  * Sisältää koodin joka
  * sallii uuden kirjan
  * lisäämisen.
+ * 
+ * 
+ * TODO Lisää kansikuva näkyviin img tagiin
 */
 
 export const AddBook = (props) => {
-    const [showPanel, setShowPanel] = useState(false)    
+    // const [showPanel, setShowPanel] = useState(false)    
     const [name, setName] = useState("")
     const [amount, setAmount] = useState(0)
     const [type, setType] = useState("Kirja")
     const [availability, setAvailability] = useState(0);
     const [kansiKuva, setKansiKuva] = useState(null);
+    const [imageUrl, setImageUrl] = useState(null);
     /**
      * Ottaa <select>:istä
      * arvon joka otetaan
@@ -32,10 +36,16 @@ export const AddBook = (props) => {
       
         if (file && file.size > maxSizeInBytes) {
             // TODO testaa tätä if-lausetta, koska on niin laittomasti pöllittyä koodia
-          alert('Tiedosto on suurempi kuin 1MT.');
-          e.target.value = null; // Clear the input field
+            alert('Tiedosto on suurempi kuin 1MT.');
+            e.target.value = null; // Clear the input field
         } else {
-          setKansiKuva(file);
+            setKansiKuva(file);
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setImageUrl(event.target.result);
+            };
+            reader.readAsDataURL(file);
+            setKansiKuva(file);
         }
       };
     /**
@@ -45,12 +55,17 @@ export const AddBook = (props) => {
      */
     const handleClick = (e) => {
         e.preventDefault();
+        if(!window.confirm("Lisätäänkö uusi kirja")){
+            return;
+        }
         if(isNaN(amount) || isNaN(availability)){
             console.error("Put only numbers")
+            alert("Laita vain numeroita Määrä ja Saatavilla kenttiin")
             return;
         }
         if (!kansiKuva) {
             console.error('No image selected');
+            alert("Lisää kansikuva. Suurin sallittu koko: 1MT")
             return;
         }
         const bookObj = {
@@ -69,8 +84,6 @@ export const AddBook = (props) => {
         const formData = new FormData();
         formData.append('image', kansiKuva);
         formData.append('name', name)
-
-        console.log(formData)
         axios.post('http://localhost:3000/api/json-addBook-coverImage', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -82,13 +95,11 @@ export const AddBook = (props) => {
           props.jsonFunc(); // Päivittää datan
       }
 
-      
     return(
         <>
-            <button onClick={() => {setShowPanel(!showPanel)}}>Kirjanlisäyspaneeli</button>
-            {
-                showPanel ?
-                <div>
+                <div className="lisaa-kirja">
+                    <img src={imageUrl} alt="Kansikuva" />
+                    <br/>
                     <input placeholder="Kirjan nimi" onChange={(e) => {setName(e.target.value)}} />
                     <input placeholder="Määrä" onChange={(e) => {setAmount(e.target.value)}} />
                     <input placeholder="Saatavilla" id="avaiability-input-field" onChange={(e) => {setAvailability(e.target.value)}} />
@@ -96,18 +107,23 @@ export const AddBook = (props) => {
                         <option value={"Kirja"}>Kirja</option>
                         <option value={"Joku muu"}>Joku muu</option>
                     </select>
-                    
-                    <label htmlFor="fileInput">Kirjan kansikuva:</label>
+                    <br/>
+                    <label htmlFor="fileInput">Kirjan kansikuva: </label>
                     <input accept="image/*" type="file" id="fileInput" onChange={handleImage}/>
 
                     <button onClick={handleClick}>
                         Lisää kirja
                     </button>
                 </div>
-                :
-                <></>
-            }
 
-        </>
+</>
     )
 }
+/*
+<button onClick={() => {setShowPanel(!showPanel)}}>Kirjanlisäyspaneeli</button>
+    // showPanel ?
+    :
+    <></>
+}
+
+*/

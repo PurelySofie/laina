@@ -1,4 +1,5 @@
 const fs = require("fs");
+const randomstring = require("randomstring");
 
 /**
  * Tallentaa muunnetun datan lainattavat.json
@@ -18,6 +19,8 @@ const fs = require("fs");
  */
 async function saveChangesLainattavat(rawData){
     const pathToFile = "./src/databases/lainattavat/Lainattavat.json" // Polku projektin juuresta
+    const pathToFolder = "./src/databases/lainattavat"
+    const pathToFolderImg = "./public/images"
     try {
         // Lukee tiedoston
         const jsonData = await JSON.parse(fs.readFileSync(pathToFile, "utf-8"));
@@ -32,13 +35,98 @@ async function saveChangesLainattavat(rawData){
             }
             if(rawData.nimi != null){
                 jsonDataCopy[rawData.id].nimi = rawData.nimi
+
+                // Nimeää .json tiedoston uudelleen
+                fs.renameSync(`${pathToFolder}/${jsonDataCopy[rawData.id].nimi}.json`,`${pathToFolder}/${rawData.nimi}.json`)
+
+                // Nimeää .jpeg kansikuvan uudelleen
+                fs.renameSync(`${pathToFolderImg}/${jsonDataCopy[rawData.id].nimi}.jpeg`,`${pathToFolderImg}/${rawData.nimi}.jpeg`)
             }
             if(rawData.maara != null){
+                // Polku uuteen kansioon
+                const pathToFolder2 = `./src/databases/lainattavat/${jsonDataCopy[rawData.id].nimi}.json`
+
+                // Vähentää tai nostaa lainattavien määrää                
+                if(jsonDataCopy[rawData.id].maara > rawData.maara){
+                    // Pienempi
+                    // Poistaa määrää
+                    const toBeDeleted = jsonDataCopy[rawData.id].maara - rawData.maara
+                    let deleted = 0;
+                    try {
+                        const contents = JSON.parse(fs.readFileSync(pathToFolder2, "utf-8"))
+
+                        // Kopioi
+                        let contentsCopy = [...contents]
+
+                        // Looppaa contentin läpi
+                        for(let i = 0; i < contents.length; i++){
+                            
+                            // Jos kirja ei ole lainattu
+                            if(contentsCopy[i].lainattu !== true){
+                                // Poista se
+                                contentsCopy.splice(i, 1)
+
+                                // Lisää poistettuihin yhden
+                                deleted++
+
+                                // Miinustaa i:stä yhen, poistamisen takia
+                                i--
+                            }
+                            // Jos poistettu oikea määrä, poistu loopista
+                            if(deleted === toBeDeleted){
+                                break;
+                            }
+
+                        }
+                        // Tallentaa tiedoston
+                        try {
+                            fs.writeFileSync(pathToFolder2, JSON.stringify(contentsCopy, null, 2))
+                        } catch (error) {
+                            console.error("Error appending and saving file:", error)
+                        }
+                    } catch (error) {
+                        console.error("Error reading file:", error)
+                    }
+                } else{
+                    // Suurempi
+                    // Lisää määrän
+
+                    // Muuntaa positiiviseksi luvuksi
+                    const toBeAdded = Math.abs(parseInt(jsonDataCopy[rawData.id].maara) - parseInt(rawData.maara))
+
+                    try {
+                        const contents = JSON.parse(fs.readFileSync(pathToFolder2, "utf-8"))
+
+                        // Kopioi
+                        let contentsCopy = [...contents]
+                        // Looppaa contentin läpi
+                        for(let i = 0; i < toBeAdded; i++){
+                            let obj = {
+                                tunniste:randomstring.generate(4),
+                                lainattu: false
+                                }
+                            contentsCopy.push(obj)
+                        }
+                        // Tallentaa tiedoston
+                        try {
+                            fs.writeFileSync(pathToFolder2, JSON.stringify(contentsCopy, null, 2))
+                        } catch (error) {
+                            console.error("Error appending and saving file:", error)
+                        }
+                    } catch (error) {
+                        console.error("Error reading file:", error)
+                    }
+                }
+                
                 jsonDataCopy[rawData.id].maara = rawData.maara
             }
+
+
             if(rawData.saatavilla != null){
+                // Vähentää tai nostaa saatavilla olevien kirjojen määrää
                 jsonDataCopy[rawData.id].saatavilla = rawData.saatavilla
             }
+
 
             fs.writeFileSync(pathToFile, JSON.stringify(jsonDataCopy, null, 2));
         } catch (error) {

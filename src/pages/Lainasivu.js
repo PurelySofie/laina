@@ -42,7 +42,7 @@ function Lainasivu(){
                             // Ja tuo kirjan nimen näkyviin
                             <div className="box" key={index} >
                                     <p className="box-text">{book.nimi}</p>
-                                    <p className="box-text">{book.maara}</p>
+                                    <p className="box-text">Yhteensä {book.maara}Kpl</p>
                                     <p className="box-text">{book.saatavilla}Kpl jäljellä</p>
                                 </div>
                             ))
