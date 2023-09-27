@@ -17,7 +17,6 @@ body {
   background-position: center;
 }
 
-/* Other CSS styles remain the same */
 
 .navbar {
   width: 100%;
@@ -64,7 +63,6 @@ body {
   color: #009688;
 }
 
-/* Mobile menu styles */
 .mobile-menu-open .menu-toggle {
   display: flex;
 }
@@ -82,31 +80,30 @@ body {
   transition: opacity 0.3s, transform 0.3s;
 }
 
-/* Other CSS styles remain the same */
 
-/* ... */
 
 @media screen and (max-width: 791px) {
   .navbar {
-    display: none; /* Hide the desktop navbar */
+    display:block; 
   }
 
   .menu-toggle {
-    display: flex; /* Display the menu-toggle button */
+    display: flex; 
   }
 
   .navbar.mobile-menu-open .nav-list {
     display: flex;
   }
-}
-
-/* Additional media query to show menu-toggle button on larger screens */
-@media screen and (min-width: 792px) {
-  .menu-toggle {
-    display: none; /* Hide the menu-toggle button on larger screens */
+  .nav-list{
+    display: none;
   }
 }
-.menu-toggle {
-  display: flex; /* Display the menu-toggle button */
+
+@media screen and (min-width: 792px) {
+  .menu-toggle {
+    display: none; 
+  }
 }
+
+
 
