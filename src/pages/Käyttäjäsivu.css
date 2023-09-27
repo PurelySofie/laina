@@ -34,3 +34,27 @@
   button:hover span{
     width: 100%;
   }
+
+  .kirjaudu-ulos a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    position: relative;
+  }
+  .kirjaudu-ulos a::after {
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #009688;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+  }
+  .kirjaudu-ulos a:hover::after{
+    width: 100%;
+  }
+
+  .content h1 {
+    font-size: 45px;
+  }
