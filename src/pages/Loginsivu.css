@@ -463,17 +463,43 @@ input:-webkit-autofill:active{
 
   text-decoration: none;
 
+  position: relative;
+
+  transition: 0.3s;
+
 }
 
+.forgotPsw a::after {
+
+  content: '';
+
+  height: 2px;
+
+  width: 0;
+
+  background: #009688;
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: -4px;
+
+  transition: 0.5s;
+
+}
+
+.forgotPsw a:hover::after{
+
+  width: 100%;
+
+}
 
 .forgotPsw a:hover {
 
   color: #009688;
 
-  text-decoration: underline;
-
 }
-
 
 .uusiSalasana .peruuta {
 
@@ -499,14 +525,41 @@ input:-webkit-autofill:active{
 
   color: #fff;
 
+  position: relative;
+
+  transition: 0.3s;
+
 }
 
+.uusiSalasana .peruuta a::after {
+
+  content: '';
+
+  height: 2px;
+
+  width: 0;
+
+  background: #009688;
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: -4px;
+
+  transition: 0.5s;
+
+}
+
+.uusiSalasana .peruuta a:hover::after{
+
+  width: 100%;
+
+}
 
 .uusiSalasana .peruuta a:hover {
 
   color: #009688;
-
-  text-decoration: underline;
 
 }
 

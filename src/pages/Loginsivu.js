@@ -31,8 +31,14 @@ const Loginsivu = () => {
             salasana: "",
         }
 
-        // Tarkistetaan, löytyykö normaalikäyttäjän tunnukset tietokannasta
         setFormError(inputError);
+
+        // Jotta databasen tiedot saadaan käyttöön, pitää tietokanta pyöriä taustalla.
+        // Tämän tehdään kirjoittamalla terminaaliin "json-server --watch ./src/databases/käyttäjät/Users.json --port 3030"
+
+        // Tarkistetaan, löytyykö normaalikäyttäjän tunnukset tietokannasta
+        // Jos tunnukset löytyy, käyttäjä ohjautuu käyttäjäsivulle
+        // Mikäli tunnukset on väärin, ilmestyy virheviesti
         axios.get('http://localhost:3030/kayttajat', payload)
         .then((r) => {
             const user = Userinfo.kayttajat.find((kayttajat) => kayttajat.sposti === sposti && kayttajat.salasana === salasana);
@@ -50,6 +56,7 @@ const Loginsivu = () => {
         })
 
         // Tarkistetaan, löytyykö adminkäyttäjän tunnukset tietokannasta
+        // Jos tunnukset löytyy ja ovat oikein, ohjautuu käyttäjä adminsivulle
         axios.get('http://localhost:3030/admins', payload)
             .then((r) => {
                 const admin = Userinfo.admins.find((admins) => admins.sposti === sposti && admins.salasana === salasana);
