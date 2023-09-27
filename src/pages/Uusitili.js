@@ -66,7 +66,8 @@ const Uusitili = () => {
             confirmPassword: formData.confirmPassword
         };
 
-        // Saman sähköpostiosoitteen tarkistus
+        // Käytössä olevan sähköpostiosoitteen tarkistus
+        // Mikäli sähköpostiosoite on jo käytössä, ei rekisteröityminen onnistu
         const emailExists = Userinfo.kayttajat.some((user) => user.sposti === formData.sposti);
 
         if (emailExists) {
@@ -78,6 +79,7 @@ const Uusitili = () => {
         }
 
         // Tietojen tallennus tietokantaan
+        // Jos rekisteröinti onnistuu, tallentuu tunnukset tietokantaan, ja käyttäjä ohjautuu kirjaudu-sivulle.
         try {
             const response = await fetch('http://localhost:3030/kayttajat', {
                 method: 'POST',
