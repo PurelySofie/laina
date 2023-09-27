@@ -1,7 +1,10 @@
 .admin-bar{
     color: rgb(255, 255, 255);
     margin-top: -100px;
-    position: absolute;
+    position: fixed;
+    margin-bottom: 50px;
+    top: -57px;
+    left: 0px;
 }
 .Admin-Bar-Div{
 width: 100%;
@@ -13,6 +16,13 @@ justify-content: space-between;
 align-items: center;
 
 }
+.Admin-Bar-Div ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+  }
 .Admin-Bar-Div ul li{
     list-style: none;
     display: inline-block;
@@ -49,5 +59,19 @@ align-items: center;
     margin-top: 20px;
    
 }
-
-
+  
+  /* Media query for smaller screens */
+  @media screen and (max-width: 768px) {
+    .Admin-Bar-Div {
+      flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+  
+    .Admin-Bar-Div ul li {
+      margin-right: 0; /* Remove right margin for list items */
+    }
+  
+    .Admin-Bar-Il {
+      padding: 10px 0; /* Reduce padding for list items on smaller screens */
+    }
+  }
+  
