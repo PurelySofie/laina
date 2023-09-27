@@ -107,37 +107,21 @@ border: 1px solid black;
   
 }
 .lisaa-kirja{
-
   border: 2px solid #0dd;
-
   border-radius: 10px;
-
   width: 1200px;
-
-  margin-left: 275px;
-
+  margin: 0 auto;
   margin-top: auto;
-
   list-style-type: none;
-
  padding: 70px;
-
   margin-top: 11px;
-
- 
-
- 
-
   border-radius: 5px;
-
- 
-
-  width: 700px;
-
+  width: 50%;
   outline: none;
-
- 
-
+}
+.lisaa-kirja img{
+  width: 50%;
+  height: fit-content;
 }
 /* 
 Adminsivun taulukko
@@ -195,12 +179,15 @@ top: 40%;
   margin-left: 90%;
  
 }
+.lainattavat-overflow{
+  overflow: scroll;
+}
 
 .toinenpalkki{
   border: 7px double #00ffff80;
   width: 95%;
   height: 700px;
-  overflow-y: scroll;
+  
   border-radius: 20px;
   margin: 0 auto;
   opacity: 0.5;

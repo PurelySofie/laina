@@ -1,22 +1,22 @@
 [
     {
         "tunniste":"YkC0",
-        "lainattu":"true"
+        "lainattu":true
     },
     {
         "tunniste":"sddF",
-        "lainattu":"true"
+        "lainattu":true
     },
     {
         "tunniste":"7KUW",
-        "lainattu":"false"
+        "lainattu":false
     },
     {
         "tunniste":"yLXV",
-        "lainattu":"false"
+        "lainattu":false
     },
     {
         "tunniste":"k1UW",
-        "lainattu":"false"
+        "lainattu":false
     }
   ]

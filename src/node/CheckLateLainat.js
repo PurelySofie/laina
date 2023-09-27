@@ -1,52 +1,40 @@
 const fs = require("fs");
-/**
- * Katsoo onko lainaus myöhässä.
- * Linux palvelimeen saa paketin joka
- * looppaa tietyn väliajoin
- * 
- * Voi myös loopata nodejs palvelimella jotenkin?
- * 
- * Tiedoston olisi tarkotus päivän vaihtuessa?
- */
 
 function checkLateLainat() {
-    const pathToFolder = "./src/databases/lainat" // Polku projektin juuresta
-    try {
-        // Lukee kansion sisällön
-        const files = fs.readdirSync(pathToFolder)
-
+  const pathToFolder = "./src/databases/lainat";
+  try {
+    const files = fs.readdirSync(pathToFolder);
+    let results = [];
+    Promise.all(
+      files.map(async (file) => {
         try {
-            files.map( async (file) => {
-                // Tekee polun
-                const path = `${pathToFolder}/${file}`
-                const data = await JSON.parse(fs.readFileSync(path, "utf-8"));
+          const path = `${pathToFolder}/${file}`;
+          const data = await JSON.parse(fs.readFileSync(path, "utf-8"));
 
-                // Muuttaa päiväyksen muotoon dd/mm/yyyy
-                const dateComponents = data.viimpalautuspv.split("/"); // Paloittelee päiväyksen kauttaviivan kohdilta
-                const day = dateComponents[0]; // Ottaa päivän
-                const month = dateComponents[1]; // Ottaa kuukauden
-                const year = dateComponents[2]; // Ottaa vuoden
-                const formattedDateString = `${day}/${month}/${year}`; // Kasaa ne uuteen muotoon
-                console.log(day, month, year , "=", formattedDateString)
-                
-                const targetDate = new Date(formattedDateString); // Tekee siitä uuden päiväyksen
-        
-                const currentDate = new Date(); // Nykyinen päiväys
-                console.log(currentDate, targetDate, "=", currentDate < targetDate)
-                if (currentDate < targetDate) {
-                    // TODO Merkitse kirja myöhästyneeksi
-                    console.log("Myöhässä")
-                } else {
-                    console.log("EI")
-                }
-            })
+          // Parse the date components correctly for dd/mm/yyyy format
+          const dateComponents = data.viimpalautuspv.split("/");
+          const day = dateComponents[0];
+          const month = dateComponents[1];
+          const year = dateComponents[2];
+          const formattedDateString = `${month}/${day}/${year}`;
+
+          const targetDate = new Date(formattedDateString);
+          const currentDate = new Date();
+
+          if (currentDate > targetDate) {
+            console.log(`Book in file ${file} is late.`);
             
+          }
         } catch (error) {
-            console.error("Error reading file:", error)
+          console.error(`Error reading or processing file ${file}:`, error);
         }
-    } catch (error) {
-        console.log("Error reading directory:", error)
-    }
+      })
+    ).catch((error) => {
+      console.error("Error processing files:", error);
+    });
+  } catch (error) {
+    console.error("Error reading directory:", error);
+  }
 }
 
 checkLateLainat();

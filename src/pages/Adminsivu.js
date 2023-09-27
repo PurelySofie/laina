@@ -235,7 +235,7 @@ function Adminsivu(){
                 <div className='admin-bar'>
                     <AdminBar handleClickAdmins={handleClickAdminBar}/>
                 </div>
-                <div className='toinenpalkki'>
+                <div className='toinenpalkki' style={{ overflowY: pageToRender === "LainattavatMain" ? "scroll" : "auto" }}>
                     <>{pageToRender}</>
                 </div>
             </div>

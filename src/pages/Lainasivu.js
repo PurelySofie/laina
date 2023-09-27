@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "./Lainasivu.css"
 import axios from "axios"
+import { TeeLainaSivu } from "../modules/TeeLainaSivu";
  
 function Lainasivu(){
     const [jsonData, setJsonData] = useState(null);
@@ -44,6 +45,10 @@ function Lainasivu(){
                                     <p className="box-text">{book.nimi}</p>
                                     <p className="box-text">{book.maara}</p>
                                     <p className="box-text">{book.saatavilla}Kpl jäljellä</p>
+                                    <TeeLainaSivu 
+                                        kirjaNimi={book.nimi}
+                                        lainaaja="gr255585@gradia.fi"
+                                    />
                                 </div>
                             ))
                             :

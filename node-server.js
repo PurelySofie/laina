@@ -29,6 +29,7 @@ const updateDateLainaus = require("./src/node/jsonUpdateDate")
 const saveChangesLainattavat = require("./src/node/saveChangesLainattavat")
 const jsonHandleLainausHistoria = require("./src/node/jsonHandleLainausHistoria")
 const addJsonBookCover = require("./src/node/AddBookCover")
+const teeLaina = require("./src/node/TeeLaina")
 
 const port = 3001; // Portin voi vaihtaa jos tarvetta
 const cors = require('cors'); // Sallii palveleiden välisen kommunikoinnin
@@ -258,6 +259,24 @@ app.post('/api/json-addBook-coverImage', upload.single('image'), async (req, res
       res.status(500).json({error: "Internal Server Error"})
     }
   })
+
+
+/**
+ * Lainaa kirjan
+ */
+app.post("/api/json-teeLaina", async (req, res) => {
+  try {
+    const { lainaaja, kirjaNimi } = req.body;
+    await teeLaina(lainaaja, kirjaNimi);
+    console.log('Lainus tehty, from:', req.ip);
+  } catch (error) {
+    console.error("Error saving changes for lainattavat:", error)
+    res.status(500).json({error: "Internal Server Error"})
+  }
+})
+
+
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

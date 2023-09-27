@@ -1,22 +1,22 @@
 [
     {
         "tunniste":"DjAd",
-        "lainattu":"true"
+        "lainattu":true
     },
     {
         "tunniste":"ixoA",
-        "lainattu":"true"
+        "lainattu":true
     },
     {
         "tunniste":"XTEG",
-        "lainattu":"false"
+        "lainattu":false
     },
     {
         "tunniste":"6Ui8",
-        "lainattu":"false"
+        "lainattu":false
     },
     {
         "tunniste":"vgSR",
-        "lainattu":"false"
+        "lainattu":false
     }
   ]
