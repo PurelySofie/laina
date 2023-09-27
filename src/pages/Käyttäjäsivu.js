@@ -32,8 +32,7 @@ function Käyttäjäsivu(){
     return(
         <div className="content">
             <div className="Käyttäjäinfo">
-                <p></p>
-                <p></p>
+                <p>Tähän tulee käyttäjän omat lainat näkyviin kun on kirjautunut.</p>
             </div>
             <div className="Lainat">   
                 
