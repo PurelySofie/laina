@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import "./Käyttäjäsivu.css"
 import axios from 'axios'
-var User = (1)
 
 function Käyttäjäsivu(){
 
