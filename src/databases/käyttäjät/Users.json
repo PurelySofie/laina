@@ -1,13 +1,38 @@
-[
-    {   
-        "id":"0",
-        "sposti": "gr255585@gradia.fi",
-        "salasana": "salasana123",
-        "lainat": ["1zh7a","40Vfk"]
+{
+  "kayttajat": [
+    {
+      "id": 0,
+      "sposti": "gr255585@gradia.fi",
+      "salasana": "salasana123",
+      "lainat": [
+        "1zh7a",
+        "40Vfk"
+      ]
     },
     {
-        "sposti": "gr244585@gradia.fi",
-        "salasana": "salasana123",
-        "lainat": ["UJI3r","yTDKm"]
+      "id": 1,
+      "sposti": "gr244585@gradia.fi",
+      "salasana": "salasana123",
+      "lainat": [
+        "UJI3r",
+        "yTDKm"
+      ]
+    }
+  ],
+  "admins": [
+    {
+      "sposti": "gr277585@gradia.fi",
+      "salasana": "salasana123",
+      "lainat": [
+        ""
+      ]
+    },
+    {
+      "sposti": "gr266585@gradia.fi",
+      "salasana": "salasana123",
+      "lainat": [
+        ""
+      ]
     }
   ]
+}

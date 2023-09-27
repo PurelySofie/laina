@@ -1,533 +1,597 @@
-  /* Form */
+/* Form */
 
-  .kirjauduFrm, .rekisteröidyFrm, .uusiSalasana {
+.kirjauduFrm, .rekisteröidyFrm, .uusiSalasana {
 
-    display: flex;
+  display: flex;
 
-    justify-content: center;
+  justify-content: center;
 
-    align-items: center;
+  align-items: center;
 
-    top: 65%;
+  top: 53%;
 
-    transform: translateY(-50%);
+  transform: translateY(-50%);
 
-    position: absolute;
+  position: absolute;
 
-    width: 100%;
+  width: 100%;
 
-  }
+}
 
 
-  .form {
+.form {
 
-    background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 
-    width: 400px;
+  width: 450px;
 
-    border-radius: 7px;
+  border-radius: 7px;
 
-    padding: 20px 40px;
+  padding: 20px 40px;
 
-    box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
+  box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
 
-    border: 2px solid #009688;
+  border: 2px solid #009688;
 
-  }
+}
 
 
-  /* Title */
+/* Title */
 
-  .title-kirjaudu, .title-rekisteröidy {
+.title-kirjaudu, .title-rekisteröidy {
 
-    font-size: 40px;
+  font-size: 40px;
 
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 
-    position: relative;
+  position: relative;
 
-    text-align: left;
+  text-align: left;
 
-    color: #fff;
+  color: #fff;
 
-  }
+}
 
 
-  .title-salasana {
+.title-salasana {
 
-    font-size: 30px;
+  font-size: 30px;
 
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 
-    position: relative;
+  position: relative;
 
-    color: #fff;
+  color: #fff;
 
-    text-align: left;
+  text-align: left;
 
-  }
+}
 
 
-  .title-salasana::after {
+.title-salasana::after {
 
-    content: "";
+  content: "";
 
-    display: block;
+  display: block;
 
-    height: 3px;
+  height: 3px;
 
-    width: 285px;
+  width: 285px;
 
-    position: absolute;
+  position: absolute;
 
-    left: 36%;
+  left: 39%;
 
-    bottom: -10px;
+  bottom: -10px;
 
-    transform: translateX(-50%);
+  transform: translateX(-50%);
 
-    background-color: #009688;
+  background-color: #009688;
 
-  }
+}
 
 
-  .title-kirjaudu::after {
+.title-kirjaudu::after {
 
-    content: " ";
+  content: " ";
 
-    display: block;
+  display: block;
 
-    height: 3px;
+  height: 3px;
 
-    width: 300px;
+  width: 300px;
 
-    position: absolute;
+  position: absolute;
 
-    left: 38%;
+  left: 41%;
 
-    bottom: -10px;
+  bottom: -10px;
 
-    transform: translateX(-50%);
+  transform: translateX(-50%);
 
-    background-color: #009688;
+  background-color: #009688;
 
-  }
+}
 
 
-  .title-rekisteröidy::after {
+.title-rekisteröidy::after {
 
-    content: " ";
+  content: " ";
 
-    display: block;
+  display: block;
 
-    height: 3px;
+  height: 3px;
 
-    width: 240px;
+  width: 240px;
 
-    position: absolute;
+  position: absolute;
 
-    left: 30%;
+  left: 33%;
 
-    bottom: -10px;
+  bottom: -10px;
 
-    transform: translateX(-50%);
+  transform: translateX(-50%);
 
-    background-color: #009688;
+  background-color: #009688;
 
-  }
+}
 
 
-  /* Input/Label */
+/* Input/Label */
 
-  .inputContainer {
+.inputContainer {
 
-    position: relative;
+  position: relative;
 
-    height: 45px;
+  height: 45px;
 
-    width: 90%;
+  width: 100%;
 
-    margin-bottom: 17px;
+  margin-bottom: 17px;
 
-  }
+}
 
 
-  .input {
+.input {
 
-    position: absolute;
+  position: absolute;
 
-    top: 0px;
+  top: 0px;
 
-    left: 0px;
+  left: 0px;
 
-    height: 100%;
+  height: 100%;
 
-    width: 100%;
+  width: 100%;
 
-    border: 1px solid #DADCE0;
+  border: 1px solid #DADCE0;
 
-    border-radius: 7px;
+  border-radius: 7px;
 
-    font-size: 16px;
+  font-size: 16px;
 
-    padding: 0 20px;
+  padding: 0 20px;
 
-    outline: none;
+  outline: none;
 
-    background: none;
+  background: none;
 
-    z-index: 1;
+  z-index: 1;
 
-    color: #fff;
+  color: #fff;
 
+}
 
-  }
 
+.inputContainer ::placeholder {
 
-  .inputContainer ::placeholder {
+  color: transparent;
 
-    color: transparent;
+}
 
-  }
 
+.label {
 
-  .label {
+  position: absolute;
 
-    position: absolute;
+  top: 13px;
 
-    top: 15px;
+  left: 15px;
 
-    left: 15px;
+  padding: 0 4px;
 
-    padding: 0 4px;
+  color: #DADCE0;
 
-    color: #DADCE0;
+  background-color: rgba(0, 0, 0, 0.5);
 
-    background-color: rgba(0, 0, 0, 0.5);
+  font-size: 16px;
 
-    font-size: 16px;
+  transition: 0.5s;
 
-    transition: 0.5s;
+  z-index: 0;
 
-    z-index: 0;
+}
 
-  }
 
+.input:focus + .label {
 
-  .input:focus + .label {
+  top: -7px;
 
-    top: -7px;
+  left: 3px;
 
-    left: 3px;
+  z-index: 10;
 
-    z-index: 10;
+  font-size: 14px;
 
-    font-size: 14px;
+  font-weight: 600;
 
-    font-weight: 600;
+  color: #fff;
 
-    color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
 
-    background-color: rgba(0, 0, 0, 0.5);
+}
 
-  }
 
+.input:focus {
 
-  .input:focus {
+  border: 2px solid #009688;
 
-    border: 2px solid #009688;
+}
 
-  }
 
+.input:not(:placeholder-shown)+ .label {
 
-  .input:not(:placeholder-shown)+ .label {
+  top: -7px;
 
-    top: -7px;
+  left: 3px;
 
-    left: 3px;
+  z-index: 10;
 
-    z-index: 10;
+  font-size: 14px;
 
-    font-size: 14px;
+  font-weight: 600;
 
-    font-weight: 600;
+}
 
-  }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
 
+    -webkit-background-clip: text;
 
-  /* Submit Button */
+    -webkit-text-fill-color: #ffffff;
 
-  .submitBtn {
+    transition: background-color 5000s ease-in-out 0s;
 
-    width: 100%;
+    box-shadow: inset 0 0 20px 20px #23232329;
 
-    display: block;
+}
 
-    margin-left: auto;
 
-    padding: 15px 30px;
+/* Submit Button */
 
-    border: none;
+.submitBtn {
 
-    background-color: #009688;
+  width: 100%;
 
-    color: #fff;
+  margin-left: auto;
 
-    border-radius: 26px;
+  padding: 15px 30px;
 
-    cursor: pointer;
+  background: transparent;
 
-    font-size: 18px;
+  color: #fff;
 
-    margin-top: 30px;
+  border: 2px solid #009688;
 
-  }
+  border-radius: 26px;
 
+  cursor: pointer;
 
-  .submitBtn:hover {
+  font-size: 18px;
 
-    opacity: 0.8;
+  font-weight: bold;
 
-    transform: translateY(-2px);
+  margin-top: 15px;
 
-  }
+  position: relative;
 
+  overflow: hidden;
 
-  /* Kirjaudu/Rekisteröidy */
+  z-index: 1;
 
-  .rekisteröidy h4, .kirjaudu h4 {
+}
 
-    color: #009688;
+.submitBtn:hover {
 
-  }
+  background: #009688;
 
+  height: 100%;
 
-  .hr-lines {
+  width: 100%;
 
-    position: relative;
+  position: relative;
 
-    max-width: 500px;
+  left: 0;
 
-    margin: 30px auto;
+  bottom: 0;
 
+  z-index: 1;
+
+}
+
+/* Kirjaudu/Rekisteröidy */
+
+.rekisteröidy h4, .kirjaudu h4 {
+
+  color: #009688;
+
+}
+
+
+.hr-lines {
+
+  position: relative;
+
+  max-width: 500px;
+
+  margin: 30px auto;
+
+  text-align: center;
+
+}
+
+
+.hr-lines::before {
+
+  content: " ";
+
+  display: block;
+
+  height: 2px;
+
+  width: 140px;
+
+  position: absolute;
+
+  top: 50%;
+
+  left: 0;
+
+  background-color: #009688;
+
+}
+
+
+.hr-lines::after {
+
+  content: " ";
+
+  display: block;
+
+  height: 2px;
+
+  width: 140px;
+
+  position: absolute;
+
+  top: 50%;
+
+  right: 0;
+
+  background:#009688;
+
+}
+
+
+.kirjaudu p, .rekisteröidy p {
+
+  text-align: center;
+
+  margin-bottom: 15px;
+
+  color: #fff;
+
+}
+
+
+.kirjaudu a, .rekisteröidy a{
+
+  background: transparent;
+
+  color: #fff;
+
+  padding: 14px 20px;
+
+  border: 2px solid #009688;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  font-weight: bold;
+
+  border-radius: 26px;
+
+  text-decoration: none;
+
+  display: block;
+
+  text-align: center;
+
+  position: relative;
+
+  overflow: hidden;
+
+  z-index: 1;
+
+}
+
+.kirjaudu a:hover span, .rekisteröidy a:hover span{
+
+  width: 100%;
+
+}
+
+
+.kirjaudu a:hover, .rekisteröidy a:hover {
+
+  border-color: rgba(0, 0, 0, 0)
+
+}
+
+
+/* Unohtuiko Salasana */
+
+.forgotPsw {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  font-size: 14px;
+
+  margin-top: 15px;
+
+}
+
+
+.forgotPsw a {
+
+  color: #fff;
+
+  text-decoration: none;
+
+}
+
+
+.forgotPsw a:hover {
+
+  color: #009688;
+
+  text-decoration: underline;
+
+}
+
+
+.uusiSalasana .peruuta {
+
+  margin-top: 20px;
+
+  text-align: center;
+
+}
+
+.uusiSalasana p {
+
+  color: #fff;
+
+  text-align: left;
+
+  margin-bottom: 20px;
+
+}
+
+.uusiSalasana .peruuta a {
+
+  text-decoration: none;
+
+  color: #fff;
+
+}
+
+
+.uusiSalasana .peruuta a:hover {
+
+  color: #009688;
+
+  text-decoration: underline;
+
+}
+
+
+/* Näytä Salasana */
+
+.showPassword {
+
+  display: flex;
+
+  align-items: center;
+
+  margin-top: 5px;
+
+}
+
+
+.näytä {
+
+  color: #fff;
+
+  margin-left: 3px;
+
+  font-size: 15px;
+
+}
+
+
+input[type=checkbox] {
+
+  accent-color: #009688;
+
+}
+
+
+/* Error Messages */
+
+.error-message {
+
+  font-size: 0.7rem;
+
+  font-weight: 500;
+
+  margin-top: -0.8rem;
+
+  margin-bottom: 0.7rem;
+
+  margin-left: 0.3rem;
+
+  color: red;
+
+  display: flex;
+
+  justify-content: flex-start;
+
+  align-items: center;
+
+}
+
+
+/* Media/Responsive */
+
+@media (max-width: 500px) {
+  .title-kirjaudu, .title-rekisteröidy, .title-salasana {
     text-align: center;
-
+  }
+  .title-kirjaudu::after, .title-rekisteröidy::after, .title-salasana::after {
+    left: 50%;
   }
 
+  .hr-lines::before, .hr-lines::after {
+    width: 120px;
+  }
+}
 
-  .hr-lines::before {
-
-    content: " ";
-
-    display: block;
-
-    height: 2px;
-
-    width: 160px;
-
-    position: absolute;
-
-    top: 50%;
-
-    left: 0;
-
-    background-color: #009688;
-
+@media (max-width: 280px) {
+  .hr-lines::before, .hr-lines::after {
+    width: 70px;
   }
 
-
-  .hr-lines::after {
-
-    content: " ";
-
-    display: block;
-
-    height: 2px;
-
-    width: 160px;
-
-    position: absolute;
-
-    top: 50%;
-
-    right: 0;
-
-    background:#009688;
-
+  .title-kirjaudu::after, .title-rekisteröidy::after, .title-salasana::after {
+    width: 170px;
   }
 
-
-  .kirjaudu p, .rekisteröidy p {
-
-    text-align: center;
-
-    margin-bottom: 15px;
-
-    color: #fff;
-
+  .title-kirjaudu, .title-rekisteröidy, .title-salasana {
+    font-size: 35px;
   }
-
-
-  .kirjaudu a, .rekisteröidy a{
-
-    background-color: #009688;
-
-    color: #fff;
-
-    padding: 14px 20px;
-
-    border: none;
-
-    cursor: pointer;
-
-    font-size: 18px;
-
-    border-radius: 26px;
-
-    text-decoration: none;
-
-    display: block;
-
-    text-align: center;
-
-  }
-
-
-  .kirjaudu a:hover, .rekisteröidy a:hover {
-
-    opacity: 0.8;
-
-    transform: translateY(-2px);
-
-  }
-
-
-  /* Unohtuiko Salasana */
-
-  .forgotPsw {
-
-    display: flex;
-
-    justify-content: flex-end;
-
-    font-size: 14px;
-
-    margin-top: 15px;
-
-  }
-
-
-  .forgotPsw a {
-
-    color: #fff;
-
-    text-decoration: none;
-  }
-
-
-  .forgotPsw a:hover {
-
-    color: #009688;
-
-    text-decoration: underline;
-
-  }
-
-
-  .uusiSalasana .peruuta {
-
-    margin-top: 20px;
-
-    text-align: center;
-
-  }
-
-  .uusiSalasana p {
-
-    color: #fff;
-
-    text-align: left;
-
-    margin-bottom: 20px;
-
-  }
-
-  .uusiSalasana .peruuta a {
-
-    text-decoration: none;
-
-    color: #fff;
-
-  }
-
-
-  .uusiSalasana .peruuta a:hover {
-
-    color: #009688;
-
-    text-decoration: underline;
-
-  }
-
-
-  /* Näytä Salasana */
-
-  .showPassword {
-
-    display: flex;
-
-    align-items: center;
-
-    margin-top: -15px;
-
-    margin-bottom: -25px;
-
-  }
-
-
-  .näytä {
-
-    color: #fff;
-
-    margin-left: 3px;
-
-    font-size: 15px;
-
-  }
-
-
-  input[type=checkbox] {
-
-    accent-color: #009688;
-
-  }
-
-
-  /* Media/Responsive */
-
-  @media (max-width: 500px) {
-    .title-kirjaudu, .title-rekisteröidy, .title-salasana {
-      text-align: center;
-    }
-    .title-kirjaudu::after, .title-rekisteröidy::after, .title-salasana::after {
-      left: 50%;
-    }
-
-    .hr-lines::before, .hr-lines::after {
-      width: 120px;
-    }
-  }
-
-  @media (max-width: 280px) {
-    .hr-lines::before, .hr-lines::after {
-      width: 70px;
-    }
-
-    .title-kirjaudu::after, .title-rekisteröidy::after, .title-salasana::after {
-      width: 170px;
-    }
-
-    .title-kirjaudu, .title-rekisteröidy, .title-salasana {
-      font-size: 35px;
-    }
-  }
+}
