@@ -32,7 +32,6 @@ function formatDateToDDMMYYYY(date) {
   }
 
 async function teeLaina(lainaaja, kirjaNimi){
-    console.log(lainaaja, kirjaNimi)
     const pathToLoanFile = `./src/databases/lainattavat/${kirjaNimi}.json`
     try {
         const data = await JSON.parse(fs.readFileSync(pathToLoanFile, "utf-8"));
@@ -81,8 +80,37 @@ async function teeLaina(lainaaja, kirjaNimi){
                         newData[i].saatavilla -= 1
                     }
                 }
-                if(err){return;}
+
+                // Lisää user kansioon lainan
+                let userData = JSON.parse(fs.readFileSync("./src/databases/käyttäjät/Users.json", "utf-8"))
+
+                let found = false;
+                for(let i = 0; i < userData.kayttajat.length; i++){
+                    if(userData.kayttajat[i].sposti === lainaaja){
+                        userData.kayttajat[i].lainat.push(randomTunnus)
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found){
+                    for(let i = 0; i < userData.admins.length; i++){
+                        if(userData.admins[i].sposti === lainaaja){
+                            userData.admins[i].lainat.push(randomTunnus)
+                            break;
+                        }
+                    }
+                }
+
+                if(err === true){
+                    return;
+                }
+
+
+                // Kirjottaa kaiken datan
+
                 fs.writeFileSync("./src/databases/lainattavat/Lainattavat.json", JSON.stringify(newData, null, 2))
+
+                fs.writeFileSync("./src/databases/käyttäjät/Users.json", JSON.stringify(userData, null, 2))
 
                 fs.writeFileSync(newPath, JSON.stringify(data, null, 2))
               } catch (error) {

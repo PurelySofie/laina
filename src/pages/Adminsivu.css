@@ -147,6 +147,10 @@ Adminsivun taulukko
   /* max-height: 60vh; */
   /* height: 100hv; */
 }
+.admin-root-tbody img {
+  width: 50%;
+  height: fit-content;
+}
 .admin-root-tbody{
    overflow-y: scroll;
   /* overflow-x: scroll; */
