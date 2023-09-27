@@ -67,6 +67,23 @@ async function teeLaina(lainaaja, kirjaNimi){
             }
 
             try {
+
+                // Muuttaa lainattuja alas
+                let newData = JSON.parse(fs.readFileSync("./src/databases/lainattavat/Lainattavat.json", "utf-8"))
+                let err = false;
+
+                for(let i = 0; i < newData.length; i++){
+                    if(newData[i].nimi === kirjaNimi){
+                        if(newData[i].saatavilla === 0){
+                            err = true
+                            return;
+                        }
+                        newData[i].saatavilla -= 1
+                    }
+                }
+                if(err){return;}
+                fs.writeFileSync("./src/databases/lainattavat/Lainattavat.json", JSON.stringify(newData, null, 2))
+
                 fs.writeFileSync(newPath, JSON.stringify(data, null, 2))
               } catch (error) {
                 console.error('Error writing file:', error);
