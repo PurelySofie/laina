@@ -20,11 +20,8 @@
   position: relative;
   top: 50%; 
 
-  /* BURGER menu */
-  transform: translateY(-5%); 
-
-  /* Ei BURGER menu */
-  transform: translateY(-81%);
+  /* Jos se adminbar lagaa vaihtakaa tota transformia */
+transform: translateY(3%);
   text-align: center;
   color:#ffffff;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
