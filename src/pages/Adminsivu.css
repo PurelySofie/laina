@@ -19,7 +19,9 @@
   width: 100%;
   position: relative;
   top: 50%; 
-  transform: translateY(-5%);
+
+  /* Jos se adminbar lagaa vaihtakaa tota transformia */
+transform: translateY(15%);
   text-align: center;
   color:#ffffff;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
