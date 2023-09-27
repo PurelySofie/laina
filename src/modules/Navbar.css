@@ -48,8 +48,8 @@ body {
 }
 
 .nav-list li {
-  margin: 0 20px;
   position: relative;
+
 }
 
 .nav-list li a {
@@ -57,10 +57,12 @@ body {
   color: #fff;
   text-transform: uppercase;
   transition: color 0.3s;
+  margin-top: 20px;
 }
 
 .nav-list li a:hover {
   color: #009688;
+  margin-top: 20px;
 }
 
 .mobile-menu-open .menu-toggle {
@@ -70,7 +72,7 @@ body {
 .mobile-menu-open .nav-list {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: sticky;
   top: 60px;
   left: 0;
   background-color: #333;
@@ -85,17 +87,20 @@ body {
 @media screen and (max-width: 791px) {
   .navbar {
     display:block; 
+    position: fixed;
   }
 
   .menu-toggle {
     display: flex; 
   }
-
   .navbar.mobile-menu-open .nav-list {
     display: flex;
+    position: fixed;
+    height: auto;
   }
   .nav-list{
     display: none;
+    margin-top: -3px;
   }
 }
 
