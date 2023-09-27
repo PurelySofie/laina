@@ -55,6 +55,9 @@ const SearchBar = (props) => {
             case "tunniste":
                 setPlaceholderPaate("tunnisteella");
                 break;
+            case "lainaaja":
+                setPlaceholderPaate("lainaajan nimellä");
+                break;    
             default:
                 break;
         }

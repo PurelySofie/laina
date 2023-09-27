@@ -100,6 +100,7 @@ function Adminsivu(){
     }
     const handleToSearch = (etsittava) => {
         setToSearch(etsittava)
+        console.log(etsittava)
     }
     /**
      * Etsii kirjoja nimen, tunnisteen
